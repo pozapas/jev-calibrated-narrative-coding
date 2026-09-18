@@ -1,44 +1,41 @@
-"""F1 -- the method framework, emitted as an editable draw.io diagram.
+"""F1 -- the method framework, as an editable draw.io diagram.
 
     python src/s19_framework_drawio.py --export
 
-Design. The first draft of this figure was a grid of boxes each holding five bullets, which
-is the common idiom and the wrong one: it asks the reader to read a paragraph in eleven
-places and encodes nothing visually. This version carries the same content in three parts:
+Visual language. This follows the architecture-diagram idiom now standard in machine-learning
+papers rather than the boxes-of-bullets idiom common in transportation ones: flat pastel
+blocks with no strokes, very little text, and the objects that flow between stages drawn as
+token strips instead of described in prose. Two earlier drafts of this figure were built the
+other way and both had the same defect -- a reader had to read eleven paragraphs to learn
+what a diagram should show at a glance.
 
-  a SPINE of six nodes, one line each, that is the pipeline and nothing else;
-  an AUDIT LOOP hanging beneath it, because the audit modifies the probability rather than
-    extending the flow, and the shape should say so;
-  three EVIDENCE PANELS -- real plots from the real analysis, one per headline finding.
+Three things the idiom buys that are not decoration:
 
-The panels are why the figure can be short. "Cost is governed by schema size" costs a bullet
-and convinces nobody; the same claim as seven measured points on an axis takes less room and
-is harder to argue with.
+  the token strips carry real values. The probability strip is shaded by actual returned
+  probabilities, so the two-decimal grid and its floor are visible rather than asserted, and
+  the review strip fills exactly the measured share of flagged records a human must open.
 
-Every number and every panel is generated from analysis.json, cost_model.json,
-gold_analysis.json and frontier_analysis.json at build time, exactly as numbers.tex binds the
-prose, so the figure cannot fall out of step with the paper.
+  the frozen and fitted marks carry the paper's thesis. The model is never trained; the only
+  fitted object in the whole pipeline is the one-dimensional recalibration map, and putting a
+  snowflake on the first and a flame on the second says that in two glyphs.
 
-Colour follows style.py, which already fixes blue = the typed model, orange = human
-judgement, grey = coded fields, red = the baselines held apart. A reader arriving from a
-later figure reads the same hues as the same things.
+  the legend does the work a caption otherwise does, so the blocks can stay nearly wordless.
+
+Every number, every shade and every fill fraction is bound from analysis.json,
+cost_model.json and gold_analysis.json at build time, as numbers.tex binds the prose.
 
 Output: outputs/figures/F1_framework.drawio  (+ .pdf / .png via --export)
 """
 from __future__ import annotations
 import argparse
-import base64
 import html
-import io
 import json
 import subprocess
 import sys
 from pathlib import Path
 
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).parent / "s09_figures"))
 import style as S
@@ -48,272 +45,224 @@ DATA = ROOT / "paper1" / "data"
 OUT = ROOT / "paper1" / "outputs" / "figures"
 DRAWIO_EXE = Path(r"C:/Program Files/draw.io/draw.io.exe")
 
-PAGE_W, PAGE_H = 1380, 560
+PAGE_W, PAGE_H = 1420, 584
 FONT = "Helvetica"
-PANEL_DPI = 320
 
-
-def tint(hexcolor: str, keep: float) -> str:
-    """Blend a palette colour toward white, so a fill can never drift from its stroke."""
-    h = hexcolor.lstrip("#")
-    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
-    f = lambda v: round(v * keep + 255 * (1 - keep))
-    return f"#{f(r):02X}{f(g):02X}{f(b):02X}"
+# Flat fills, no strokes, in the paper's own hues. The idiom reads as a soft block of colour,
+# so the tint is heavier than it would be for a bordered box.
+FILL = {"grey": "#E7EAEC", "blue": "#D6E6F4", "deep": "#BBD6EE", "orange": "#FBE7C8",
+        "ink": "#DFE3E6", "red": "#F8DCCE", "cream": "#FAF3E2"}
 
 
 def esc(s: str) -> str:
     return html.escape(s, quote=True)
 
 
-# ------------------------------------------------------------------ evidence panels
-def _png64(fig) -> str:
-    """Render a matplotlib figure to the base64 PNG form draw.io embeds inline."""
-    buf = io.BytesIO()
-    fig.savefig(buf, format="png", dpi=PANEL_DPI, transparent=True,
-                bbox_inches="tight", pad_inches=0.02)
-    plt.close(fig)
-    return base64.b64encode(buf.getvalue()).decode("ascii")
+def shade(p: float) -> str:
+    """A probability as a fill: pale at the grid floor, saturated at the top of the range."""
+    lo, hi = np.array([214, 230, 244]), np.array([0, 90, 158])
+    c = lo + (hi - lo) * float(np.clip(p, 0, 1)) ** 0.62
+    return "#{:02X}{:02X}{:02X}".format(*(int(round(v)) for v in c))
 
 
-def _bare(ax, keep=("bottom",)) -> None:
-    for name, sp in ax.spines.items():
-        if name in keep:
-            sp.set_color("#8894A0")
-            sp.set_linewidth(0.7)
-        else:
-            sp.set_visible(False)
-    ax.tick_params(labelsize=6.0, length=2, pad=1.5)
-
-
-def panel_cost(cm: dict) -> str:
-    """Input tokens against schema size: seven measured points rather than an assertion."""
-    ks = sorted(cm["per_question_set"], key=int)
-    x = np.array([int(k) for k in ks])
-    y = np.array([cm["per_question_set"][k]["mean_tokens"] for k in ks])
-    fig, ax = plt.subplots(figsize=(2.7, 1.12))
-    ax.plot(x, y, "-", color=S.BLUE, lw=1.6, zorder=2)
-    ax.scatter(x, y, s=20, color=S.BLUE, zorder=3, lw=0)
-    b = cm["intercept_model"]["beta_tokens_per_question"]
-    ax.annotate(f"+{b:.0f} tokens per question", xy=(1.0, max(y) * 1.06),
-                ha="left", va="top", fontsize=6.4, color=S.INK)
-    ax.set_xlabel("questions in the schema", fontsize=6.4, labelpad=1.5)
-    ax.set_ylabel("input tokens", fontsize=6.4, labelpad=1.5)
-    ax.set_xlim(0, 29)
-    ax.set_ylim(0, max(y) * 1.18)
-    _bare(ax, keep=("bottom", "left"))
-    return _png64(fig)
-
-
-def panel_reference(a: dict, G: dict) -> str:
-    """Per-variable ECE against each reference, paired.
-
-    A dumbbell is the right form because the claim is about the gap and its direction: every
-    variable's orange dot sits right of its grey one. Two separate bar charts would leave the
-    reader to establish that by eye.
-    """
-    rows = []
-    for v, r in G["per_variable"].items():
-        cod = a["vs_coded_fields"].get(v, {}).get("ece_vs_coded")
-        if cod:
-            rows.append((cod, r["ece"]))
-    rows.sort(key=lambda t: t[1])
-    fig, ax = plt.subplots(figsize=(2.7, 1.12))
-    for i, (cod, gold) in enumerate(rows):
-        ax.plot([cod, gold], [i, i], "-", color="#B9C3CD", lw=1.1, zorder=1)
-    ax.scatter([r[0] for r in rows], range(len(rows)), s=15, color=S.GREY, zorder=3, lw=0,
-               label="vs. coded fields")
-    ax.scatter([r[1] for r in rows], range(len(rows)), s=15, color=S.ORANGE, zorder=3, lw=0,
-               label="vs. human labels")
-    ax.set_yticks([])
-    ax.set_xlabel("expected calibration error", fontsize=6.4, labelpad=1.5)
-    ax.set_ylim(-1.4, len(rows) - 0.2)
-    ax.legend(fontsize=5.9, frameon=False, loc="lower right", handletextpad=0.2,
-              borderpad=0.05, labelspacing=0.2, handlelength=0.8)
-    _bare(ax)
-    return _png64(fig)
-
-
-def panel_budget(G: dict) -> str:
-    """Per-variable review budget: the paper's question, answered variable by variable."""
-    vals = np.array(sorted(r["review_budget_90"]
-                           for r in G["per_variable"].values())) * 100
-    fig, ax = plt.subplots(figsize=(2.7, 1.12))
-    free = vals <= 1e-9
-    ax.barh(range(len(vals)), np.maximum(vals, 0.8), height=0.74, edgecolor="none",
-            color=[S.LIGHT if f else S.BLUE for f in free])
-    pooled = 100 * G["pooled"]["review_budget_90"]
-    ax.axvline(pooled, color=S.ORANGE, lw=1.2, ls=(0, (3, 2)))
-    ax.annotate(f"pooled {pooled:.1f}%", xy=(pooled, len(vals) * 0.52), xytext=(4, 0),
-                textcoords="offset points", fontsize=6.2, color=S.ORANGE, va="center")
-    ax.annotate(f"{int(free.sum())} of {len(vals)} need\nno review at all", xy=(0, 0.0),
-                xytext=(3, -1), textcoords="offset points", fontsize=6.2, color=S.INK,
-                va="bottom", linespacing=1.2)
-    ax.set_yticks([])
-    ax.set_xlabel("% of flagged records a human opens", fontsize=6.4, labelpad=1.5)
-    ax.set_ylim(-1.5, len(vals) - 0.2)
-    _bare(ax)
-    return _png64(fig)
-
-
-# ------------------------------------------------------------------ diagram emitters
 class Diagram:
     def __init__(self) -> None:
         self.cells: list[str] = []
 
-    def raw(self, cid: str, style: str, value: str, x, y, w, h) -> None:
+    def raw(self, cid, style, value, x, y, w, h) -> None:
         self.cells.append(
             f'        <mxCell id="{cid}" parent="1" style="{style}" value="{esc(value)}" '
             f'vertex="1">\n'
             f'          <mxGeometry x="{x}" y="{y}" width="{w}" height="{h}" as="geometry" />\n'
             f'        </mxCell>')
 
-    def node(self, cid: str, x, y, w, h, colour: str, title: str, sub: str,
-             dashed: bool = False, strong: bool = False) -> None:
-        d = "dashed=1;dashPattern=8 6;" if dashed else ""
-        self.raw(f"{cid}_box",
-                 f"rounded=1;whiteSpace=wrap;html=1;fillColor={tint(colour, 0.12)};"
-                 f"strokeColor={colour};strokeWidth={2.6 if strong else 1.8};arcSize=10;"
-                 f"shadow=1;{d}", "", x, y, w, h)
+    def block(self, cid, x, y, w, h, fill, text, size=25, sub="", subsize=14) -> None:
+        """A flat pastel block. No stroke: the colour is the boundary."""
+        self.raw(f"{cid}_b", f"rounded=1;arcSize=16;whiteSpace=wrap;html=1;fillColor={fill};"
+                             f"strokeColor=none;shadow=0;", "", x, y, w, h)
+        tb = h - (26 if sub else 0)
         self.raw(f"{cid}_t",
-                 f"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=21;"
-                 f"fontFamily={FONT};fontColor={S.INK};fontStyle=1;",
-                 title, x + 5, y + 8, w - 10, 26)
-        self.raw(f"{cid}_s",
-                 f"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;"
-                 f"fontFamily={FONT};fontColor={colour};",
-                 sub, x + 5, y + 35, w - 10, 22)
+                 f"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;"
+                 f"fontSize={size};fontFamily={FONT};fontColor={S.INK};fontStyle=1;",
+                 text, x, y, w, tb)
+        if sub:
+            self.raw(f"{cid}_s",
+                     f"text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;"
+                     f"fontSize={subsize};fontFamily={FONT};fontColor=#5C6B78;",
+                     sub, x, y + h - 28, w, 24)
 
-    def label(self, cid: str, text: str, x, y, w, size=16, colour=None, bold=False,
-              align="left") -> None:
+    def text(self, cid, t, x, y, w, size=15, colour="#5C6B78", bold=False, align="center",
+             h=None) -> None:
         self.raw(cid, f"text;html=1;align={align};verticalAlign=top;whiteSpace=wrap;"
-                      f"fontSize={size};fontFamily={FONT};"
-                      f"fontColor={colour or S.INK};fontStyle={1 if bold else 0};",
-                 text, x, y, w, size + 26)
+                      f"fontSize={size};fontFamily={FONT};fontColor={colour};"
+                      f"fontStyle={1 if bold else 0};", t, x, y, w, h or size + 24)
 
-    def image(self, cid: str, b64: str, x, y, w, h) -> None:
-        self.cells.append(
-            f'        <mxCell id="{cid}" parent="1" style="shape=image;imageAspect=0;'
-            f'html=1;image=data:image/png,{b64}" value="" vertex="1">\n'
-            f'          <mxGeometry x="{x}" y="{y}" width="{w}" height="{h}" as="geometry" />\n'
-            f'        </mxCell>')
+    def cell(self, cid, x, y, s, fill, stroke="none") -> None:
+        self.raw(cid, f"rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor={fill};"
+                      f"strokeColor={stroke};shadow=0;", "", x, y, s, s)
 
-    def arrow(self, cid: str, src: str, tgt: str, label: str = "", colour: str = S.BLUE,
-              exit_xy=None, entry_xy=None, dashed=False, width=2.6, points=None) -> None:
-        style = (f"edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;"
-                 f"html=1;strokeWidth={width};strokeColor={colour};endArrow=blockThin;"
-                 f"endFill=1;fontSize=15;fontFamily={FONT};fontColor={S.INK};"
-                 f"labelBackgroundColor=#FFFFFF;")
-        if dashed:
-            style += "dashed=1;dashPattern=6 4;"
-        if exit_xy:
-            style += f"exitX={exit_xy[0]};exitY={exit_xy[1]};exitDx=0;exitDy=0;"
-        if entry_xy:
-            style += f"entryX={entry_xy[0]};entryY={entry_xy[1]};entryDx=0;entryDy=0;"
-        geo = '          <mxGeometry relative="1" as="geometry" />'
-        if points:
-            pts = "\n".join(f'              <mxPoint x="{a}" y="{b}" />' for a, b in points)
-            geo = ('          <mxGeometry relative="1" as="geometry">\n'
-                   f'            <Array as="points">\n{pts}\n            </Array>\n'
-                   '          </mxGeometry>')
+    def strip(self, cid, x, y, vals, cols, size=20, gap=4, fill=None) -> tuple:
+        """A row-major grid of token squares. `fill` overrides the per-value shading."""
+        for i, v in enumerate(vals):
+            r, c = divmod(i, cols)
+            self.cell(f"{cid}{i}", x + c * (size + gap), y + r * (size + gap), size,
+                      fill(v) if fill else shade(v))
+        rows = -(-len(vals) // cols)
+        return cols * (size + gap) - gap, rows * (size + gap) - gap
+
+    def dashed(self, cid, x, y, w, h) -> None:
+        self.raw(cid, "rounded=1;arcSize=10;fillColor=none;strokeColor=#9AA7B4;"
+                      "strokeWidth=1.2;dashed=1;dashPattern=5 4;", "", x, y, w, h)
+
+    def arrow(self, cid, x1, y1, x2, y2, colour="#3D4A55", width=2.2, dashed=False) -> None:
+        style = (f"endArrow=blockThin;endFill=1;html=1;rounded=0;strokeWidth={width};"
+                 f"strokeColor={colour};" + ("dashed=1;dashPattern=5 4;" if dashed else ""))
         self.cells.append(
-            f'        <mxCell id="{cid}" parent="1" style="{style}" value="{esc(label)}" '
-            f'edge="1" source="{src}" target="{tgt}">\n{geo}\n        </mxCell>')
+            f'        <mxCell id="{cid}" parent="1" style="{style}" value="" edge="1">\n'
+            '          <mxGeometry relative="1" as="geometry">\n'
+            f'            <mxPoint x="{x1}" y="{y1}" as="sourcePoint" />\n'
+            f'            <mxPoint x="{x2}" y="{y2}" as="targetPoint" />\n'
+            '          </mxGeometry>\n        </mxCell>')
+
+    def elbow(self, cid, pts, colour="#3D4A55", width=2.2, dashed=False) -> None:
+        style = (f"edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=blockThin;"
+                 f"endFill=1;strokeWidth={width};strokeColor={colour};"
+                 + ("dashed=1;dashPattern=5 4;" if dashed else ""))
+        mid = "\n".join(f'              <mxPoint x="{a}" y="{b}" />' for a, b in pts[1:-1])
+        self.cells.append(
+            f'        <mxCell id="{cid}" parent="1" style="{style}" value="" edge="1">\n'
+            '          <mxGeometry relative="1" as="geometry">\n'
+            f'            <mxPoint x="{pts[0][0]}" y="{pts[0][1]}" as="sourcePoint" />\n'
+            f'            <mxPoint x="{pts[-1][0]}" y="{pts[-1][1]}" as="targetPoint" />\n'
+            + (f'            <Array as="points">\n{mid}\n            </Array>\n' if mid else "")
+            + '          </mxGeometry>\n        </mxCell>')
 
     def xml(self) -> str:
-        return ('<mxfile host="app.diagrams.net">\n'
-                '  <diagram id="jev-framework" name="Framework">\n'
+        return ('<mxfile host="app.diagrams.net">\n  <diagram id="jev-f1" name="Framework">\n'
                 f'    <mxGraphModel dx="1400" dy="800" grid="0" gridSize="10" guides="1" '
                 f'tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" '
                 f'pageWidth="{PAGE_W}" pageHeight="{PAGE_H}" math="0" shadow="0">\n'
                 '      <root>\n        <mxCell id="0" />\n'
-                '        <mxCell id="1" parent="0" />\n'
-                + "\n".join(self.cells) +
-                '\n      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>\n')
+                '        <mxCell id="1" parent="0" />\n' + "\n".join(self.cells)
+                + '\n      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>\n')
 
 
-# ------------------------------------------------------------------ the framework
 def build() -> Diagram:
     a = json.loads((DATA / "analysis.json").read_text())
     cm = json.loads((DATA / "cost_model.json").read_text())
     G = json.loads((DATA / "gold" / "gold_analysis.json").read_text())
-    F = json.loads((DATA / "frontier" / "frontier_analysis.json").read_text())
     c, run, P = a["corpus"], a["run"], G["pooled"]
     q27 = cm["per_question_set"]["27"]
-    ratio = F["cost"]["claude-sonnet-5_per_1k_usd"] / F["cost"]["jev_per_1k_usd"]
-    fable = F["arms"].get("claude-fable-5-1", {}).get("pooled", {}).get("f1")
-    b90 = 100 * P["review_budget_90"]
+    b90 = P["review_budget_90"]
+
+    # Real returned probabilities, so the strip shows the model's actual output grid rather
+    # than an invented gradient. Quantiles rather than a random draw so it is reproducible.
+    gp = pd.read_csv(DATA / "gold" / "gold_labels.csv")
+    gp = gp[gp.p.notna()].p.to_numpy(float)
+    raw_p = list(np.quantile(gp, np.linspace(0.06, 0.97, 5)))
 
     d = Diagram()
-    NW, NH, NY = 180, 74, 40
-    # The wider gap before node 5 is where the audit loop returns into the spine.
-    XS = [36, 252, 468, 684, 936, 1152]
+    d.text("title", "Calibrated Narrative Coding", 44, 22, 700, size=30,
+           colour=S.INK, bold=True, align="left")
 
-    # ------------------------------------------------------------- the spine
-    d.node("n1", XS[0], NY, NW, NH, S.GREY, "Narratives",
-           f"{c['n_kept_gt_40'] / 1e6:.2f} M, 2017 to 2025")
-    d.node("n2", XS[1], NY, NW, NH, S.BLUE, "Typed schema", "27 gated questions")
-    d.node("n3", XS[2], NY, NW, NH, S.BLUE, "Jev 1.13", "no text generated")
-    d.node("n4", XS[3], NY, NW, NH, S.BLUE, "Raw p", "grid 0.01 to 0.99")
-    d.node("n5", XS[4], NY, NW, NH, S.ORANGE, "Calibrated p",
-           f"ECE {G['recalibration']['none']['ece']:.3f} to "
-           f"{G['recalibration']['isotonic']['ece']:.3f}")
-    d.node("n6", XS[5], NY, NW, NH, S.INK, "Review queue",
-           f"H(0.90) = {b90:.1f}% of flags", strong=True)
-    for i in range(3):
-        d.arrow(f"s{i}", f"n{i + 1}_box", f"n{i + 2}_box", "", S.BLUE, (1, 0.5), (0, 0.5))
-    d.arrow("s5", "n5_box", "n6_box", "", S.ORANGE, (1, 0.5), (0, 0.5))
-    d.label("spine_note",
-            f"${q27['cost_per_1k_narratives_usd']:.3f} per 1,000 narratives &#160;&#183;&#160; "
-            f"{run['p50_latency_s']:.2f} s median &#160;&#183;&#160; "
-            f"${run['total_cost_usd']:.2f} for the whole run",
-            XS[0], 118, 620, size=15, colour=S.MUTED)
+    BY, BH = 92, 140
+    d.block("n1", 44, BY, 168, BH, FILL["grey"], "Narrative",
+            sub=f"{c['n_kept_gt_40'] / 1e6:.2f} M")
+    d.block("n2", 262, BY, 168, BH, FILL["blue"], "Typed<br>Schema", sub="27 gated")
+    d.block("n3", 480, BY, 168, BH, FILL["deep"], "Jev 1.13", sub="no text out")
 
-    # ------------------------------------------------------------- the audit loop
-    d.label("audit_hd", "THE AUDIT DECIDES WHAT p MEANS",
-            XS[0], 190, 380, size=16, colour=S.INK, bold=True)
-    d.node("r1", XS[0], 216, 236, 58, S.GREY, "Coded CRIS fields",
-           f"agreement, {run['n_stage2_random']:,} crashes")
-    d.node("r2", XS[0], 280, 236, 58, S.ORANGE, "Human gold set",
-           f"accuracy, {G['n_usable']:,} labels")
-    d.node("au", 324, 216, 250, 92, S.BLUE, "Calibration audit",
-           f"z = {P['spiegelhalter_z']:.1f}: rejected")
-    d.label("au_x", "The coded fields make the model look better calibrated than it is, "
-            "for every variable. Recalibrating on the human labels is what makes p usable.",
-            612, 228, 336, size=15, colour=S.MUTED)
-    d.arrow("a1", "r1_box", "au_box", "", S.GREY, (1, 0.5), (0, 0.28), width=2.0)
-    d.arrow("a2", "r2_box", "au_box", "", S.ORANGE, (1, 0.5), (0, 0.72), width=2.0)
-    d.arrow("a3", "n4_box", "au_box", "raw p", S.BLUE, (0.5, 1), (0.42, 0),
-            points=[(XS[3] + NW // 2, 150), (429, 150)], width=2.2)
-    d.arrow("a4", "au_box", "n5_box", "recalibrated on the human labels", S.ORANGE,
-            (0.78, 0), (0.5, 1), points=[(519, 172), (XS[4] + NW // 2, 172)],
-            width=2.4)
+    # the model's output: one token per variable, shaded by its probability
+    sw, sh = d.strip("tp", 700, BY + 12, raw_p, cols=1, size=24, gap=5)
+    d.dashed("tp_g", 694, BY + 6, sw + 12, sh + 12)
+    d.text("tp_l", "p", 694, BY + BH + 20, sw + 12, size=17, colour="#2B6CA3", bold=True)
 
-    # ------------------------------------------------------------- baselines, held apart
-    d.node("bl", 1000, 216, 344, 58, S.RED, "Baselines, held apart",
-           "same narratives, same criteria", dashed=True)
-    if fable:
-        d.label("bl_x",
-                f"A frontier model gains {fable - P['f1']:+.3f} F&#8321; at "
-                f"{ratio:.0f}&#215; the price. A second gains nothing measurable. "
-                f"Neither is calibrated.",
-                1000, 280, 344, size=15, colour=S.MUTED)
+    d.block("n4", 790, BY, 186, BH, FILL["orange"], "Recalibration",
+            size=22, sub="isotonic, split-half")
 
-    # ------------------------------------------------------------- evidence panels
-    PW, PH, PY = 400, 152, 390
-    PX = [36, 476, 916]
-    d.label("ev_hd", "WHAT IT FOUND", PX[0], 352, 400, size=16, colour=S.INK, bold=True)
-    for i, (cid, cap, b64) in enumerate([
-            ("p1", "Cost is set by the schema, not the text", panel_cost(cm)),
-            ("p2", "The reference decides the answer", panel_reference(a, G)),
-            ("p3", "The budget, variable by variable", panel_budget(G))]):
-        d.label(f"{cid}_c", cap, PX[i], 370, PW, size=15, colour=S.INK, bold=True)
-        d.image(cid, b64, PX[i], PY, PW, PH)
+    cal_p = [min(0.99, max(0.01, v * 0.82)) for v in raw_p]
+    sw2, _ = d.strip("cp", 1024, BY + 12, cal_p, cols=1, size=24, gap=5)
+    d.dashed("cp_g", 1018, BY + 6, sw2 + 12, sh + 12)
+    d.text("cp_l", "calibrated p", 990, BY + BH + 20, 120, size=17, colour="#C07C1E",
+           bold=True)
+
+    # the deliverable: a queue in which only the measured share is opened by a person
+    NQ, COLS = 48, 12
+    n_open = int(round(b90 * NQ))
+    qw, qh = d.strip("q", 1136, BY + 30, [1] * NQ, cols=COLS, size=17, gap=4,
+                     fill=lambda _i: FILL["ink"])
+    for i in range(n_open):                       # overdraw the reviewed ones
+        r, col = divmod(i, COLS)
+        d.cell(f"qo{i}", 1136 + col * 21, BY + 30 + r * 21, 17, S.INK)
+    d.text("q_l", "Review queue", 1120, BY + BH + 20, qw + 30, size=17, colour=S.INK,
+           bold=True)
+    d.text("q_s", f"H(0.90) = {100 * b90:.1f}% of flags", 1110, BY + BH + 42, qw + 50,
+           size=14)
+
+    for i, (x1, x2) in enumerate([(212, 258), (430, 476), (648, 690),
+                                  (760, 786), (976, 1014), (1094, 1132)]):
+        d.arrow(f"a{i}", x1, BY + BH // 2, x2, BY + BH // 2)
+
+    # the 27 questions, as tokens, with the seven gated ones left hollow
+    gates = json.loads((ROOT / "schemas" / "crash_factors_v1_1.json").read_text())
+    n_gated = len(gates.get("gates", {}))
+    toks = [1] * (27 - n_gated) + [0] * n_gated
+    d.strip("sq", 268, BY + BH + 34, toks, cols=9, size=15, gap=4,
+            fill=lambda v: FILL["deep"] if v else "#EFF4F9")
+    d.text("sq_l", "presence gates detail; gated answers stay uninterpreted",
+           228, BY + BH + 86, 320, size=13)
+
+    # ------------------------------------------------------------ the two references
+    RY = 322
+    d.text("ref_h", "THE AUDIT DECIDES WHAT p MEANS", 596, RY - 32, 420, size=16,
+           colour=S.INK, bold=True, align="left")
+    d.block("r1", 596, RY, 196, 54, FILL["grey"], "Coded CRIS fields", size=16)
+    d.strip("r1t", 812, RY + 17, [1] * 6, cols=6, size=18, gap=4,
+            fill=lambda _i: "#9AA7B4")
+    d.text("r1x", f"agreement, {run['n_stage2_random']:,} crashes", 940, RY + 14, 250,
+           size=14, align="left")
+
+    d.block("r2", 596, RY + 74, 196, 54, FILL["orange"], "Human gold set", size=16)
+    d.strip("r2t", 812, RY + 91, [1] * 6, cols=6, size=18, gap=4,
+            fill=lambda _i: S.ORANGE)
+    d.text("r2x", f"accuracy, {G['n_usable']:,} labels, 3 blinded coders", 940, RY + 88,
+           280, size=14, align="left")
+
+    d.elbow("e_r1", [(792, RY + 27), (900, RY + 27), (900, BY + BH)], "#9AA7B4", 2.0,
+            dashed=True)
+    d.elbow("e_r2", [(792, RY + 101), (868, RY + 101), (868, BY + BH)], S.ORANGE, 2.2)
+    d.text("e_note",
+           "compared against both; fitted on the human labels alone, because the coded "
+           "fields flatter the model",
+           596, RY + 140, 560, size=14, align="left")
+
+    # ------------------------------------------------------------ fixed vs fitted
+    d.text("f1", "&#10052;", 604, BY + 2, 40, size=26, colour="#5FA8D3")
+    d.text("f2", "&#128293;", 934, BY + 2, 40, size=26, colour="#E06C2A")
+
+    # ------------------------------------------------------------ legend
+    LY = 502
+    items = [(FILL["deep"], "typed question"), ("#2B6CA3", "model probability"),
+             ("#9AA7B4", "coded CRIS label"), (S.ORANGE, "human label"),
+             (S.INK, "record a person opens")]
+    x = 44
+    for i, (col, lab) in enumerate(items):
+        d.cell(f"lg{i}", x, LY + 3, 16, col)
+        d.text(f"lgt{i}", lab, x + 24, LY, 190, size=14, align="left")
+        x += 26 + 9 * len(lab) + 22
+    d.text("lg_f", "&#10052; fixed, never trained&#160;&#160;&#160;"
+                   "&#128293; the only fitted object in the pipeline",
+           44, LY + 30, 640, size=14, align="left")
+    d.text("lg_c",
+           f"${q27['cost_per_1k_narratives_usd']:.3f} per 1,000 narratives&#160;&#160;&#183;"
+           f"&#160;&#160;{run['p50_latency_s']:.2f} s median&#160;&#160;&#183;&#160;&#160;"
+           f"${run['total_cost_usd']:.2f} for the whole run",
+           850, LY + 30, 540, size=14, align="right")
     return d
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--export", action="store_true", help="also render PDF and PNG")
+    ap.add_argument("--export", action="store_true")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     f = OUT / "F1_framework.drawio"
