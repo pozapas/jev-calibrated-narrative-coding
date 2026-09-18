@@ -8,7 +8,9 @@
 \begin{threeparttable}
 \begin{tabular}{lrrrrrrr}
 \toprule
-variable & kw prec. & kw rec. & kw $\kappa$ & Jev prec. & Jev rec. & Jev $\kappa$ & McNemar $p$ \\
+\multicolumn{1}{c}{} & \multicolumn{3}{c}{\jevhead{Keyword rules}} & \multicolumn{3}{c}{\jevhead{Jev 1.13}} & \multicolumn{1}{c}{} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+\jevhead{variable} & \jevhead{prec.} & \jevhead{rec.} & \jevhead{$\kappa$} & \jevhead{prec.\ } & \jevhead{rec.\ } & \jevhead{$\kappa$\ } & \jevhead{McNemar $p$} \\
 \midrule
 medical\_episode & 0.425 & 0.642 & 0.509 & 0.398 & 0.828 & 0.534 & $<$0.001 \\
 drug\_involved & 0.576 & 0.284 & 0.378 & 0.464 & 0.511 & 0.484 & $<$0.001 \\
@@ -22,7 +24,7 @@ unbelted & 0.589 & 0.034 & 0.063 & 0.209 & 0.075 & 0.103 & $<$0.001 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize
-\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of \S4.4 is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. The frontier-LLM arm is v2. McNemar tests paired per-narrative correctness.
+\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of Section~\ref{sec:gold} is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. McNemar tests paired per-narrative correctness. The frontier-model arm is scored against human labels instead, in Table~\ref{tab:frontier}.
 \end{tablenotes}
 \end{threeparttable}
 \end{minipage}}

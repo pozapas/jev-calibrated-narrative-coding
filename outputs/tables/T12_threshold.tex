@@ -8,7 +8,9 @@
 \begin{threeparttable}
 \begin{tabular}{lrrrrrrl}
 \toprule
-variable & $n^{+}$ & $F_1$ at $\tau=0.5$ & tuned $\tau^{*}$ & $F_1$ tuned, out of fold & s.d. & change & stable? \\
+\multicolumn{3}{c}{} & \multicolumn{5}{c}{\jevhead{Retuned threshold, out of fold}} \\
+\cmidrule(lr){4-8}
+\jevhead{variable} & \jevhead{$n^{+}$} & \jevhead{$F_1$ at $\tau=0.5$} & \jevhead{tuned $\tau^{*}$} & \jevhead{$F_1$ tuned, out of fold} & \jevhead{s.d.} & \jevhead{change} & \jevhead{stable?} \\
 \midrule
 intentional & 5 & 0.48 & 0.66 & 0.65 & 0.22 & +0.17 & no \\
 unbelted & 5 & 0.49 & 0.77 & 0.87 & 0.17 & +0.38 & no \\
@@ -29,7 +31,7 @@ preg\_mentioned & 4 & 1.00 & 0.06 & 0.94 & 0.07 & -0.06 & no \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize
-\item $n^{+}$ is the number of positive gold labels. $\tau^{*}$ is chosen to maximise weighted $F_1$ on the full gold set and is the value one would deploy; the out-of-fold column instead chooses $\tau$ on a random half and scores it on the other, both directions, averaged over 200 repeats, and is the honest estimate of what retuning buys. ``change'' is that estimate minus $F_1$ at $\tau=0.5$. A variable is marked unstable when the out-of-fold spread exceeds 0.10 or fewer than 20 positives are available, in which case $\tau^{*}$ is fitted to noise and should not be transported.
+\item $n^{+}$ is the count of positive gold labels. $\tau^{*}$ maximises weighted $F_1$ on the full gold set; the out-of-fold column instead picks $\tau$ on a random half and scores it on the other, both ways, over 200 repeats, and is what retuning actually buys. \jevflag{Unstable} marks a spread above 0.10 or fewer than 20 positives, where $\tau^{*}$ is fitted to noise and must not be transported.
 \end{tablenotes}
 \end{threeparttable}
 \end{minipage}}

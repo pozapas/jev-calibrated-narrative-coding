@@ -17,7 +17,7 @@ schemas/              the question schema, verbatim as sent to the model
 manuscript/           LaTeX source and both built PDFs (elsarticle and cas-sc)
 outputs/tables/       every table, as .tex and .csv
 outputs/figures/      every figure, as PDF
-data/                 aggregated results only — see below
+data/                 aggregated results only, see below
 ```
 
 The pipeline is numbered in execution order. The parts most likely to be useful on their own:
@@ -63,7 +63,7 @@ completeness rather than because it can be run without the corpus.
 ## Model and pricing
 
 All model calls use a pinned identifier (`jev-1.13.0`), recorded per call. Vendor prices are
-in `src/pricing.py` with their access date and should be re-verified before reuse — they
+in `src/pricing.py` with their access date and should be re-verified before reuse, since they
 change, and the cost findings are stated at list prices.
 
 ## Status

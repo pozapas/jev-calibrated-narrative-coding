@@ -8,7 +8,7 @@
 \begin{threeparttable}
 \begin{tabular}{lrrrrrr}
 \toprule
-variable & keyword \% & Jev \% ($p>0.5$) & E[p] \% & floor \% & confirm.\ \% & uncertain \% \\
+\jevhead{variable} & \jevhead{keyword \%} & \jevhead{Jev \% ($p>0.5$)} & \jevhead{E[p] \%} & \jevhead{floor \%} & \jevhead{confirm.\ \%} & \jevhead{uncertain \%} \\
 \midrule
 hit\_and\_run & -- & 15.863 [15.679, 16.049] & 17.384 & 0 & -- & 2.02 \\
 witness\_cited & -- & 6.127 [6.006, 6.249] & 9.033 & 0 & -- & 2.87 \\
@@ -29,7 +29,7 @@ preg\_mentioned & 0.108 & 0.116 [0.099, 0.135] & 1.179$^{\ddagger}$ & 80 & 97.11
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize
-\item Keyword \% is over all 5{,}018{,}080 narratives. Jev \% thresholds at $p>0.5$ with Clopper--Pearson intervals; E[p] is the mean probability, which a calibrated model would match to the true prevalence. ``floor'' is the share of E[p] contributed by narratives sitting at the smallest probability the model can express, $p=0.01$; $^{\ddagger}$ marks variables where that exceeds 20\%, for which E[p] is inflated by the output grid and must not be read as a prevalence estimate (\S5.2). Confirmation \% is the share of keyword hits Jev also calls positive. Uncertain \% is the share with $p \in [0.3, 0.7]$.
+\item Keyword \% is over all 5{,}018{,}080 narratives. Jev \% thresholds at $p>0.5$ with Clopper--Pearson intervals; E[p] is the mean probability, which a calibrated model would match to the true prevalence. ``floor'' is the share of E[p] contributed by narratives sitting at the smallest probability the model can express, $p=0.01$; $^{\ddagger}$ marks variables where that exceeds 20\%, for which E[p] is inflated by the output grid and must not be read as a prevalence estimate (Section~\ref{sec:landscape}). Confirmation \% is the share of keyword hits Jev also calls positive. Uncertain \% is the share with $p \in [0.3, 0.7]$.
 \end{tablenotes}
 \end{threeparttable}
 \end{minipage}}

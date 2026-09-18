@@ -8,36 +8,36 @@
 \begin{threeparttable}
 \begin{tabular}{llp{0.34\textwidth}p{0.20\textwidth}l}
 \toprule
-id & type & instruction & options / levels & gate \\
+\jevhead{id} & \jevhead{type} & \jevhead{instruction} & \jevhead{options / levels} & \jevhead{gate} \\
 \midrule
 preg\_mentioned & noul & The 'narrative' states that a person involved in the crash was pregnant. & true, false & -- \\
-medical\_episode & noul & The 'narrative' states that a driver experienced a medical event (seizure, fainting, blackout, ... & true, false & -- \\
-drug\_involved & noul & The 'narrative' states or suspects that a driver was under the influence of drugs or medication... & true, false & -- \\
-alcohol\_involved & noul & The 'narrative' states or suspects that a driver had been drinking alcohol or was intoxicated b... & true, false & -- \\
-hydroplane & noul & The 'narrative' states that a vehicle hydroplaned or lost traction because of water on the road... & true, false & -- \\
-vehicle\_defect & noul & The 'narrative' states that a mechanical failure of a vehicle (tire blowout, brake failure, ste... & true, false & -- \\
-fatigue & noul & The 'narrative' states that a driver fell asleep, dozed off, was drowsy, or was fatigued. & true, false & -- \\
-aggression & noul & The 'narrative' describes road rage, aggressive driving directed at another road user, or a phy... & true, false & -- \\
-intentional & noul & The 'narrative' states or suspects that a vehicle was used intentionally to cause the crash (as... & true, false & -- \\
-hit\_and\_run & noul & The 'narrative' states that a driver left the scene of the crash without stopping to provide in... & true, false & -- \\
-animal\_involved & noul & The 'narrative' states that an animal on or near the roadway was involved in the crash or in th... & true, false & -- \\
-wrong\_way & noul & The 'narrative' states that a vehicle was traveling the wrong way on a roadway, ramp, or lane d... & true, false & -- \\
-phone\_use & noul & The 'narrative' states that a driver was using a phone or mobile device at the time of the cras... & true, false & -- \\
+medical\_episode & noul & The 'narrative' states that a driver experienced a medical event (seizure, fainting, bla... & true, false & -- \\
+drug\_involved & noul & The 'narrative' states or suspects that a driver was under the influence of drugs or med... & true, false & -- \\
+alcohol\_involved & noul & The 'narrative' states or suspects that a driver had been drinking alcohol or was intoxi... & true, false & -- \\
+hydroplane & noul & The 'narrative' states that a vehicle hydroplaned or lost traction because of water on t... & true, false & -- \\
+vehicle\_defect & noul & The 'narrative' states that a mechanical failure of a vehicle (tire blowout, brake failu... & true, false & -- \\
+fatigue & noul & The 'narrative' states that a driver fell asleep, dozed off, was drowsy, or was fatigued... & true, false & -- \\
+aggression & noul & The 'narrative' describes road rage, aggressive driving directed at another road user, o... & true, false & -- \\
+intentional & noul & The 'narrative' states or suspects that a vehicle was used intentionally to cause the cr... & true, false & -- \\
+hit\_and\_run & noul & The 'narrative' states that a driver left the scene of the crash without stopping to pro... & true, false & -- \\
+animal\_involved & noul & The 'narrative' states that an animal on or near the roadway was involved in the crash o... & true, false & -- \\
+wrong\_way & noul & The 'narrative' states that a vehicle was traveling the wrong way on a roadway, ramp, or... & true, false & -- \\
+phone\_use & noul & The 'narrative' states that a driver was using a phone or mobile device at the time of t... & true, false & -- \\
 unbelted & noul & The 'narrative' states that a vehicle occupant was not wearing a seat belt. & true, false & -- \\
 transported & noul & The 'narrative' states that a person was transported to a hospital or medical facility. & true, false & -- \\
-witness\_cited & noul & The 'narrative' cites a statement from a witness who was not a driver or occupant of the involv... & true, false & -- \\
-medical\_type & choice & Which type of driver medical event does the 'narrative' describe as occurring before or during ... & seizure, loss\_of\_consciousness, diabetic, cardiac, stroke, other\_medical... & medical\_episode \\
-drug\_class & choice & Which category of drug or medication does the 'narrative' associate with a driver? Choose based... & marijuana, stimulant, opioid, sedative\_prescription, unspecified\_drug, none & drug\_involved \\
+witness\_cited & noul & The 'narrative' cites a statement from a witness who was not a driver or occupant of the... & true, false & -- \\
+medical\_type & choice & Which type of driver medical event does the 'narrative' describe as occurring before or ... & seizure, loss\_of\_consciousness, diabetic, cardiac, stroke, other\_medical... & medical\_episode \\
+drug\_class & choice & Which category of drug or medication does the 'narrative' associate with a driver? Choos... & marijuana, stimulant, opioid, sedative\_prescription, unspecified\_drug, none & drug\_involved \\
 preg\_role & choice & What was the role of the pregnant person in the crash according to the 'narrative'? & driver, passenger, pedestrian\_or\_other, no\_pregnancy & preg\_mentioned \\
-preg\_outcome & choice & What does the 'narrative' state about the condition of the pregnant person after the crash? & no\_complaint, pain\_or\_evaluation, transported, fetal\_harm, no\_pregnancy & preg\_mentioned \\
+preg\_outcome & choice & What does the 'narrative' state about the condition of the pregnant person after the cra... & no\_complaint, pain\_or\_evaluation, transported, fetal\_harm, no\_pregnancy & preg\_mentioned \\
 preg\_stage & choice & What stage of pregnancy does the 'narrative' state for the pregnant person? & early, mid, late, stage\_not\_stated, no\_pregnancy & preg\_mentioned \\
 animal\_type & choice & Which kind of animal does the 'narrative' describe as involved in the crash? & deer, dog, livestock, feral\_hog, other\_animal, none & animal\_involved \\
-defect\_type & choice & Which kind of vehicle mechanical failure does the 'narrative' describe as contributing to the c... & tire, brakes, steering\_or\_suspension, other\_mechanical, none & vehicle\_defect \\
+defect\_type & choice & Which kind of vehicle mechanical failure does the 'narrative' describe as contributing t... & tire, brakes, steering\_or\_suspension, other\_mechanical, none & vehicle\_defect \\
 surface\_narr & choice & What roadway surface condition does the 'narrative' state at the time of the crash? & dry, wet, ice\_or\_snow, other\_surface, not\_stated & -- \\
 narrative\_detail & score & How much crash-relevant detail does the 'narrative' contain? & 3 ordered levels & -- \\
-emotion\_intensity & score & How intense is the emotional state of any driver described in the 'narrative' before or after t... & 3 ordered levels & -- \\
+emotion\_intensity & score & How intense is the emotional state of any driver described in the 'narrative' before or ... & 3 ordered levels & -- \\
 injury\_narr & score & What is the most severe injury outcome stated in the 'narrative' for any person? & 4 ordered levels & -- \\
-pii\_residual & noul & The 'narrative' contains a person's full name, date of birth, driver license or ID number, home... & true, false & -- \\
+pii\_residual & noul & The 'narrative' contains a person's full name, date of birth, driver license or ID numbe... & true, false & -- \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize

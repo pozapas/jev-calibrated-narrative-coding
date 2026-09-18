@@ -8,7 +8,9 @@
 \begin{threeparttable}
 \begin{tabular}{lrrrrrrrrrr}
 \toprule
-variable & coded field & $n$ & ECE & MCE & Brier & rel. & res. & slope & intcpt & $z$ \\
+\multicolumn{3}{c}{} & \multicolumn{5}{c}{\jevhead{Error}} & \multicolumn{3}{c}{\jevhead{Cox calibration}} \\
+\cmidrule(lr){4-8}\cmidrule(lr){9-11}
+\jevhead{variable} & \jevhead{coded field} & \jevhead{$n$} & \jevhead{ECE} & \jevhead{MCE} & \jevhead{Brier} & \jevhead{rel.} & \jevhead{res.} & \jevhead{slope} & \jevhead{intcpt} & \jevhead{$z$} \\
 \midrule
 alcohol\_involved & coded\_alcohol & 150,000 & 0.0187 [0.0180, 0.0194] & 0.022 & 0.0197 & 0.0004 & 0.0003 & 0.70 & -1.81 & -1.5 \\
 drug\_involved & coded\_drug & 150,000 & 0.0199 [0.0196, 0.0202] & 0.025 & 0.0054 & 0.0004 & 0.0000 & 0.88 & -2.57 & -42.5 \\
@@ -22,7 +24,7 @@ medical\_episode & coded\_medical & 150,000 & 0.0248 [0.0245, 0.0251] & 0.037 & 
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize
-\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of \S4.4 is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. ECE is computed on the model's discrete output grid; intervals are stratified bootstrap (B = 1{,}000).
+\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of Section~\ref{sec:gold} is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. ECE is computed on the model's discrete output grid; intervals are stratified bootstrap (B = 1{,}000).
 \end{tablenotes}
 \end{threeparttable}
 \end{minipage}}

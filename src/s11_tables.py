@@ -4,7 +4,7 @@ v1 emits T2, T3, T4, T5, T6, T7 (keyword arm only) and T8. T1 (literature positi
 prose written by hand; T9 (robustness) is v2.
 
 Every table that compares against coded CRIS fields says AGREEMENT in its caption, per the
-§7 desk-reject checklist, and proxy references are marked.
+Section 7 desk-reject checklist, and proxy references are marked.
 """
 from __future__ import annotations
 import json
@@ -18,8 +18,27 @@ OUT = ROOT / "paper1" / "outputs" / "tables"
 NA = "--"
 
 
+def bar(x, lo: float = 0.0, hi: float = 1.0) -> str:
+    """An inline proportional bar for a metric, rendered next to its own number.
+
+    Readers scan these tables for a pattern -- which variables fail, which model leads -- and
+    comparing sixteen three-decimal numbers by eye is exactly the task a bar removes. The
+    number stays in the adjacent column, so nothing is only encoded as length.
+    """
+    if x is None:
+        return ""
+    f = (float(x) - lo) / (hi - lo)
+    f = min(max(f, 0.0), 1.0)
+    return rf"\jevbar{{{f:.3f}}}{{{1 - f:.3f}}}"
+
+
+def flag(text: str, bad: bool) -> str:
+    """Colour a value that fails a threshold the caption states. Never decorative."""
+    return rf"\jevflag{{{text}}}" if bad else text
+
+
 def w(name: str, df: pd.DataFrame, caption: str, label: str, note: str = "",
-      col_format: str | None = None) -> None:
+      col_format: str | None = None, groups: list[tuple[str, int]] | None = None) -> None:
     """Emit a booktabs table.
 
     Hand-rolled rather than pandas `to_latex(caption=...)`, which routes through Styler and
@@ -52,8 +71,24 @@ def w(name: str, df: pd.DataFrame, caption: str, label: str, note: str = "",
         # instead.
         (r"\begin{threeparttable}" if (note and wide) else ""),
         rf"\begin{{tabular}}{{{fmt}}}", r"\toprule",
-        " & ".join(df.columns) + r" \\", r"\midrule",
     ]
+    # A spanning header row tells the reader that "prec./rec./F1" and "ECE/slope/z" are two
+    # different questions about the same model, which eleven undifferentiated column heads
+    # do not. The rules under each span are drawn short (lr) so they read as grouping marks
+    # rather than as a second full-width rule competing with \midrule.
+    if groups:
+        assert sum(n for _, n in groups) == df.shape[1], \
+            f"{name}: group spans {sum(n for _, n in groups)} != {df.shape[1]} columns"
+        cells, rules, col = [], [], 1
+        for title, n in groups:
+            if title:
+                cells.append(rf"\multicolumn{{{n}}}{{c}}{{\jevhead{{{title}}}}}")
+                rules.append(rf"\cmidrule(lr){{{col}-{col + n - 1}}}")
+            else:
+                cells.append(rf"\multicolumn{{{n}}}{{c}}{{}}")
+            col += n
+        lines += [" & ".join(cells) + r" \\", "".join(rules)]
+    lines += [" & ".join(rf"\jevhead{{{c}}}" for c in df.columns) + r" \\", r"\midrule"]
     for _, row in df.iterrows():
         lines.append(" & ".join("" if pd.isna(v) else str(v) for v in row) + r" \\")
     lines += [r"\bottomrule", r"\end{tabular}"]
@@ -106,7 +141,7 @@ def t2_schema() -> pd.DataFrame:
         rows.append({
             "id": esc(qid),
             "type": q["type"],
-            "instruction": esc(instr[:95] + ("..." if len(instr) > 95 else "")),
+            "instruction": esc(instr[:88] + ("..." if len(instr) > 88 else "")),
             "options / levels": esc(opts),
             "gate": esc(gates[qid]) if gates.get(qid) else NA,
         })
@@ -208,12 +243,14 @@ def t7_baseline(a: dict) -> pd.DataFrame:
         mc = k.get("mcnemar_jev_vs_keyword", {})
         rows.append({
             "variable": esc(v),
-            "kw prec.": num(k["keyword_precision_vs_coded"], 3),
-            "kw rec.": num(k["keyword_recall_vs_coded"], 3),
-            "kw $\\kappa$": num(k["keyword_kappa_vs_coded"], 3),
-            "Jev prec.": num(j.get("precision_vs_coded"), 3),
-            "Jev rec.": num(j.get("recall_vs_coded"), 3),
-            "Jev $\\kappa$": num(j.get("cohens_kappa_vs_coded"), 3),
+            # The arm is named in the spanning header, so the per-column prefixes are
+            # dropped: repeating "kw"/"Jev" six times is what pushed this table off the page.
+            "prec.": num(k["keyword_precision_vs_coded"], 3),
+            "rec.": num(k["keyword_recall_vs_coded"], 3),
+            r"$\kappa$": num(k["keyword_kappa_vs_coded"], 3),
+            "prec.\\ ": num(j.get("precision_vs_coded"), 3),
+            "rec.\\ ": num(j.get("recall_vs_coded"), 3),
+            r"$\kappa$\ ": num(j.get("cohens_kappa_vs_coded"), 3),
             "McNemar $p$": ("$<$0.001" if (mc.get("p_value") or 1) < 1e-3
                             else num(mc.get("p_value"), 3)),
         })
@@ -241,30 +278,37 @@ def t10_gold(a: dict) -> pd.DataFrame:
     """Accuracy against the human gold set. Unlike every other table here, these are NOT
     agreement statistics -- the reference is human judgement of the same criteria text."""
     G = json.loads((DATA / "gold" / "gold_analysis.json").read_text())
+    WEAK = 0.70          # the threshold the caption states; below it a variable is flagged
     rows = []
     for v, r in sorted(G["per_variable"].items(), key=lambda kv: -kv[1]["f1"]):
         cod = a["vs_coded_fields"].get(v, {})
         gap = (r["ece"] / cod["ece_vs_coded"]) if cod.get("ece_vs_coded") else None
+        bad = r["f1"] < WEAK
         rows.append({
-            "variable": esc(v),
+            "variable": flag(esc(v), bad),
             "$n$": f"{r['n']:,}",
-            r"base \%": pct(r["base_rate_weighted"], 2),
-            "prec.": num(r["precision"], 2),
+            r"base \%": pct(r["base_rate_weighted"], 1),
+            "prec.": flag(num(r["precision"], 2), bad),
             "rec.": num(r["recall"], 2),
-            "$F_1$": num(r["f1"], 2),
-            r"$\kappa$": num(r["cohens_kappa"], 3),
-            "ECE": num(r["ece"], 4),
-            r"ECE$_{\text{coded}}$": num(cod.get("ece_vs_coded"), 4),
+            "$F_1$": flag(num(r["f1"], 2), bad),
+            # F1 is bar-scaled from 0.4 rather than 0: every variable scores above 0.45, so a
+            # zero-based bar would compress the whole range into its right-hand third and show
+            # nothing. The floor is stated in the caption.
+            "": bar(r["f1"], 0.40, 1.0),
+            r"$\kappa$": num(r["cohens_kappa"], 2),
+            "ECE": num(r["ece"], 3),
+            r"vs.\ coded": num(cod.get("ece_vs_coded"), 3),
             "gap": (rf"{gap:.1f}$\times$" if gap else NA),
             "slope": ("sep." if r["separated"] else num(r["calibration_slope"], 2)),
         })
     Pg = G["pooled"]
     rows.append({
         "variable": r"\textbf{pooled}", "$n$": f"{Pg['n']:,}",
-        r"base \%": pct(Pg["base_rate_weighted"], 2),
+        r"base \%": pct(Pg["base_rate_weighted"], 1),
         "prec.": num(Pg["precision"], 2), "rec.": num(Pg["recall"], 2),
-        "$F_1$": num(Pg["f1"], 2), r"$\kappa$": num(Pg["cohens_kappa"], 3),
-        "ECE": num(Pg["ece"], 4), r"ECE$_{\text{coded}}$": NA, "gap": NA,
+        "$F_1$": num(Pg["f1"], 2), "": bar(Pg["f1"], 0.40, 1.0),
+        r"$\kappa$": num(Pg["cohens_kappa"], 2),
+        "ECE": num(Pg["ece"], 3), r"vs.\ coded": NA, "gap": NA,
         "slope": num(Pg["calibration_slope"], 2),
     })
     return pd.DataFrame(rows)
@@ -291,18 +335,38 @@ def t13_frontier(a: dict) -> pd.DataFrame:
     F = json.loads((DATA / "frontier" / "frontier_analysis.json").read_text())
     rows = []
 
-    def row(label: str, p: dict, extra: str) -> dict:
-        return {"model": label, "$n$": f"{p['n']:,}",
-                "prec.": num(p["precision"], 3), "rec.": num(p["recall"], 3),
-                "$F_1$": num(p["f1"], 3), r"$\kappa$": num(p["cohens_kappa"], 3),
-                "ECE": num(p["ece"], 4), "Brier": num(p["brier"], 4),
-                "slope": num(p["calibration_slope"], 2),
-                "$z$": num(p["spiegelhalter_z"], 1),
-                "$p$": extra}
+    arms = [("Jev 1.13", F["jev"]["pooled"], "native")]
+    arms += [(esc(label), arm["pooled"], "elicited") for label, arm in F["arms"].items()]
 
-    rows.append(row("Jev 1.13", F["jev"]["pooled"], "native"))
-    for label, arm in F["arms"].items():
-        rows.append(row(esc(label), arm["pooled"], "elicited"))
+    # Bold the leader on each metric. With only three arms a reader will do this comparison
+    # anyway; doing it for them is what makes the table answer "who wins, and on what" at a
+    # glance, and it is the honest presentation because no arm leads on everything.
+    best = {
+        "precision": max(p["precision"] for _, p, _ in arms),
+        "recall": max(p["recall"] for _, p, _ in arms),
+        "f1": max(p["f1"] for _, p, _ in arms),
+        "cohens_kappa": max(p["cohens_kappa"] for _, p, _ in arms),
+        "ece": min(p["ece"] for _, p, _ in arms),
+        "brier": min(p["brier"] for _, p, _ in arms),
+    }
+
+    def cell(p: dict, key: str, d: int) -> str:
+        t = num(p[key], d)
+        return rf"\jevbest{{{t}}}" if abs(p[key] - best[key]) < 1e-12 else t
+
+    for label, p, kind in arms:
+        rows.append({
+            "model": label, "$n$": f"{p['n']:,}",
+            "prec.": cell(p, "precision", 3), "rec.": cell(p, "recall", 3),
+            "$F_1$": cell(p, "f1", 3), "": bar(p["f1"], 0.80, 1.0),
+            r"$\kappa$": cell(p, "cohens_kappa", 3),
+            "ECE": cell(p, "ece", 4), "Brier": cell(p, "brier", 4),
+            "slope": num(p["calibration_slope"], 2),
+            # Every arm is rejected, so z is flagged for all three rather than for an
+            # outlier: the point of the column is that none of them passes.
+            "$z$": flag(num(p["spiegelhalter_z"], 1), True),
+            "prob.": kind,
+        })
     return pd.DataFrame(rows)
 
 
@@ -333,7 +397,7 @@ def t12_threshold(a: dict) -> pd.DataFrame:
 
 AGREE = ("Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; "
          r"these are measures of \emph{agreement}, not accuracy. Accuracy against the human "
-         r"gold set of \S4.4 is in Table~\ref{tab:gold}, which also gives the factor by which "
+         r"gold set of Section~\ref{sec:gold} is in Table~\ref{tab:gold}, which also gives the factor by which "
          r"this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the "
          "narrative concept rather than a direct match.")
 
@@ -355,21 +419,24 @@ def main() -> None:
       "would match to the true prevalence. ``floor'' is the share of E[p] contributed by "
       "narratives sitting at the smallest probability the model can express, $p=0.01$; "
       "$^{\\ddagger}$ marks variables where that exceeds 20\\%, for which E[p] is inflated by "
-      "the output grid and must not be read as a prevalence estimate (\\S5.2). "
+      "the output grid and must not be read as a prevalence estimate (Section~\\ref{sec:landscape}). "
       "Confirmation \\% is the share of keyword hits Jev also calls positive. "
       "Uncertain \\% is the share with $p \\in [0.3, 0.7]$.")
     w("T5_calibration", t5_calibration(a),
       "Calibration against coded CRIS fields (agreement).", "tab:calibration",
       AGREE + " ECE is computed on the model's discrete output grid; intervals are stratified "
-      "bootstrap (B = 1{,}000).")
+      "bootstrap (B = 1{,}000).",
+      groups=[("", 3), ("Error", 5), ("Cox calibration", 3)])
     w("T6_selective", t6_selective(a),
       "Selective prediction and the human-review budget.", "tab:selective",
       AGREE + " $H(\\pi)$ is the share of \\emph{flagged positives} a human must review to "
       "reach precision $\\pi$; accuracy-based budgets are degenerate here because the "
-      "positive class is rare (see \\S5.4).")
+      "positive class is rare (see Section~\\ref{sec:selective-results}).")
     w("T7_baseline", t7_baseline(a),
       "Keyword baseline versus Jev on the same coded reference.", "tab:baseline",
-      AGREE + " The frontier-LLM arm is v2. McNemar tests paired per-narrative correctness.")
+      AGREE + " McNemar tests paired per-narrative correctness. The frontier-model arm is "
+      r"scored against human labels instead, in Table~\ref{tab:frontier}.",
+      groups=[("", 1), ("Keyword rules", 3), ("Jev 1.13", 3), ("", 1)])
     w("T8_discrepancy", t8_discrepancy(a),
       "Discrepancy taxonomy against coded fields.", "tab:discrepancy",
       AGREE + " ``Narrative only'' is not an error rate: a factor stated in the narrative "
@@ -377,54 +444,44 @@ def main() -> None:
       "of 200 sampled discrepancies is reported in v2.")
     w("T10_gold", t10_gold(a),
       "Accuracy against the human gold set.", "tab:gold",
-      "These are ACCURACY statistics: the reference is human judgement of the same criteria "
-      "text the model was given, from "
-      r"\GoldNUsable{} usable judgements by \CoderN{} independent coders. Rates are "
-      "Horvitz--Thompson weighted to the population, because the gold frame over-samples "
-      r"high-probability narratives by design. ECE$_{\text{coded}}$ repeats the "
-      r"coded-field value from Table~\ref{tab:calibration} and ``gap'' is their ratio: the "
-      "factor by which the noisy reference flatters the model. ``sep.'' marks quasi-complete "
-      "separation, where the calibration slope has no finite estimate.",
-      col_format="lrrrrrrrrrr")
+      r"Accuracy, not agreement: the reference is \GoldNUsable{} human judgements of the "
+      r"criteria text the model was given, Horvitz--Thompson weighted to the population. "
+      r"Bars scale $F_1$ from 0.40; \jevflag{red} marks $F_1<0.70$. ``gap'' is ECE divided "
+      r"by the coded-field ECE of Table~\ref{tab:calibration}: the factor by which that "
+      r"reference flatters the model. ``sep.'' is quasi-complete separation.",
+      col_format="lrrrrr@{\\hspace{3pt}}lrrrrr",
+      groups=[("", 3), ("Accuracy vs.\\ human labels", 5), ("Calibration", 4)])
     w("T11_recalibration", t11_recal(a),
       "Post-hoc recalibration on the gold set, split-half validated.", "tab:recal",
-      "Each mapping is fitted on one half of the gold set and scored on the other, in both "
-      "directions; the reported values are the mean of the two out-of-fold folds. An "
-      "in-sample recalibration would be circular. The ``none'' row is scored under the "
-      "same half-sample protocol so that it is comparable to the rows below it, and is "
-      r"therefore not identical to the full-sample pooled ECE of Table~\ref{tab:gold}. "
-      "Isotonic attains the lower ECE; Platt attains the lower Brier, so it trades less "
-      "sharpness for its calibration gain.")
+      "Each mapping is fitted on one half of the gold set and scored on the other, both "
+      "ways; an in-sample recalibration would be circular. ``none'' uses the same "
+      r"half-sample protocol, so it is comparable to the rows below it but not to the "
+      r"full-sample ECE of Table~\ref{tab:gold}. Isotonic wins on ECE, Platt on Brier: the "
+      r"calibration gain costs some sharpness.")
     w("T12_threshold", t12_threshold(a),
       "Per-variable decision threshold, retuned on the gold set and validated out of fold.",
       "tab:threshold",
-      r"$n^{+}$ is the number of positive gold labels. $\tau^{*}$ is chosen to maximise "
-      r"weighted $F_1$ on the full gold set and is the value one would deploy; the "
-      r"out-of-fold column instead chooses $\tau$ on a random half and scores it on the "
-      r"other, both directions, averaged over 200 repeats, and is the honest estimate of "
-      r"what retuning buys. ``change'' is that estimate minus $F_1$ at $\tau=0.5$. A "
-      r"variable is marked unstable when the out-of-fold spread exceeds 0.10 or fewer than "
-      r"20 positives are available, in which case $\tau^{*}$ is fitted to noise and should "
-      r"not be transported.",
-      col_format="lrrrrrrl")
+      r"$n^{+}$ is the count of positive gold labels. $\tau^{*}$ maximises weighted $F_1$ "
+      r"on the full gold set; the out-of-fold column instead picks $\tau$ on a random half "
+      r"and scores it on the other, both ways, over 200 repeats, and is what retuning "
+      r"actually buys. \jevflag{Unstable} marks a spread above 0.10 or fewer than 20 "
+      r"positives, where $\tau^{*}$ is fitted to noise and must not be transported.",
+      col_format="lrrrrrrl",
+      groups=[("", 3), ("Retuned threshold, out of fold", 5)])
     if (DATA / "frontier" / "frontier_analysis.json").exists():
         w("T13_frontier", t13_frontier(a),
           "Jev against frontier generative models on the same human gold labels.",
           "tab:frontier",
-          r"All arms answer the same narratives, for the same variables, under the same "
-          r"criteria text, and are scored against the same human labels with the same "
-          r"Horvitz--Thompson weights and the same metric code. ``interface'' distinguishes a "
-          r"probability the model returns natively from one a generative model was asked to "
-          r"state. Accuracy here is measured; cost is not, and is reported separately in "
-          r"Figure~\ref{fig:frontier} from measured token counts at published list prices. "
-          r"No arm is held out from the gold set, which is also the set the "
-          r"Table~\ref{tab:recal} recalibration maps were fitted on; the comparison between "
-          r"arms is therefore like-for-like, but none of these figures is an out-of-sample "
-          r"estimate. Every arm is rejected by the Spiegelhalter test, and the sign of $z$ "
-          r"together with the calibration slope shows they fail differently: a slope above "
-          r"one with $z<0$ is a model whose probabilities are not extreme enough and which "
-          r"over-states prevalence, a slope below one with $z>0$ the reverse.",
-          col_format="lrrrrrrrrrl")
+          r"All arms answer the same narratives and variables under the same criteria text, "
+          r"scored against the same labels with the same metric code. \jevbest{Bold} is the "
+          r"leader per metric; bars scale $F_1$ from 0.80. ``prob.'' is whether the model "
+          r"returns a probability natively or was asked to state one. Every $z$ is "
+          r"\jevflag{red} because every arm is rejected, and they fail in opposite "
+          r"directions: slope above one with $z<0$ over-states prevalence, below one with "
+          r"$z>0$ the reverse. Accuracy is measured here; cost is not, and is given at list "
+          r"prices in Figure~\ref{fig:frontier}. No arm is held out from the gold set.",
+          col_format="lrrrrr@{\\hspace{3pt}}lrrrrl",
+          groups=[("", 2), ("Agreement with human labels", 5), ("Calibration", 4), ("", 1)])
 
 
 if __name__ == "__main__":

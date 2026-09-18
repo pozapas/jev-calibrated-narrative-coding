@@ -8,7 +8,7 @@
 \begin{threeparttable}
 \begin{tabular}{lrrrrrrr}
 \toprule
-variable & AURC & excess & prec. & flagged \% & $H$(0.90) \% & $H$(0.95) \% & review/yr \\
+\jevhead{variable} & \jevhead{AURC} & \jevhead{excess} & \jevhead{prec.} & \jevhead{flagged \%} & \jevhead{$H$(0.90) \%} & \jevhead{$H$(0.95) \%} & \jevhead{review/yr} \\
 \midrule
 alcohol\_involved & 0.0163 & 0.0159 & 0.712 & 3.635 & 100.0 & 100.0 & 20,262 \\
 drug\_involved & 0.0018 & 0.0018 & 0.464 & 0.562 & 100.0 & 100.0 & 3,134 \\
@@ -22,7 +22,7 @@ medical\_episode & 0.0014 & 0.0013 & 0.398 & 1.055 & 100.0 & 100.0 & 5,880 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}\footnotesize
-\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of \S4.4 is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. $H(\pi)$ is the share of \emph{flagged positives} a human must review to reach precision $\pi$; accuracy-based budgets are degenerate here because the positive class is rare (see \S5.4).
+\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of Section~\ref{sec:gold} is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. $H(\pi)$ is the share of \emph{flagged positives} a human must review to reach precision $\pi$; accuracy-based budgets are degenerate here because the positive class is rare (see Section~\ref{sec:selective-results}).
 \end{tablenotes}
 \end{threeparttable}
 \end{minipage}}

@@ -1,4 +1,4 @@
-variable,kw prec.,kw rec.,kw $\kappa$,Jev prec.,Jev rec.,Jev $\kappa$,McNemar $p$
+variable,prec.,rec.,$\kappa$,prec.\ ,rec.\ ,$\kappa$\ ,McNemar $p$
 medical\_episode,0.425,0.642,0.509,0.398,0.828,0.534,$<$0.001
 drug\_involved,0.576,0.284,0.378,0.464,0.511,0.484,$<$0.001
 hydroplane,0.846,0.356,0.495,0.719,0.804,0.753,$<$0.001
