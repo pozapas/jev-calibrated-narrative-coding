@@ -104,7 +104,8 @@ class Diagram:
             f'          <mxGeometry x="{x}" y="{y}" width="{w}" height="{h}" as="geometry" />\n'
             f'        </mxCell>')
 
-    def block(self, cid, x, y, w, h, fill, text, size=25, sub=(), subsize=13) -> None:
+    def block(self, cid, x, y, w, h, fill, text, size=25, sub=(), subsize=13,
+              title_h=None) -> None:
         """A flat pastel block. No stroke: the colour is the boundary.
 
         `sub` is up to two short lines. They sit against the block's lower edge rather than
@@ -117,7 +118,8 @@ class Diagram:
         self.raw(f"{cid}_t",
                  f"text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;"
                  f"fontSize={size};fontFamily={FONT};fontColor={S.INK};fontStyle=1;",
-                 text, x, y, w, h - 20 * len(sub) - 10)
+                 text, x, y + (4 if title_h else 0), w,
+                 title_h or (h - 20 * len(sub) - 10))
         for i, line in enumerate(sub):
             self.raw(f"{cid}_s{i}",
                      f"text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;"
@@ -224,12 +226,14 @@ def build() -> Diagram:
     d.block("n1", 44, BY, 186, BH, FILL["grey"], "Narrative",
             sub=(f"{c['n_kept_gt_40'] / 1e6:.2f} M analysed",
                  "over 40 chars, PII screened"))
-    d.block("n2", 280, BY, 196, BH, FILL["blue"], "Typed<br>Schema",
+    d.block("n2", 280, BY, 196, BH, FILL["blue"], "Typed Schema", title_h=42,
             sub=("16 presence, 8 choice, 3 score",
-                 f"{n_gated} detail questions gated"))
-    d.block("n3", 526, BY, 186, BH, FILL["deep"], "Jev 1.13",
-            sub=("one parallel pass, no text out",
-                 "p on a two-decimal grid"))
+                 f"{n_gated} gated, left uninterpreted"))
+    # The paper's claim is about System One models as an interface; Jev is the instance it
+    # happens to audit, and Section 6 says the audit transfers where the model does not.
+    d.block("n3", 526, BY, 186, BH, FILL["deep"], "System One<br>Model",
+            sub=("typed answers, no text out",
+                 "Jev 1.13, pinned on every call"))
 
     # the model's output: one token per variable, shaded by its probability
     sw, sh = d.strip("tp", 746, BY + 12, raw_p, cols=1, size=24, gap=5)
@@ -272,15 +276,14 @@ def build() -> Diagram:
 
     # the 27 questions, as tokens, with the seven gated ones left hollow
     toks = [1] * (27 - n_gated) + [0] * n_gated
-    d.strip("sq", 286, BY + BH + 62, toks, cols=9, size=15, gap=4,
+    d.strip("sq", 294, BY + 52, toks, cols=9, size=15, gap=4,
             fill=lambda v: TOK["ask"] if v else TOK["gated"], stroke_pale=True)
-    d.text("sq_l", "presence gates detail; gated answers stay uninterpreted",
-           246, BY + BH + 114, 320, size=13)
     d.dashed("stage_g", 36, BY - 26, 684, BH + 22)
     d.text("stage_l",
-           f"Stage 1 screens 10 presence questions over the random sample and sizes the Stage 2 frame: "
-           f"{run['n_stage2_random']:,} random plus rare-class enrichment, every record carrying its inclusion probability",
-           38, BY + BH + 14, 688, size=13, align="left")
+           f"Stage 1 screens 10 questions and sizes the Stage 2 frame: "
+           f"{run['n_stage2_random']:,} random plus rare-class enrichment, "
+           f"inverse-probability weighted.",
+           39, BY + BH + 28, 498, size=13, align="left")
 
     # ------------------------------------------------------------ the two references
     RY = 322
