@@ -223,7 +223,7 @@ def build() -> Diagram:
            colour=S.INK, bold=True, align="left")
 
     BY, BH = 92, 156
-    d.block("n1", 44, BY, 186, BH, FILL["grey"], "Narrative",
+    d.block("n1", 44, BY, 186, BH, FILL["grey"], "Crash Narratives",
             sub=(f"{c['n_kept_gt_40'] / 1e6:.2f} M analysed",
                  "over 40 chars, PII screened"))
     d.block("n2", 280, BY, 196, BH, FILL["blue"], "Typed Schema", title_h=42,
@@ -233,7 +233,7 @@ def build() -> Diagram:
     # happens to audit, and Section 6 says the audit transfers where the model does not.
     d.block("n3", 526, BY, 186, BH, FILL["deep"], "System One<br>Model",
             sub=("typed answers, no text out",
-                 "Jev 1.13, pinned on every call"))
+                 "Jev 1.13"))
 
     # the model's output: one token per variable, shaded by its probability
     sw, sh = d.strip("tp", 746, BY + 12, raw_p, cols=1, size=24, gap=5)
