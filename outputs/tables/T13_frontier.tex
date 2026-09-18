@@ -1,0 +1,23 @@
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Jev against frontier generative models on the same human gold labels.}
+\label{tab:frontier}
+\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
+\begin{threeparttable}
+\begin{tabular}{lrrrrrrrrrl}
+\toprule
+model & $n$ & prec. & rec. & $F_1$ & $\kappa$ & ECE & Brier & slope & $z$ & $p$ \\
+\midrule
+Jev 1.13 & 2,416 & 0.856 & 0.928 & 0.891 & 0.851 & 0.0556 & 0.0299 & 1.63 & -8.2 & native \\
+claude-fable-5-1 & 2,416 & 0.956 & 0.961 & 0.959 & 0.947 & 0.0466 & 0.0139 & 2.15 & -9.2 & elicited \\
+gpt-5.6-sol & 2,416 & 0.974 & 0.807 & 0.882 & 0.862 & 0.0388 & 0.0377 & 0.75 & 14.6 & elicited \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item All arms answer the same narratives, for the same variables, under the same criteria text, and are scored against the same human labels with the same Horvitz--Thompson weights and the same metric code. ``interface'' distinguishes a probability the model returns natively from one a generative model was asked to state. Accuracy here is measured; cost is not, and is reported separately in Figure~\ref{fig:frontier} from measured token counts at published list prices. No arm is held out from the gold set, which is also the set the Table~\ref{tab:recal} recalibration maps were fitted on; the comparison between arms is therefore like-for-like, but none of these figures is an out-of-sample estimate. Every arm is rejected by the Spiegelhalter test, and the sign of $z$ together with the calibration slope shows they fail differently: a slope above one with $z<0$ is a model whose probabilities are not extreme enough and which over-states prevalence, a slope below one with $z>0$ the reverse.
+\end{tablenotes}
+\end{threeparttable}
+\end{minipage}}
+\end{table}

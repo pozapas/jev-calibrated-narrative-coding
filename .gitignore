@@ -1,0 +1,39 @@
+# Licensed corpus and anything derived from it at record level. These must never enter this
+# repository: the narratives are not redistributable under the data agreement, and the
+# record-level intermediates carry crash identifiers.
+*.parquet
+*.fst
+coded_join.*
+narratives_work.*
+data/stage1/
+data/stage2/
+data/gold/gold_labels.csv
+data/gold/pii_*
+data/coders/
+data/frontier/batches/
+data/frontier/raw/
+data/frontier/frontier_task_package.json
+data/robustness/
+*_frame.parquet
+*.jsonl
+
+# Credentials
+.env
+.env.*
+
+# LaTeX build artefacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.spl
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+manuscript/*.abs
+
+# Python
+__pycache__/
+*.pyc
+.venv/

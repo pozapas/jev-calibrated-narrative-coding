@@ -1,0 +1,149 @@
+{
+ "csv": "D:\\OneDrive - Texas State University\\Das, Subasish's files - 2027_TRBAM\\CRIS\\CRIS_17_25_impWithNarr_pii_clean.csv",
+ "n_rows_total": 5109746,
+ "n_narrative_empty": 91175,
+ "n_narrative_le_40": 491,
+ "n_kept_gt_40": 5018080,
+ "min_chars": 40,
+ "empty_share": 0.01784,
+ "year_total": {
+  "2017": 569087,
+  "2018": 578098,
+  "2019": 594511,
+  "2020": 499598,
+  "2021": 579638,
+  "2022": 580254,
+  "2023": 579793,
+  "2024": 573703,
+  "2025": 555064
+ },
+ "year_kept": {
+  "2017": 522150,
+  "2018": 545893,
+  "2019": 583416,
+  "2020": 499159,
+  "2021": 579279,
+  "2022": 580018,
+  "2023": 579591,
+  "2024": 573560,
+  "2025": 555014
+ },
+ "year_empty": {
+  "2017": 46902,
+  "2018": 32159,
+  "2019": 11027,
+  "2020": 391,
+  "2021": 289,
+  "2022": 191,
+  "2023": 145,
+  "2024": 71
+ },
+ "severity_kept": {
+  "Not Injured": 3335493,
+  "Possible Injury": 777014,
+  "Non-Incapacitating": 547692,
+  "Unknown": 201845,
+  "Incapacitating Injury": 124031,
+  "Killed": 31996,
+  "NA": 9
+ },
+ "casing_by_year": {
+  "2017": {
+   "mixed": 306058,
+   "upper": 216092
+  },
+  "2018": {
+   "mixed": 328653,
+   "upper": 217240
+  },
+  "2019": {
+   "mixed": 356112,
+   "upper": 227304
+  },
+  "2020": {
+   "upper": 186991,
+   "mixed": 312168
+  },
+  "2021": {
+   "upper": 213689,
+   "mixed": 365590
+  },
+  "2022": {
+   "upper": 216646,
+   "mixed": 363372
+  },
+  "2023": {
+   "mixed": 355767,
+   "upper": 223824
+  },
+  "2024": {
+   "upper": 221533,
+   "mixed": 352027
+  },
+  "2025": {
+   "upper": 209956,
+   "mixed": 345058
+  }
+ },
+ "length_quantiles_chars": {
+  "0.05": 170.0,
+  "0.25": 270.0,
+  "0.5": 378.0,
+  "0.75": 543.0,
+  "0.95": 935.0,
+  "0.99": 1427.0
+ },
+ "length_mean_chars": 445.7514925,
+ "length_reservoir_n": 400000,
+ "keyword_counts": {
+  "preg": 5401,
+  "medical": 37248,
+  "drug": 12151,
+  "hydro": 44931,
+  "defect": 25112,
+  "rage": 28416,
+  "fatigue": 58711,
+  "intent": 8298,
+  "wrongway": 16645,
+  "animal": 100201
+ },
+ "keyword_prevalence": {
+  "preg": 0.001076,
+  "medical": 0.007423,
+  "drug": 0.002421,
+  "hydro": 0.008954,
+  "defect": 0.005004,
+  "rage": 0.005663,
+  "fatigue": 0.0117,
+  "intent": 0.001654,
+  "wrongway": 0.003317,
+  "animal": 0.019968
+ },
+ "residual_pii_before_second_pass": {
+  "case": {
+   "n": 38758,
+   "share": 0.00772
+  },
+  "titled_name": {
+   "n": 233423,
+   "share": 0.04652
+  },
+  "date": {
+   "n": 157088,
+   "share": 0.0313
+  },
+  "digitrun": {
+   "n": 96688,
+   "share": 0.01927
+  },
+  "dob": {
+   "n": 14664,
+   "share": 0.00292
+  },
+  "idnum": {
+   "n": 10183,
+   "share": 0.00203
+  }
+ },
+ "pass1_seconds": 1194.6
+}

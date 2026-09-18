@@ -1,0 +1,17 @@
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\caption{Post-hoc recalibration on the gold set, split-half validated.}
+\label{tab:recal}
+\begin{tabular}{lrr}
+\toprule
+mapping & ECE & Brier \\
+\midrule
+none (raw model output) & 0.0628 & 0.0299 \\
+Platt (logistic on the logit) & 0.0313 & 0.0246 \\
+isotonic & 0.0120 & 0.0253 \\
+\bottomrule
+\end{tabular}
+\par\vspace{5pt}
+\begin{minipage}{0.86\textwidth}\footnotesize Each mapping is fitted on one half of the gold set and scored on the other, in both directions; the reported values are the mean of the two out-of-fold folds. An in-sample recalibration would be circular. The ``none'' row is scored under the same half-sample protocol so that it is comparable to the rows below it, and is therefore not identical to the full-sample pooled ECE of Table~\ref{tab:gold}. Isotonic attains the lower ECE; Platt attains the lower Brier, so it trades less sharpness for its calibration gain.\end{minipage}
+\end{table}

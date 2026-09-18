@@ -1,0 +1,17 @@
+{
+ "name": "pregnancy_screen_v1",
+ "model": "jev-1.13.0",
+ "state_key": "narrative",
+ "questions": {
+  "preg_mentioned": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a person involved in the crash was pregnant.",
+   "criteria": {
+    "true": "Pregnancy of an involved person is explicitly stated.",
+    "false": "No pregnancy is stated. Children, infants, or car seats do not count."
+   }
+  }
+ },
+ "gates": {},
+ "notes": "Paper 2 \u00a76 Step 3 Stage-C screen: the single lean Noul, asked alone. The instructions and criteria are copied byte-for-byte from crash_factors_lean_v1_1's preg_mentioned so that a Stage-C answer produced here and one harvested from Paper 1's 10-Noul Stage-1 call differ only in which other questions shared the call. That difference is what p03b_paired_check.py measures."
+}

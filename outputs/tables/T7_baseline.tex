@@ -1,0 +1,29 @@
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Keyword baseline versus Jev on the same coded reference.}
+\label{tab:baseline}
+\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
+\begin{threeparttable}
+\begin{tabular}{lrrrrrrr}
+\toprule
+variable & kw prec. & kw rec. & kw $\kappa$ & Jev prec. & Jev rec. & Jev $\kappa$ & McNemar $p$ \\
+\midrule
+medical\_episode & 0.425 & 0.642 & 0.509 & 0.398 & 0.828 & 0.534 & $<$0.001 \\
+drug\_involved & 0.576 & 0.284 & 0.378 & 0.464 & 0.511 & 0.484 & $<$0.001 \\
+hydroplane & 0.846 & 0.356 & 0.495 & 0.719 & 0.804 & 0.753 & $<$0.001 \\
+fatigue & 0.675 & 0.701 & 0.684 & 0.653 & 0.780 & 0.707 & 0.960 \\
+wrong\_way & 0.388 & 0.246 & 0.298 & 0.259 & 0.684 & 0.371 & $<$0.001 \\
+animal\_involved & 0.751 & 0.860 & 0.798 & 0.848 & 0.986 & 0.910 & $<$0.001 \\
+alcohol\_involved & 0.693 & 0.692 & 0.681 & 0.712 & 0.714 & 0.702 & $<$0.001 \\
+phone\_use & 0.238 & 0.672 & 0.348 & 0.340 & 0.818 & 0.477 & $<$0.001 \\
+unbelted & 0.589 & 0.034 & 0.063 & 0.209 & 0.075 & 0.103 & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of \S4.4 is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. The frontier-LLM arm is v2. McNemar tests paired per-narrative correctness.
+\end{tablenotes}
+\end{threeparttable}
+\end{minipage}}
+\end{table}

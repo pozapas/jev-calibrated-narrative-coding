@@ -1,0 +1,25 @@
+{
+ "n_total": 195857,
+ "by_stratum": {
+  "random": 150000,
+  "enrich_kw": 30137,
+  "enrich_s1": 15720
+ },
+ "enrichment_per_class": {
+  "preg": 3050,
+  "medical": 4571,
+  "drug": 3787,
+  "hydro": 6038,
+  "defect": 6038,
+  "rage": 5276,
+  "fatigue": 5498,
+  "intent": 3235,
+  "wrongway": 5345,
+  "animal": 3019
+ },
+ "mean_tokens_measured": 3682.7,
+ "projected_cost_usd": 30.29,
+ "cost_cap_usd": 30.6,
+ "n_max_within_cap": 195857,
+ "note": "150k random stratum never trimmed; enriched allocation trimmed proportionally within class and incl_prob adjusted for the trim."
+}

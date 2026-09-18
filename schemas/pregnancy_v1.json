@@ -1,0 +1,86 @@
+{
+  "name": "pregnancy_v1",
+  "model": "jev-1.13.0",
+  "state_key": "narrative",
+  "questions": {
+    "preg_mentioned": {
+      "type": "noul",
+      "instructions": "The `narrative` states that a person involved in the crash was pregnant.",
+      "criteria": {
+        "true": "Any explicit statement that a driver, passenger, pedestrian, or other involved person is pregnant, e.g. 'was 6 months pregnant', 'pregnant driver', 'expecting'.",
+        "false": "No pregnancy is stated. Mentions of children, infants, or car seats do not count."
+      }
+    },
+    "preg_role": {
+      "type": "choice",
+      "instructions": "What was the role of the pregnant person in the crash according to the `narrative`?",
+      "criteria": {
+        "driver": "The pregnant person was driving one of the vehicles.",
+        "passenger": "The pregnant person was a passenger in one of the vehicles.",
+        "pedestrian_or_other": "The pregnant person was a pedestrian, cyclist, or otherwise not inside a vehicle.",
+        "no_pregnancy": "The narrative does not state that anyone was pregnant."
+      }
+    },
+    "preg_outcome": {
+      "type": "choice",
+      "instructions": "What does the `narrative` state about the condition of the pregnant person after the crash?",
+      "criteria": {
+        "no_complaint": "The pregnant person reported no injury or the narrative gives no complaint.",
+        "pain_or_evaluation": "The pregnant person complained of pain, tightness, or discomfort, or was checked by EMS but not transported.",
+        "transported": "The pregnant person was transported to a hospital or medical facility as a precaution or for injury.",
+        "fetal_harm": "The narrative states harm to, or loss of, the unborn child.",
+        "no_pregnancy": "The narrative does not state that anyone was pregnant."
+      }
+    },
+    "preg_stage": {
+      "type": "choice",
+      "instructions": "What stage of pregnancy does the `narrative` state for the pregnant person?",
+      "criteria": {
+        "early": "Up to 13 weeks, or 1 to 3 months pregnant, or described as first trimester or early pregnancy.",
+        "mid": "14 to 27 weeks, or 4 to 6 months pregnant, or described as second trimester.",
+        "late": "28 weeks or more, or 7 to 9 months pregnant, or described as third trimester, due soon, or full term.",
+        "stage_not_stated": "Pregnancy is stated but no weeks, months, or trimester is given.",
+        "no_pregnancy": "The narrative does not state that anyone was pregnant."
+      }
+    },
+    "transported": {
+      "type": "noul",
+      "instructions": "The `narrative` states that a person was transported to a hospital or medical facility.",
+      "criteria": {
+        "true": "A person was transported by EMS, ambulance, helicopter, or private vehicle to a hospital, medical center, or clinic.",
+        "false": "No transport to a medical facility is mentioned, or people refused transport."
+      }
+    },
+    "medical_episode": {
+      "type": "noul",
+      "instructions": "The `narrative` states that a driver experienced a medical event (seizure, fainting, blackout, diabetic episode, heart attack, stroke, or similar) before or during the crash.",
+      "criteria": {
+        "true": "A medical event of the driver is described as occurring before or during the crash, whether confirmed or suspected by the officer.",
+        "false": "No medical event of the driver is described. Injuries caused by the crash, or transport to a hospital for crash injuries, do not count."
+      }
+    },
+    "injury_narr": {
+      "type": "score",
+      "instructions": "What is the most severe injury outcome stated in the `narrative` for any person?",
+      "criteria": [
+        "No injury is mentioned, or the narrative says no one was injured.",
+        "A person complained of pain or possible injury but was not transported.",
+        "A person had a visible injury or was transported to a hospital.",
+        "A person was pronounced dead or the narrative describes a fatality."
+      ]
+    },
+    "witness_cited": {
+      "type": "noul",
+      "instructions": "The `narrative` cites a statement from a witness who was not a driver or occupant of the involved vehicles.",
+      "criteria": {
+        "true": "A witness, bystander, or independent observer's statement is described.",
+        "false": "Only driver, passenger, or officer statements appear, or no statements appear."
+      }
+    }
+  },
+  "gates": {
+    "preg_role": "preg_mentioned",
+    "preg_outcome": "preg_mentioned",
+    "preg_stage": "preg_mentioned"
+  }
+}

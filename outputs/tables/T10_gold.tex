@@ -1,0 +1,37 @@
+\begin{table}[!htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Accuracy against the human gold set.}
+\label{tab:gold}
+\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
+\begin{threeparttable}
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+variable & $n$ & base \% & prec. & rec. & $F_1$ & $\kappa$ & ECE & ECE$_{\text{coded}}$ & gap & slope \\
+\midrule
+preg\_mentioned & 107 & 3.48 & 1.00 & 1.00 & 1.00 & 1.000 & 0.0116 & -- & -- & sep. \\
+animal\_involved & 129 & 22.15 & 1.00 & 0.98 & 0.99 & 0.973 & 0.0271 & 0.0149 & 1.8$\times$ & sep. \\
+hydroplane & 130 & 27.08 & 0.97 & 0.97 & 0.97 & 0.958 & 0.0466 & 0.0152 & 3.1$\times$ & 2.22 \\
+fatigue & 120 & 22.45 & 0.94 & 1.00 & 0.97 & 0.931 & 0.0441 & 0.0148 & 3.0$\times$ & sep. \\
+transported & 146 & 22.55 & 0.91 & 1.00 & 0.95 & 0.928 & 0.0482 & -- & -- & sep. \\
+hit\_and\_run & 205 & 44.01 & 0.98 & 0.91 & 0.94 & 0.891 & 0.0877 & -- & -- & 1.91 \\
+alcohol\_involved & 140 & 19.64 & 0.85 & 1.00 & 0.92 & 0.887 & 0.0827 & 0.0187 & 4.4$\times$ & 1.46 \\
+drug\_involved & 148 & 4.09 & 0.85 & 1.00 & 0.92 & 0.938 & 0.0597 & 0.0199 & 3.0$\times$ & sep. \\
+phone\_use & 123 & 13.57 & 0.89 & 0.94 & 0.92 & 0.856 & 0.0592 & 0.0203 & 2.9$\times$ & 2.18 \\
+aggression & 165 & 16.64 & 0.87 & 0.92 & 0.90 & 0.884 & 0.0996 & -- & -- & 2.96 \\
+vehicle\_defect & 132 & 27.16 & 0.96 & 0.83 & 0.89 & 0.828 & 0.0958 & -- & -- & 1.35 \\
+witness\_cited & 206 & 21.38 & 0.85 & 0.90 & 0.87 & 0.837 & 0.1113 & -- & -- & 1.97 \\
+medical\_episode & 164 & 11.97 & 0.79 & 0.92 & 0.85 & 0.798 & 0.1013 & 0.0248 & 4.1$\times$ & 2.51 \\
+wrong\_way & 183 & 11.16 & 0.50 & 0.76 & 0.60 & 0.526 & 0.1379 & 0.0455 & 3.0$\times$ & 1.17 \\
+unbelted & 145 & 3.46 & 0.33 & 1.00 & 0.49 & 0.447 & 0.1043 & 0.0118 & 8.8$\times$ & sep. \\
+intentional & 173 & 2.27 & 0.32 & 1.00 & 0.48 & 0.477 & 0.0986 & -- & -- & 4.20 \\
+\textbf{pooled} & 2,416 & 17.71 & 0.86 & 0.93 & 0.89 & 0.851 & 0.0556 & -- & -- & 1.63 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item These are ACCURACY statistics: the reference is human judgement of the same criteria text the model was given, from \GoldNUsable{} usable judgements by \CoderN{} independent coders. Rates are Horvitz--Thompson weighted to the population, because the gold frame over-samples high-probability narratives by design. ECE$_{\text{coded}}$ repeats the coded-field value from Table~\ref{tab:calibration} and ``gap'' is their ratio: the factor by which the noisy reference flatters the model. ``sep.'' marks quasi-complete separation, where the calibration slope has no finite estimate.
+\end{tablenotes}
+\end{threeparttable}
+\end{minipage}}
+\end{table}

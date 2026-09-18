@@ -1,0 +1,145 @@
+{
+ "n_compared": 2000,
+ "model_v1_1": null,
+ "aggression": {
+  "pursuit_narratives_n": 13,
+  "pursuit_pos_v1": 4,
+  "pursuit_pos_v1_1": 1,
+  "pursuit_mean_p_v1": 0.3946,
+  "pursuit_mean_p_v1_1": 0.16,
+  "nonpursuit_pos_v1": 60,
+  "nonpursuit_pos_v1_1": 57,
+  "nonpursuit_mean_p_v1": 0.057,
+  "nonpursuit_mean_p_v1_1": 0.0533
+ },
+ "other_nouls_stability": {
+  "preg_mentioned": {
+   "label_agreement": 1.0,
+   "mean_abs_shift": 0.0006
+  },
+  "medical_episode": {
+   "label_agreement": 0.998,
+   "mean_abs_shift": 0.0036
+  },
+  "drug_involved": {
+   "label_agreement": 0.999,
+   "mean_abs_shift": 0.0032
+  },
+  "alcohol_involved": {
+   "label_agreement": 0.999,
+   "mean_abs_shift": 0.0026
+  },
+  "hydroplane": {
+   "label_agreement": 0.9995,
+   "mean_abs_shift": 0.0011
+  },
+  "vehicle_defect": {
+   "label_agreement": 0.999,
+   "mean_abs_shift": 0.0025
+  },
+  "fatigue": {
+   "label_agreement": 0.9995,
+   "mean_abs_shift": 0.0016
+  },
+  "intentional": {
+   "label_agreement": 0.9985,
+   "mean_abs_shift": 0.0024
+  },
+  "hit_and_run": {
+   "label_agreement": 0.9995,
+   "mean_abs_shift": 0.0033
+  },
+  "animal_involved": {
+   "label_agreement": 1.0,
+   "mean_abs_shift": 0.0015
+  },
+  "wrong_way": {
+   "label_agreement": 0.9975,
+   "mean_abs_shift": 0.0039
+  },
+  "phone_use": {
+   "label_agreement": 1.0,
+   "mean_abs_shift": 0.002
+  },
+  "unbelted": {
+   "label_agreement": 0.998,
+   "mean_abs_shift": 0.0027
+  },
+  "transported": {
+   "label_agreement": 0.998,
+   "mean_abs_shift": 0.0021
+  }
+ },
+ "gate_leakage_v1_1": {
+  "medical_type": {
+   "gate": "medical_episode",
+   "n_gate_off": 1844,
+   "n_leaked": 85,
+   "leakage_rate": 0.0461,
+   "ci95": [
+    0.03698,
+    0.05668
+   ]
+  },
+  "drug_class": {
+   "gate": "drug_involved",
+   "n_gate_off": 1882,
+   "n_leaked": 11,
+   "leakage_rate": 0.00584,
+   "ci95": [
+    0.00292,
+    0.01043
+   ]
+  },
+  "preg_role": {
+   "gate": "preg_mentioned",
+   "n_gate_off": 1801,
+   "n_leaked": 6,
+   "leakage_rate": 0.00333,
+   "ci95": [
+    0.00122,
+    0.00724
+   ]
+  },
+  "preg_outcome": {
+   "gate": "preg_mentioned",
+   "n_gate_off": 1801,
+   "n_leaked": 4,
+   "leakage_rate": 0.00222,
+   "ci95": [
+    0.00061,
+    0.00568
+   ]
+  },
+  "preg_stage": {
+   "gate": "preg_mentioned",
+   "n_gate_off": 1801,
+   "n_leaked": 5,
+   "leakage_rate": 0.00278,
+   "ci95": [
+    0.0009,
+    0.00647
+   ]
+  },
+  "animal_type": {
+   "gate": "animal_involved",
+   "n_gate_off": 1927,
+   "n_leaked": 7,
+   "leakage_rate": 0.00363,
+   "ci95": [
+    0.00146,
+    0.00747
+   ]
+  },
+  "defect_type": {
+   "gate": "vehicle_defect",
+   "n_gate_off": 1921,
+   "n_leaked": 24,
+   "leakage_rate": 0.01249,
+   "ci95": [
+    0.00802,
+    0.01853
+   ]
+  }
+ }
+}

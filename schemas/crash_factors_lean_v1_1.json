@@ -1,0 +1,89 @@
+{
+ "name": "crash_factors_lean_v1_1",
+ "model": "jev-1.13.0",
+ "state_key": "narrative",
+ "questions": {
+  "preg_mentioned": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a person involved in the crash was pregnant.",
+   "criteria": {
+    "true": "Pregnancy of an involved person is explicitly stated.",
+    "false": "No pregnancy is stated. Children, infants, or car seats do not count."
+   }
+  },
+  "medical_episode": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a driver had a medical event such as a seizure, fainting, diabetic episode, heart attack, or stroke before the crash.",
+   "criteria": {
+    "true": "A driver medical event before or during the crash is described, confirmed or suspected.",
+    "false": "No driver medical event. Injuries caused by the crash do not count."
+   }
+  },
+  "drug_involved": {
+   "type": "noul",
+   "instructions": "The `narrative` states or suspects that a driver was under the influence of drugs or medication, not alcohol.",
+   "criteria": {
+    "true": "Drug, narcotic, or medication impairment of a driver is stated or suspected.",
+    "false": "No drug involvement. Alcohol-only impairment does not count."
+   }
+  },
+  "alcohol_involved": {
+   "type": "noul",
+   "instructions": "The `narrative` states or suspects that a driver had been drinking alcohol or was intoxicated by alcohol.",
+   "criteria": {
+    "true": "Drinking, odour of alcohol, DWI, DUI, or suspected alcohol intoxication of a driver.",
+    "false": "No alcohol involvement of a driver is mentioned."
+   }
+  },
+  "hydroplane": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a vehicle hydroplaned or lost traction because of water on the roadway.",
+   "criteria": {
+    "true": "Hydroplaning, or loss of traction or control caused by rain, wet road, or standing water.",
+    "false": "No loss of traction due to water. Wet conditions alone do not count."
+   }
+  },
+  "vehicle_defect": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a mechanical failure of a vehicle contributed to the crash.",
+   "criteria": {
+    "true": "Tire blowout, brake, steering, or other mechanical failure contributed to the crash.",
+    "false": "No mechanical failure. Damage caused by the crash does not count."
+   }
+  },
+  "fatigue": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a driver fell asleep, dozed off, was drowsy, or was fatigued.",
+   "criteria": {
+    "true": "A driver was asleep, falling asleep, drowsy, tired, or fatigued before the crash.",
+    "false": "No sleep or fatigue of a driver is mentioned."
+   }
+  },
+  "aggression": {
+   "type": "noul",
+   "instructions": "The `narrative` describes road rage, aggressive driving directed at another road user, or a confrontation between people involved.",
+   "criteria": {
+    "true": "Road rage, brake-checking, chasing, threatening, arguing, or fighting between involved people.",
+    "false": "No aggression. A police pursuit, traffic stop, evading police, or leaving the scene does not count."
+   }
+  },
+  "intentional": {
+   "type": "noul",
+   "instructions": "The `narrative` states or suspects that a vehicle was used intentionally to cause the crash.",
+   "criteria": {
+    "true": "The crash is described as deliberate, intentional, an assault with a vehicle, or a suicide attempt.",
+    "false": "The crash is unintentional, or intent is not mentioned."
+   }
+  },
+  "wrong_way": {
+   "type": "noul",
+   "instructions": "The `narrative` states that a vehicle was traveling the wrong way on a roadway, ramp, or lane.",
+   "criteria": {
+    "true": "A vehicle travelled the wrong way or against traffic on a one-way road, divided highway, or ramp.",
+    "false": "No wrong-way travel. Crossing the center line during a loss of control does not count."
+   }
+  }
+ },
+ "gates": {},
+ "notes": "\u00a76 Step 2 lean screen. Same 10 presence concepts as the full schema, shortened instructions and criteria to hold the token budget near 930. pii_residual is deliberately NOT included: an 11th Noul would add ~9% to every one of 500k Stage-1 calls (~$1.8, over the $19.5 line item) to screen narratives that will never be displayed. \u00a76 Step 1 needs it only for narratives that are quoted or shown publicly, so it ships as its own one-question schema (pii_residual_v1.json) run on display candidates."
+}

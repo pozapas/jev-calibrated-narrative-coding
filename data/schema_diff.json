@@ -1,0 +1,17 @@
+[
+ {
+  "question": "aggression",
+  "field": "criteria.false",
+  "rule": "\u00a74.2 rule 6",
+  "before": "No aggression or confrontation is described. Ordinary traffic violations without hostility do not count.",
+  "after": "No aggression or confrontation is described. Ordinary traffic violations without hostility do not count. A police pursuit, a traffic stop, an officer chasing or stopping a vehicle, and a driver evading or fleeing from police do not count. A driver leaving the scene of the crash does not count by itself.",
+  "evidence": "16 spike narratives with pursuit language; 4 scored p>0.5 (max 0.95)"
+ },
+ {
+  "question": "pii_residual",
+  "field": "(new)",
+  "rule": "\u00a76 Step 1",
+  "before": null,
+  "after": "added presence Noul for residual PII screening"
+ }
+]

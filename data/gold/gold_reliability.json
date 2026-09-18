@@ -1,0 +1,40 @@
+{
+ "n_answers": 5024,
+ "n_raters": 3,
+ "n_pairs": 2465,
+ "n_unanimous": 2416,
+ "n_disputed": 48,
+ "mean_agreement": 0.9901284651791752,
+ "ratings_per_pair": {
+  "2": 2371,
+  "3": 94
+ },
+ "n_usable_yes_no": 2416,
+ "pairwise_kappa_calibration": {
+  "C1|C2": 0.9464082098061576,
+  "C1|C3": 0.9464082098061576,
+  "C2|C3": 1.0
+ },
+ "per_rater_calibration": {
+  "C1": {
+   "n": 94,
+   "agree_with_majority": 0.9893617021276596,
+   "median_ms": 6759.5
+  },
+  "C2": {
+   "n": 94,
+   "agree_with_majority": 1.0,
+   "median_ms": 7382.0
+  },
+  "C3": {
+   "n": 94,
+   "agree_with_majority": 1.0,
+   "median_ms": 7689.0
+  }
+ },
+ "verdict_mix": {
+  "no": 4121,
+  "yes": 885,
+  "unclear": 18
+ }
+}

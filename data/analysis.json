@@ -1,0 +1,1250 @@
+{
+ "corpus": {
+  "n_rows_total": 5109746,
+  "n_kept_gt_40": 5018080,
+  "n_narrative_empty": 91175,
+  "empty_share": 0.01784,
+  "length_quantiles_chars": {
+   "0.05": 170.0,
+   "0.25": 270.0,
+   "0.5": 378.0,
+   "0.75": 543.0,
+   "0.95": 935.0,
+   "0.99": 1427.0
+  },
+  "keyword_counts": {
+   "preg": 5401,
+   "medical": 37248,
+   "drug": 12151,
+   "hydro": 44931,
+   "defect": 25112,
+   "rage": 28416,
+   "fatigue": 58711,
+   "intent": 8298,
+   "wrongway": 16645,
+   "animal": 100201
+  },
+  "keyword_prevalence": {
+   "preg": 0.001076,
+   "medical": 0.007423,
+   "drug": 0.002421,
+   "hydro": 0.008954,
+   "defect": 0.005004,
+   "rage": 0.005663,
+   "fatigue": 0.0117,
+   "intent": 0.001654,
+   "wrongway": 0.003317,
+   "animal": 0.019968
+  },
+  "residual_pii_before_second_pass": {
+   "case": {
+    "n": 38758,
+    "share": 0.00772
+   },
+   "titled_name": {
+    "n": 233423,
+    "share": 0.04652
+   },
+   "date": {
+    "n": 157088,
+    "share": 0.0313
+   },
+   "digitrun": {
+    "n": 96688,
+    "share": 0.01927
+   },
+   "dob": {
+    "n": 14664,
+    "share": 0.00292
+   },
+   "idnum": {
+    "n": 10183,
+    "share": 0.00203
+   }
+  }
+ },
+ "run": {
+  "n_stage2": 195857,
+  "n_stage2_random": 150000,
+  "by_stratum": {
+   "random": 150000,
+   "enrich_kw": 30137,
+   "enrich_s1": 15720
+  },
+  "mean_input_tokens": 3673.1404289864545,
+  "p50_latency_s": 0.201,
+  "models_seen": {
+   "jev-1.13.0": 195857
+  },
+  "total_cost_usd": 30.215231130000003
+ },
+ "gate_leakage": {
+  "medical_type": {
+   "gate": "medical_episode",
+   "tau": 0.5,
+   "n_gate_off": 189733,
+   "n_leaked": 7577,
+   "leakage_rate": 0.039935,
+   "n_overridden_to_no_match": 7577
+  },
+  "drug_class": {
+   "gate": "drug_involved",
+   "tau": 0.5,
+   "n_gate_off": 190995,
+   "n_leaked": 877,
+   "leakage_rate": 0.004592,
+   "n_overridden_to_no_match": 877
+  },
+  "preg_role": {
+   "gate": "preg_mentioned",
+   "tau": 0.5,
+   "n_gate_off": 192692,
+   "n_leaked": 65,
+   "leakage_rate": 0.000337,
+   "n_overridden_to_no_match": 65
+  },
+  "preg_outcome": {
+   "gate": "preg_mentioned",
+   "tau": 0.5,
+   "n_gate_off": 192692,
+   "n_leaked": 84,
+   "leakage_rate": 0.000436,
+   "n_overridden_to_no_match": 84
+  },
+  "preg_stage": {
+   "gate": "preg_mentioned",
+   "tau": 0.5,
+   "n_gate_off": 192692,
+   "n_leaked": 123,
+   "leakage_rate": 0.000638,
+   "n_overridden_to_no_match": 123
+  },
+  "animal_type": {
+   "gate": "animal_involved",
+   "tau": 0.5,
+   "n_gate_off": 190094,
+   "n_leaked": 398,
+   "leakage_rate": 0.002094,
+   "n_overridden_to_no_match": 398
+  },
+  "defect_type": {
+   "gate": "vehicle_defect",
+   "tau": 0.5,
+   "n_gate_off": 186643,
+   "n_leaked": 3267,
+   "leakage_rate": 0.017504,
+   "n_overridden_to_no_match": 3267
+  }
+ },
+ "output_grid": {
+  "aggression": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "alcohol_involved": {
+   "n_distinct": 100,
+   "min": 0.01,
+   "max": 1.0,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": true
+  },
+  "animal_involved": {
+   "n_distinct": 98,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "drug_involved": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "fatigue": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "hit_and_run": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "hydroplane": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "intentional": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "medical_episode": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "phone_use": {
+   "n_distinct": 98,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "preg_mentioned": {
+   "n_distinct": 43,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999981,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "transported": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "unbelted": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "vehicle_defect": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "witness_cited": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  },
+  "wrong_way": {
+   "n_distinct": 99,
+   "min": 0.01,
+   "max": 0.99,
+   "min_gap": 0.009999999999999898,
+   "is_two_decimal": true,
+   "hits_zero": false,
+   "hits_one": false
+  }
+ },
+ "prevalence": {
+  "aggression": {
+   "n_random": 150000,
+   "jev_prevalence": 0.011026666666666667,
+   "jev_prevalence_ci95": [
+    0.010504335284285125,
+    0.011568025126928451
+   ],
+   "expected_prevalence": 0.03915833333333334,
+   "share_at_grid_floor": 0.13837333333333332,
+   "floor_contribution_to_expected": 0.035336880187273885,
+   "expected_prevalence_above_floor": 0.04384102937080252,
+   "uncertain_band_share": 0.01108,
+   "n_texas_per_year_at_p50": 6148.077274074075,
+   "keyword_population_n": 28416,
+   "keyword_population_prevalence": 0.005662723591493161,
+   "jev_confirmation_among_keyword_hits": 0.4845605700712589,
+   "jev_confirmation_ci95": [
+    0.45031513854644106,
+    0.5189144125367642
+   ],
+   "n_keyword_hits_in_random": 842
+  },
+  "alcohol_involved": {
+   "n_random": 150000,
+   "jev_prevalence": 0.036353333333333335,
+   "jev_prevalence_ci95": [
+    0.035411788290348384,
+    0.0373128540857318
+   ],
+   "expected_prevalence": 0.05498306666666667,
+   "share_at_grid_floor": 0.22294,
+   "floor_contribution_to_expected": 0.040547029024693655,
+   "expected_prevalence_above_floor": 0.067888794516082,
+   "uncertain_band_share": 0.00376,
+   "n_texas_per_year_at_p50": 20269.326103703705
+  },
+  "animal_involved": {
+   "n_random": 150000,
+   "jev_prevalence": 0.02016,
+   "jev_prevalence_ci95": [
+    0.01945469768394207,
+    0.0208839344031554
+   ],
+   "expected_prevalence": 0.03223686666666666,
+   "share_at_grid_floor": 0.79492,
+   "floor_contribution_to_expected": 0.2465872406954357,
+   "expected_prevalence_above_floor": 0.11843020609843315,
+   "uncertain_band_share": 0.00158,
+   "n_texas_per_year_at_p50": 11240.499200000002,
+   "keyword_population_n": 100201,
+   "keyword_population_prevalence": 0.019967995727449544,
+   "jev_confirmation_among_keyword_hits": 0.8376383763837638,
+   "jev_confirmation_ci95": [
+    0.8239021909968837,
+    0.8507082996347328
+   ],
+   "n_keyword_hits_in_random": 2981
+  },
+  "drug_involved": {
+   "n_random": 150000,
+   "jev_prevalence": 0.00562,
+   "jev_prevalence_ci95": [
+    0.005247939239362551,
+    0.006011361069278736
+   ],
+   "expected_prevalence": 0.025008266666666664,
+   "share_at_grid_floor": 0.3095133333333333,
+   "floor_contribution_to_expected": 0.12376440856889989,
+   "expected_prevalence_above_floor": 0.03173578056057081,
+   "uncertain_band_share": 0.0026133333333333334,
+   "n_texas_per_year_at_p50": 3133.512177777778,
+   "keyword_population_n": 12151,
+   "keyword_population_prevalence": 0.0024214440582852404,
+   "jev_confirmation_among_keyword_hits": 0.8806366047745358,
+   "jev_confirmation_ci95": [
+    0.843557426174055,
+    0.911588794537764
+   ],
+   "n_keyword_hits_in_random": 377
+  },
+  "fatigue": {
+   "n_random": 150000,
+   "jev_prevalence": 0.013986666666666666,
+   "jev_prevalence_ci95": [
+    0.013398447981102908,
+    0.014593779975303532
+   ],
+   "expected_prevalence": 0.02653386666666667,
+   "share_at_grid_floor": 0.75332,
+   "floor_contribution_to_expected": 0.28390886615344413,
+   "expected_prevalence_above_floor": 0.0770255661856116,
+   "uncertain_band_share": 0.0015333333333333334,
+   "n_texas_per_year_at_p50": 7798.46802962963,
+   "keyword_population_n": 58711,
+   "keyword_population_prevalence": 0.011699893186238562,
+   "jev_confirmation_among_keyword_hits": 0.9676535087719298,
+   "jev_confirmation_ci95": [
+    0.9584719583112993,
+    0.9752870545146034
+   ],
+   "n_keyword_hits_in_random": 1824
+  },
+  "hit_and_run": {
+   "n_random": 150000,
+   "jev_prevalence": 0.15863333333333332,
+   "jev_prevalence_ci95": [
+    0.1567878002398919,
+    0.16049207138785843
+   ],
+   "expected_prevalence": 0.17383526666666668,
+   "share_at_grid_floor": 0.05716,
+   "floor_contribution_to_expected": 0.0032881705246614705,
+   "expected_prevalence_above_floor": 0.18376783618288012,
+   "uncertain_band_share": 0.02024,
+   "n_texas_per_year_at_p50": 88448.30637037037
+  },
+  "hydroplane": {
+   "n_random": 150000,
+   "jev_prevalence": 0.02352,
+   "jev_prevalence_ci95": [
+    0.02275896197032638,
+    0.024299531388557054
+   ],
+   "expected_prevalence": 0.036225933333333335,
+   "share_at_grid_floor": 0.7334466666666667,
+   "floor_contribution_to_expected": 0.20246453277486293,
+   "expected_prevalence_above_floor": 0.10838906535277494,
+   "uncertain_band_share": 0.0041,
+   "n_texas_per_year_at_p50": 13113.915733333333,
+   "keyword_population_n": 44931,
+   "keyword_population_prevalence": 0.008953822976118356,
+   "jev_confirmation_among_keyword_hits": 0.9977409638554217,
+   "jev_confirmation_ci95": [
+    0.993412459537959,
+    0.9995338899304961
+   ],
+   "n_keyword_hits_in_random": 1328
+  },
+  "intentional": {
+   "n_random": 150000,
+   "jev_prevalence": 0.003586666666666667,
+   "jev_prevalence_ci95": [
+    0.0032904336747748672,
+    0.0039023348163303526
+   ],
+   "expected_prevalence": 0.0326706,
+   "share_at_grid_floor": 0.12182,
+   "floor_contribution_to_expected": 0.03728734703372451,
+   "expected_prevalence_above_floor": 0.035815436470882964,
+   "uncertain_band_share": 0.0054466666666666665,
+   "n_texas_per_year_at_p50": 1999.7978074074076,
+   "keyword_population_n": 8298,
+   "keyword_population_prevalence": 0.0016536205082421961,
+   "jev_confirmation_among_keyword_hits": 0.5955555555555555,
+   "jev_confirmation_ci95": [
+    0.5282943390698853,
+    0.6602642517342754
+   ],
+   "n_keyword_hits_in_random": 225
+  },
+  "medical_episode": {
+   "n_random": 150000,
+   "jev_prevalence": 0.010546666666666666,
+   "jev_prevalence_ci95": [
+    0.010035849907940472,
+    0.011076532674709922
+   ],
+   "expected_prevalence": 0.029835466666666664,
+   "share_at_grid_floor": 0.4412066666666667,
+   "floor_contribution_to_expected": 0.14787992813921688,
+   "expected_prevalence_above_floor": 0.04549696369558215,
+   "uncertain_band_share": 0.00772,
+   "n_texas_per_year_at_p50": 5880.446340740741,
+   "keyword_population_n": 37248,
+   "keyword_population_prevalence": 0.007422759302362657,
+   "jev_confirmation_among_keyword_hits": 0.8205574912891986,
+   "jev_confirmation_ci95": [
+    0.797112751662789,
+    0.8423463416396216
+   ],
+   "n_keyword_hits_in_random": 1148
+  },
+  "phone_use": {
+   "n_random": 150000,
+   "jev_prevalence": 0.01038,
+   "jev_prevalence_ci95": [
+    0.009873244429830733,
+    0.010905812575910103
+   ],
+   "expected_prevalence": 0.024628,
+   "share_at_grid_floor": 0.6735933333333334,
+   "floor_contribution_to_expected": 0.2735071192680418,
+   "expected_prevalence_above_floor": 0.0548152611262025,
+   "uncertain_band_share": 0.0028,
+   "n_texas_per_year_at_p50": 5787.518933333334
+  },
+  "preg_mentioned": {
+   "n_random": 150000,
+   "jev_prevalence": 0.00116,
+   "jev_prevalence_ci95": [
+    0.0009941197428108195,
+    0.0013456194249490722
+   ],
+   "expected_prevalence": 0.011791199999999998,
+   "share_at_grid_floor": 0.9455733333333334,
+   "floor_contribution_to_expected": 0.8019313838568878,
+   "expected_prevalence_above_floor": 0.04291033806957374,
+   "uncertain_band_share": 8e-05,
+   "n_texas_per_year_at_p50": 646.7747555555557,
+   "keyword_population_n": 5401,
+   "keyword_population_prevalence": 0.001076308070018812,
+   "jev_confirmation_among_keyword_hits": 0.9710982658959537,
+   "jev_confirmation_ci95": [
+    0.9338447052702621,
+    0.9905504452848978
+   ],
+   "n_keyword_hits_in_random": 173
+  },
+  "transported": {
+   "n_random": 150000,
+   "jev_prevalence": 0.049966666666666666,
+   "jev_prevalence_ci95": [
+    0.0488694552221083,
+    0.05108131463644587
+   ],
+   "expected_prevalence": 0.06778366666666666,
+   "share_at_grid_floor": 0.13842,
+   "floor_contribution_to_expected": 0.02042084868036056,
+   "expected_prevalence_above_floor": 0.07706709378893041,
+   "uncertain_band_share": 0.0041533333333333335,
+   "n_texas_per_year_at_p50": 27859.63674074074
+  },
+  "unbelted": {
+   "n_random": 150000,
+   "jev_prevalence": 0.00596,
+   "jev_prevalence_ci95": [
+    0.005576722799722197,
+    0.006362557883920257
+   ],
+   "expected_prevalence": 0.0284428,
+   "share_at_grid_floor": 0.11640666666666667,
+   "floor_contribution_to_expected": 0.04092658481818481,
+   "expected_prevalence_above_floor": 0.030872497906276646,
+   "uncertain_band_share": 0.007926666666666667,
+   "n_texas_per_year_at_p50": 3323.0840888888893
+  },
+  "vehicle_defect": {
+   "n_random": 150000,
+   "jev_prevalence": 0.022086666666666668,
+   "jev_prevalence_ci95": [
+    0.021348847347882886,
+    0.022843038276498917
+   ],
+   "expected_prevalence": 0.03965066666666667,
+   "share_at_grid_floor": 0.3329066666666667,
+   "floor_contribution_to_expected": 0.08395991660501716,
+   "expected_prevalence_above_floor": 0.05444755356571794,
+   "uncertain_band_share": 0.00914,
+   "n_texas_per_year_at_p50": 12314.740029629631,
+   "keyword_population_n": 25112,
+   "keyword_population_prevalence": 0.005004304435162452,
+   "jev_confirmation_among_keyword_hits": 0.9313186813186813,
+   "jev_confirmation_ci95": [
+    0.9104516758669495,
+    0.94859713052668
+   ],
+   "n_keyword_hits_in_random": 728
+  },
+  "witness_cited": {
+   "n_random": 150000,
+   "jev_prevalence": 0.061266666666666664,
+   "jev_prevalence_ci95": [
+    0.06005819353647392,
+    0.06249213230801904
+   ],
+   "expected_prevalence": 0.09032806666666668,
+   "share_at_grid_floor": 3.3333333333333335e-05,
+   "floor_contribution_to_expected": 3.690252051595628e-06,
+   "expected_prevalence_above_floor": 0.09033074435814528,
+   "uncertain_band_share": 0.02874,
+   "n_texas_per_year_at_p50": 34160.114962962965
+  },
+  "wrong_way": {
+   "n_random": 150000,
+   "jev_prevalence": 0.014273333333333334,
+   "jev_prevalence_ci95": [
+    0.013679136857594617,
+    0.014886411907948194
+   ],
+   "expected_prevalence": 0.05086980000000001,
+   "share_at_grid_floor": 0.008273333333333334,
+   "floor_contribution_to_expected": 0.0016263742600390277,
+   "expected_prevalence_above_floor": 0.05121075027393301,
+   "uncertain_band_share": 0.0185,
+   "n_texas_per_year_at_p50": 7958.303170370372,
+   "keyword_population_n": 16645,
+   "keyword_population_prevalence": 0.0033170057073621784,
+   "jev_confirmation_among_keyword_hits": 0.783625730994152,
+   "jev_confirmation_ci95": [
+    0.7454340371040653,
+    0.8185121021028382
+   ],
+   "n_keyword_hits_in_random": 513
+  }
+ },
+ "vs_coded_fields": {
+  "alcohol_involved": {
+   "coded_field": "coded_alcohol",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.036353333333333335,
+   "coded_positive_rate": 0.03625333333333333,
+   "agreement_vs_coded": 0.9791533333333333,
+   "cohens_kappa_vs_coded": 0.7020662277817534,
+   "discrepancy_taxonomy": {
+    "both": 3882,
+    "narrative_only": 1571,
+    "code_only": 1556,
+    "neither": 142991
+   },
+   "precision_vs_coded": 0.7119017054832203,
+   "recall_vs_coded": 0.7138653916881207,
+   "ece_vs_coded": 0.018729733333333345,
+   "ece_vs_coded_ci95": [
+    0.018040175000000002,
+    0.019435494999999997
+   ],
+   "adaptive_ece_vs_coded": 0.018729733333333345,
+   "mce_vs_coded": 0.022435418972365943,
+   "brier_vs_coded": 0.019658395999999998,
+   "reliability_vs_coded": 0.0003986663283898668,
+   "resolution_vs_coded": 0.0002950164255915694,
+   "uncertainty_vs_coded": 0.03493902915555555,
+   "brier_skill_score_vs_coded": 0.4373513954129382,
+   "calibration_slope_vs_coded": 0.7000454140411996,
+   "calibration_intercept_vs_coded": -1.8117594088967068,
+   "calibration_slope_se": 0.00521541956812723,
+   "spiegelhalter_z_vs_coded": -1.4977683231385144,
+   "aurc_vs_coded": 0.01629278419976076,
+   "excess_aurc_vs_coded": 0.01585820068864965,
+   "aurc_random_abstention": 0.021445607716298942,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.7119017054832203,
+    "flagged_share_of_corpus": 0.036353333333333335,
+    "review_budget_of_flagged_90": 0.9996332294150009,
+    "review_budget_of_flagged_95": 0.9996332294150009,
+    "review_share_of_corpus_90": 0.03634,
+    "already_meets_90": false,
+    "review_per_year_90": 20261.89191111111,
+    "flagged_per_year": 20269.326103703705
+   },
+   "resolution_floor": {
+    "base_rate": 0.03625333333333333,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": false,
+    "expected_p": 0.05498306666666667,
+    "expected_p_over_base_rate": 1.516634792203016,
+    "share_at_floor": 0.22294,
+    "min_achievable_ece_from_floor": 0.0
+   },
+   "coverage_at_1pct_risk": 1.3333333333333333e-05,
+   "review_budget_1pct": 0.9999866666666667,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "drug_involved": {
+   "coded_field": "coded_drug",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.00562,
+   "coded_positive_rate": 0.0051,
+   "agreement_vs_coded": 0.9944933333333333,
+   "cohens_kappa_vs_coded": 0.4835567856824459,
+   "discrepancy_taxonomy": {
+    "both": 391,
+    "narrative_only": 452,
+    "code_only": 374,
+    "neither": 148783
+   },
+   "precision_vs_coded": 0.4638196915776987,
+   "recall_vs_coded": 0.5111111111111111,
+   "ece_vs_coded": 0.019908266666666667,
+   "ece_vs_coded_ci95": [
+    0.01961607666666667,
+    0.020225545000000004
+   ],
+   "adaptive_ece_vs_coded": 0.019908266666666667,
+   "mce_vs_coded": 0.024562096299228568,
+   "brier_vs_coded": 0.005396690666666666,
+   "reliability_vs_coded": 0.0004446557406038547,
+   "resolution_vs_coded": 9.593149162713197e-06,
+   "uncertainty_vs_coded": 0.0050739900000000004,
+   "brier_skill_score_vs_coded": -0.06359899539941272,
+   "calibration_slope_vs_coded": 0.879957902517659,
+   "calibration_intercept_vs_coded": -2.5729712702798984,
+   "calibration_slope_se": 0.013680181201156149,
+   "spiegelhalter_z_vs_coded": -42.5482939075409,
+   "aurc_vs_coded": 0.0018169501886175351,
+   "excess_aurc_vs_coded": 0.0017866268108397575,
+   "aurc_random_abstention": 0.005581561332050759,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.4638196915776987,
+    "flagged_share_of_corpus": 0.00562,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.00562,
+    "already_meets_90": false,
+    "review_per_year_90": 3133.512177777778,
+    "flagged_per_year": 3133.512177777778
+   },
+   "resolution_floor": {
+    "base_rate": 0.0051,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": true,
+    "expected_p": 0.025008266666666664,
+    "expected_p_over_base_rate": 4.903581699346405,
+    "share_at_floor": 0.3095133333333333,
+    "min_achievable_ece_from_floor": 0.0049
+   },
+   "coverage_at_1pct_risk": 1.0,
+   "review_budget_1pct": 0.0,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "fatigue": {
+   "coded_field": "coded_fatigue",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.013986666666666666,
+   "coded_positive_rate": 0.011706666666666667,
+   "agreement_vs_coded": 0.99256,
+   "cohens_kappa_vs_coded": 0.7066923676574246,
+   "discrepancy_taxonomy": {
+    "both": 1369,
+    "narrative_only": 729,
+    "code_only": 387,
+    "neither": 147515
+   },
+   "precision_vs_coded": 0.6525262154432793,
+   "recall_vs_coded": 0.7796127562642369,
+   "ece_vs_coded": 0.014827200000000002,
+   "ece_vs_coded_ci95": [
+    0.014510170000000001,
+    0.015260600000000001
+   ],
+   "adaptive_ece_vs_coded": 0.014827200000000002,
+   "mce_vs_coded": 0.033676558023890614,
+   "brier_vs_coded": 0.006889290666666666,
+   "reliability_vs_coded": 0.00033619081832926334,
+   "resolution_vs_coded": 0.0003278624414703547,
+   "uncertainty_vs_coded": 0.011569620622222223,
+   "brier_skill_score_vs_coded": 0.4045361648735365,
+   "calibration_slope_vs_coded": 0.8254494574436899,
+   "calibration_intercept_vs_coded": -2.417709516057921,
+   "calibration_slope_se": 0.008930444259476736,
+   "spiegelhalter_z_vs_coded": -22.964355547761613,
+   "aurc_vs_coded": 0.00360121989447741,
+   "excess_aurc_vs_coded": 0.00354586629447741,
+   "aurc_random_abstention": 0.007260917010091733,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.6525262154432793,
+    "flagged_share_of_corpus": 0.013986666666666666,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.013986666666666666,
+    "already_meets_90": false,
+    "review_per_year_90": 7798.46802962963,
+    "flagged_per_year": 7798.46802962963
+   },
+   "resolution_floor": {
+    "base_rate": 0.011706666666666667,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": false,
+    "expected_p": 0.02653386666666667,
+    "expected_p_over_base_rate": 2.266560364464693,
+    "share_at_floor": 0.75332,
+    "min_achievable_ece_from_floor": 0.0
+   },
+   "coverage_at_1pct_risk": 1.0,
+   "review_budget_1pct": 0.0,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "animal_involved": {
+   "coded_field": "coded_animal",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.02016,
+   "coded_positive_rate": 0.017346666666666666,
+   "agreement_vs_coded": 0.9966933333333333,
+   "cohens_kappa_vs_coded": 0.9101626241972737,
+   "discrepancy_taxonomy": {
+    "both": 2565,
+    "narrative_only": 459,
+    "code_only": 37,
+    "neither": 146939
+   },
+   "precision_vs_coded": 0.8482142857142857,
+   "recall_vs_coded": 0.9857801691006918,
+   "ece_vs_coded": 0.014890200000000004,
+   "ece_vs_coded_ci95": [
+    0.014653755,
+    0.015127101666666663
+   ],
+   "adaptive_ece_vs_coded": 0.014890200000000004,
+   "mce_vs_coded": 0.03465801963461415,
+   "brier_vs_coded": 0.0030938899999999997,
+   "reliability_vs_coded": 0.0003225312616736602,
+   "resolution_vs_coded": 0.0011383342631213335,
+   "uncertainty_vs_coded": 0.01704575982222222,
+   "brier_skill_score_vs_coded": 0.8184950373425679,
+   "calibration_slope_vs_coded": 1.2406670786069718,
+   "calibration_intercept_vs_coded": -3.2788020149284764,
+   "calibration_slope_se": 0.023034966046271647,
+   "spiegelhalter_z_vs_coded": -34.882474558912435,
+   "aurc_vs_coded": 0.0014015853335791885,
+   "excess_aurc_vs_coded": 0.001390651289134744,
+   "aurc_random_abstention": 0.003290705855837208,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.8482142857142857,
+    "flagged_share_of_corpus": 0.02016,
+    "review_budget_of_flagged_90": 0.07043650793650791,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.0014199999999999994,
+    "already_meets_90": false,
+    "review_per_year_90": 791.7415111111109,
+    "flagged_per_year": 11240.499200000002
+   },
+   "resolution_floor": {
+    "base_rate": 0.017346666666666666,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": false,
+    "expected_p": 0.03223686666666666,
+    "expected_p_over_base_rate": 1.8583897002305916,
+    "share_at_floor": 0.79492,
+    "min_achievable_ece_from_floor": 0.0
+   },
+   "coverage_at_1pct_risk": 1.0,
+   "review_budget_1pct": 0.0,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "phone_use": {
+   "coded_field": "coded_phone",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.01038,
+   "coded_positive_rate": 0.004313333333333333,
+   "agreement_vs_coded": 0.99236,
+   "cohens_kappa_vs_coded": 0.4768480807181203,
+   "discrepancy_taxonomy": {
+    "both": 529,
+    "narrative_only": 1028,
+    "code_only": 118,
+    "neither": 148325
+   },
+   "precision_vs_coded": 0.3397559409120103,
+   "recall_vs_coded": 0.8176197836166924,
+   "ece_vs_coded": 0.02031466666666667,
+   "ece_vs_coded_ci95": [
+    0.020048658333333334,
+    0.020613335
+   ],
+   "adaptive_ece_vs_coded": 0.02031466666666667,
+   "mce_vs_coded": 0.042866975756214135,
+   "brier_vs_coded": 0.007023785333333333,
+   "reliability_vs_coded": 0.0006591438806820448,
+   "resolution_vs_coded": 2.82470999345563e-05,
+   "uncertainty_vs_coded": 0.004294728488888889,
+   "brier_skill_score_vs_coded": -0.6354433933378854,
+   "calibration_slope_vs_coded": 0.8508884891780422,
+   "calibration_intercept_vs_coded": -3.5819303900956188,
+   "calibration_slope_se": 0.013874728700342873,
+   "spiegelhalter_z_vs_coded": -27.205266638782117,
+   "aurc_vs_coded": 0.0024836541092929576,
+   "excess_aurc_vs_coded": 0.002425284509292958,
+   "aurc_random_abstention": 0.007530294386135861,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.3397559409120103,
+    "flagged_share_of_corpus": 0.01038,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.01038,
+    "already_meets_90": false,
+    "review_per_year_90": 5787.518933333334,
+    "flagged_per_year": 5787.518933333334
+   },
+   "resolution_floor": {
+    "base_rate": 0.004313333333333333,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": true,
+    "expected_p": 0.024628,
+    "expected_p_over_base_rate": 5.7097372488408045,
+    "share_at_floor": 0.6735933333333334,
+    "min_achievable_ece_from_floor": 0.005686666666666667
+   },
+   "coverage_at_1pct_risk": 1.0,
+   "review_budget_1pct": 0.0,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "unbelted": {
+   "coded_field": "coded_unbelted",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.00596,
+   "coded_positive_rate": 0.016626666666666668,
+   "agreement_vs_coded": 0.9799066666666667,
+   "cohens_kappa_vs_coded": 0.10251449829166605,
+   "discrepancy_taxonomy": {
+    "both": 187,
+    "narrative_only": 707,
+    "code_only": 2307,
+    "neither": 146799
+   },
+   "precision_vs_coded": 0.20917225950782997,
+   "recall_vs_coded": 0.07497995188452286,
+   "ece_vs_coded": 0.011816133333333336,
+   "ece_vs_coded_ci95": [
+    0.011605845,
+    0.012820536666666667
+   ],
+   "adaptive_ece_vs_coded": 0.011816133333333336,
+   "mce_vs_coded": 0.013043783339243546,
+   "brier_vs_coded": 0.018569214666666663,
+   "reliability_vs_coded": 0.0001510609461877497,
+   "resolution_vs_coded": 1.096776472451579e-05,
+   "uncertainty_vs_coded": 0.016350220622222224,
+   "brier_skill_score_vs_coded": -0.1357164588610209,
+   "calibration_slope_vs_coded": 0.514068968011907,
+   "calibration_intercept_vs_coded": -2.2064340023772306,
+   "calibration_slope_se": 0.012377749128350839,
+   "spiegelhalter_z_vs_coded": -13.08609072140898,
+   "aurc_vs_coded": 0.013564029865315257,
+   "excess_aurc_vs_coded": 0.013160287820870814,
+   "aurc_random_abstention": 0.020227555101188455,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.20917225950782997,
+    "flagged_share_of_corpus": 0.00596,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.00596,
+    "already_meets_90": false,
+    "review_per_year_90": 3323.0840888888893,
+    "flagged_per_year": 3323.0840888888893
+   },
+   "resolution_floor": {
+    "base_rate": 0.016626666666666668,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": false,
+    "expected_p": 0.0284428,
+    "expected_p_over_base_rate": 1.710673616680032,
+    "share_at_floor": 0.11640666666666667,
+    "min_achievable_ece_from_floor": 0.0
+   },
+   "coverage_at_1pct_risk": 0.11731333333333334,
+   "review_budget_1pct": 0.8826866666666666,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "hydroplane": {
+   "coded_field": "coded_hydro_proxy",
+   "proxy_only": true,
+   "n": 150000,
+   "jev_positive_rate": 0.02352,
+   "coded_positive_rate": 0.021033333333333334,
+   "agreement_vs_coded": 0.98926,
+   "cohens_kappa_vs_coded": 0.7534657421749335,
+   "discrepancy_taxonomy": {
+    "both": 2536,
+    "narrative_only": 992,
+    "code_only": 619,
+    "neither": 145853
+   },
+   "precision_vs_coded": 0.7188208616780045,
+   "recall_vs_coded": 0.8038034865293185,
+   "ece_vs_coded": 0.015192600000000002,
+   "ece_vs_coded_ci95": [
+    0.016502588333333332,
+    0.01730982333333333
+   ],
+   "adaptive_ece_vs_coded": 0.015192600000000002,
+   "mce_vs_coded": 0.029630593002025876,
+   "brier_vs_coded": 0.008991042000000001,
+   "reliability_vs_coded": 0.0003065732224234446,
+   "resolution_vs_coded": 0.0012110039332533247,
+   "uncertainty_vs_coded": 0.020590932222222223,
+   "brier_skill_score_vs_coded": 0.5633494441647156,
+   "calibration_slope_vs_coded": 0.9697347266676485,
+   "calibration_intercept_vs_coded": -1.5859645568351182,
+   "calibration_slope_se": 0.00926786711565656,
+   "spiegelhalter_z_vs_coded": -22.317662307131908,
+   "aurc_vs_coded": 0.0012079945499044314,
+   "excess_aurc_vs_coded": 0.0010926469499044317,
+   "aurc_random_abstention": 0.011098460725024295,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.7188208616780045,
+    "flagged_share_of_corpus": 0.02352,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.02352,
+    "already_meets_90": false,
+    "review_per_year_90": 13113.915733333333,
+    "flagged_per_year": 13113.915733333333
+   },
+   "resolution_floor": {
+    "base_rate": 0.021033333333333334,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": false,
+    "expected_p": 0.036225933333333335,
+    "expected_p_over_base_rate": 1.722310618066561,
+    "share_at_floor": 0.7334466666666667,
+    "min_achievable_ece_from_floor": 0.0
+   },
+   "coverage_at_1pct_risk": 0.9980133333333333,
+   "review_budget_1pct": 0.001986666666666692,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "wrong_way": {
+   "coded_field": "coded_wrongway",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.014273333333333334,
+   "coded_positive_rate": 0.0054,
+   "agreement_vs_coded": 0.9877133333333333,
+   "cohens_kappa_vs_coded": 0.37053370954219234,
+   "discrepancy_taxonomy": {
+    "both": 554,
+    "narrative_only": 1587,
+    "code_only": 256,
+    "neither": 147603
+   },
+   "precision_vs_coded": 0.2587575899112564,
+   "recall_vs_coded": 0.6839506172839506,
+   "ece_vs_coded": 0.045469800000000005,
+   "ece_vs_coded_ci95": [
+    0.04509891333333334,
+    0.04580313333333333
+   ],
+   "adaptive_ece_vs_coded": 0.045469800000000005,
+   "mce_vs_coded": 0.18771387614678903,
+   "brier_vs_coded": 0.011236459333333334,
+   "reliability_vs_coded": 0.004807414265403466,
+   "resolution_vs_coded": 0.00018788719646425822,
+   "uncertainty_vs_coded": 0.005370840000000001,
+   "brier_skill_score_vs_coded": -1.0921232681169672,
+   "calibration_slope_vs_coded": 1.0981984308173034,
+   "calibration_intercept_vs_coded": -3.0878844210327867,
+   "calibration_slope_se": 0.017319177313970136,
+   "spiegelhalter_z_vs_coded": -64.00296770058719,
+   "aurc_vs_coded": 0.0015764007574467773,
+   "excess_aurc_vs_coded": 0.0014254385796689997,
+   "aurc_random_abstention": 0.012543804548469241,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.2587575899112564,
+    "flagged_share_of_corpus": 0.014273333333333334,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.014273333333333334,
+    "already_meets_90": false,
+    "review_per_year_90": 7958.303170370372,
+    "flagged_per_year": 7958.303170370372
+   },
+   "resolution_floor": {
+    "base_rate": 0.0054,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": true,
+    "expected_p": 0.05086980000000001,
+    "expected_p_over_base_rate": 9.420333333333334,
+    "share_at_floor": 0.008273333333333334,
+    "min_achievable_ece_from_floor": 0.0046
+   },
+   "coverage_at_1pct_risk": 0.99438,
+   "review_budget_1pct": 0.005619999999999958,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  },
+  "medical_episode": {
+   "coded_field": "coded_medical",
+   "proxy_only": false,
+   "n": 150000,
+   "jev_positive_rate": 0.010546666666666666,
+   "coded_positive_rate": 0.005066666666666666,
+   "agreement_vs_coded": 0.9927733333333333,
+   "cohens_kappa_vs_coded": 0.5339576886319133,
+   "discrepancy_taxonomy": {
+    "both": 629,
+    "narrative_only": 953,
+    "code_only": 131,
+    "neither": 148287
+   },
+   "precision_vs_coded": 0.3975979772439949,
+   "recall_vs_coded": 0.8276315789473684,
+   "ece_vs_coded": 0.0247688,
+   "ece_vs_coded_ci95": [
+    0.02447165166666667,
+    0.025062516666666666
+   ],
+   "adaptive_ece_vs_coded": 0.0247688,
+   "mce_vs_coded": 0.036775790691847915,
+   "brier_vs_coded": 0.006498442666666666,
+   "reliability_vs_coded": 0.0007960836676013979,
+   "resolution_vs_coded": 1.691478915829744e-05,
+   "uncertainty_vs_coded": 0.005040995555555555,
+   "brier_skill_score_vs_coded": -0.28911890420234454,
+   "calibration_slope_vs_coded": 1.0247581631841214,
+   "calibration_intercept_vs_coded": -2.9932369382584283,
+   "calibration_slope_se": 0.016037476461126545,
+   "spiegelhalter_z_vs_coded": -43.34759958865565,
+   "aurc_vs_coded": 0.001364909023049955,
+   "excess_aurc_vs_coded": 0.0013126843119388436,
+   "aurc_random_abstention": 0.006986709182052346,
+   "positive_budget": {
+    "precision_at_full_coverage": 0.3975979772439949,
+    "flagged_share_of_corpus": 0.010546666666666666,
+    "review_budget_of_flagged_90": 1.0,
+    "review_budget_of_flagged_95": 1.0,
+    "review_share_of_corpus_90": 0.010546666666666666,
+    "already_meets_90": false,
+    "review_per_year_90": 5880.446340740741,
+    "flagged_per_year": 5880.446340740741
+   },
+   "resolution_floor": {
+    "base_rate": 0.005066666666666666,
+    "grid_floor": 0.01,
+    "base_rate_below_floor": true,
+    "expected_p": 0.029835466666666664,
+    "expected_p_over_base_rate": 5.888578947368421,
+    "share_at_floor": 0.4412066666666667,
+    "min_achievable_ece_from_floor": 0.004933333333333334
+   },
+   "coverage_at_1pct_risk": 1.0,
+   "review_budget_1pct": 0.0,
+   "coverage_at_5pct_risk": 1.0,
+   "review_budget_5pct": 0.0
+  }
+ },
+ "keyword_baseline": {
+  "medical_episode": {
+   "n": 150000,
+   "keyword_positive_rate": 0.007653333333333333,
+   "keyword_agreement_vs_coded": 0.9937866666666667,
+   "keyword_precision_vs_coded": 0.4250871080139373,
+   "keyword_recall_vs_coded": 0.6421052631578947,
+   "keyword_kappa_vs_coded": 0.5085339321110317,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 347,
+    "b_only": 499,
+    "p_value": 1.9408736613189342e-07
+   }
+  },
+  "drug_involved": {
+   "n": 150000,
+   "keyword_positive_rate": 0.002513333333333333,
+   "keyword_agreement_vs_coded": 0.99528,
+   "keyword_precision_vs_coded": 0.5755968169761273,
+   "keyword_recall_vs_coded": 0.28366013071895424,
+   "keyword_kappa_vs_coded": 0.3779403957951022,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 219,
+    "b_only": 337,
+    "p_value": 6.366347437962979e-07
+   }
+  },
+  "hydroplane": {
+   "n": 150000,
+   "keyword_positive_rate": 0.008853333333333333,
+   "keyword_agreement_vs_coded": 0.9851,
+   "keyword_precision_vs_coded": 0.8463855421686747,
+   "keyword_recall_vs_coded": 0.35625990491283677,
+   "keyword_kappa_vs_coded": 0.49515888618542525,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 1415,
+    "b_only": 791,
+    "p_value": 1.1134586114346645e-40
+   }
+  },
+  "fatigue": {
+   "n": 150000,
+   "keyword_positive_rate": 0.01216,
+   "keyword_agreement_vs_coded": 0.9925466666666667,
+   "keyword_precision_vs_coded": 0.674890350877193,
+   "keyword_recall_vs_coded": 0.7010250569476082,
+   "keyword_kappa_vs_coded": 0.6839391990840639,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 197,
+    "b_only": 195,
+    "p_value": 0.9597264368667991
+   }
+  },
+  "wrong_way": {
+   "n": 150000,
+   "keyword_positive_rate": 0.00342,
+   "keyword_agreement_vs_coded": 0.9938333333333333,
+   "keyword_precision_vs_coded": 0.38791423001949316,
+   "keyword_recall_vs_coded": 0.24567901234567902,
+   "keyword_kappa_vs_coded": 0.2978911839118142,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 466,
+    "b_only": 1384,
+    "p_value": 2.3470173959331468e-105
+   }
+  },
+  "animal_involved": {
+   "n": 150000,
+   "keyword_positive_rate": 0.019873333333333333,
+   "keyword_agreement_vs_coded": 0.9926333333333334,
+   "keyword_precision_vs_coded": 0.751090238175109,
+   "keyword_recall_vs_coded": 0.8604919292851653,
+   "keyword_kappa_vs_coded": 0.7983421782866945,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 810,
+    "b_only": 201,
+    "p_value": 3.7025979539120916e-87
+   }
+  },
+  "alcohol_involved": {
+   "n": 150000,
+   "keyword_positive_rate": 0.0362,
+   "keyword_agreement_vs_coded": 0.9777066666666666,
+   "keyword_precision_vs_coded": 0.6928176795580111,
+   "keyword_recall_vs_coded": 0.6917984553144538,
+   "keyword_kappa_vs_coded": 0.6807420471354574,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 534,
+    "b_only": 317,
+    "p_value": 9.742428146257575e-14
+   }
+  },
+  "phone_use": {
+   "n": 150000,
+   "keyword_positive_rate": 0.01216,
+   "keyword_agreement_vs_coded": 0.9893266666666667,
+   "keyword_precision_vs_coded": 0.23848684210526316,
+   "keyword_recall_vs_coded": 0.6723338485316847,
+   "keyword_kappa_vs_coded": 0.3479318826755033,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 901,
+    "b_only": 446,
+    "p_value": 8.312600163998967e-36
+   }
+  },
+  "unbelted": {
+   "n": 150000,
+   "keyword_positive_rate": 0.0009733333333333333,
+   "keyword_agreement_vs_coded": 0.9835466666666667,
+   "keyword_precision_vs_coded": 0.589041095890411,
+   "keyword_recall_vs_coded": 0.034482758620689655,
+   "keyword_kappa_vs_coded": 0.06342915190155753,
+   "mcnemar_jev_vs_keyword": {
+    "a_only": 106,
+    "b_only": 652,
+    "p_value": 1.084086905693058e-96
+   }
+  }
+ },
+ "notes": {
+  "reference": "coded CRIS fields, which are themselves noisy; all comparisons are AGREEMENT, not accuracy. The human gold set (\u00a74.4) is v2.",
+  "proxy_fields": [
+   "hydroplane"
+  ],
+  "bootstrap_B": 1000
+ }
+}

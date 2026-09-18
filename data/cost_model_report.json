@@ -1,0 +1,18 @@
+{
+ "label": "nq=27",
+ "frame": 60,
+ "n_new": 60,
+ "n_errors": 0,
+ "tokens_total": 733444,
+ "cost_usd": 0.0308,
+ "cost_cap_usd": 0.2,
+ "stopped_early": false,
+ "mean_input_tokens": 3696.9,
+ "p50_latency_s": 0.216,
+ "p90_latency_s": 0.398,
+ "req_per_s": 36.56,
+ "wall_s": 1.6,
+ "models_seen": {
+  "jev-1.13.0": 60
+ }
+}

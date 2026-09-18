@@ -1,0 +1,17 @@
+{
+ "name": "pii_residual_v1",
+ "model": "jev-1.13.0",
+ "state_key": "narrative",
+ "questions": {
+  "pii_residual": {
+   "type": "noul",
+   "instructions": "The `narrative` contains a person's full name, date of birth, driver license or ID number, home address, or phone number that is not already replaced by a placeholder.",
+   "criteria": {
+    "true": "An actual name, date of birth, license or ID number, street address, or phone number appears as literal text.",
+    "false": "No such identifier appears, or every identifier has been replaced by a placeholder such as [NAME] or [PHONE]."
+   }
+  }
+ },
+ "gates": {},
+ "notes": "\u00a76 Step 1 residual-PII screen. Run on any narrative considered for quotation in the manuscript or display in the public tool; exclude p>0.2."
+}

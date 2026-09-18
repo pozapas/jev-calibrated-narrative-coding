@@ -1,0 +1,75 @@
+{
+ "per_question_set": {
+  "1": {
+   "n": 60,
+   "a_intercept_tokens": 391.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 526.9,
+   "p50_latency_s": 0.171,
+   "cost_per_1k_narratives_usd": 0.0221
+  },
+  "3": {
+   "n": 60,
+   "a_intercept_tokens": 605.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 740.9,
+   "p50_latency_s": 0.181,
+   "cost_per_1k_narratives_usd": 0.0311
+  },
+  "6": {
+   "n": 60,
+   "a_intercept_tokens": 893.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 1028.9,
+   "p50_latency_s": 0.172,
+   "cost_per_1k_narratives_usd": 0.0432
+  },
+  "10": {
+   "n": 60,
+   "a_intercept_tokens": 1298.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 1433.9,
+   "p50_latency_s": 0.177,
+   "cost_per_1k_narratives_usd": 0.0602
+  },
+  "15": {
+   "n": 60,
+   "a_intercept_tokens": 1734.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 1869.9,
+   "p50_latency_s": 0.201,
+   "cost_per_1k_narratives_usd": 0.0785
+  },
+  "21": {
+   "n": 60,
+   "a_intercept_tokens": 2791.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 2926.9,
+   "p50_latency_s": 0.22,
+   "cost_per_1k_narratives_usd": 0.1229
+  },
+  "27": {
+   "n": 60,
+   "a_intercept_tokens": 3561.7,
+   "b_tokens_per_char": 0.2358,
+   "r2": 0.9745,
+   "mean_tokens": 3696.9,
+   "p50_latency_s": 0.216,
+   "cost_per_1k_narratives_usd": 0.1553
+  }
+ },
+ "intercept_model": {
+  "alpha_tokens": 170.7,
+  "beta_tokens_per_question": 121.5,
+  "r2": 0.9872
+ },
+ "interpretation": "Schema overhead grows at ~121 tokens per question and dominates: a 27-question call spends ~3451 tokens on the schema against ~83 tokens for a median 350-character narrative. Cost therefore scales with schema size, not narrative length, which inverts the usual assumption that a lean screen is cheap per narrative.",
+ "spend_usd": 0.0308,
+ "n_calls": 420
+}

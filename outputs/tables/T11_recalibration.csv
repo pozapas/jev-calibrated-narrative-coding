@@ -1,0 +1,4 @@
+mapping,ECE,Brier
+none (raw model output),0.0628,0.0299
+Platt (logistic on the logit),0.0313,0.0246
+isotonic,0.0120,0.0253
