@@ -343,9 +343,23 @@ def build() -> Diagram:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--export", action="store_true")
+    ap.add_argument("--force", action="store_true",
+                    help="overwrite a diagram that was edited by hand in draw.io")
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     f = OUT / "F1_framework.drawio"
+
+    # draw.io stamps host="Electron" when the desktop app saves. This script writes
+    # host="app.diagrams.net", so that stamp means a person has since moved things by hand,
+    # and regenerating would silently throw their layout away. Re-export from the edited file
+    # instead, or pass --force if the hand edits really are meant to go.
+    if f.exists() and "Electron" in f.read_text(encoding="utf-8")[:200] and not args.force:
+        print(f"{f.name} was edited in draw.io after it was generated; refusing to overwrite.")
+        print("  re-export instead:  draw.io --export --format pdf --crop "
+              "--output F1_framework.pdf F1_framework.drawio")
+        print("  or discard those edits:  rerun with --force")
+        return
+
     f.write_text(build().xml(), encoding="utf-8")
     print(f"wrote {f} ({f.stat().st_size / 1024:.0f} KB)")
     if args.export:
