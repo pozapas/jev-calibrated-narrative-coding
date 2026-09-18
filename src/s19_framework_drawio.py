@@ -53,16 +53,44 @@ FONT = "Helvetica"
 FILL = {"grey": "#E7EAEC", "blue": "#D6E6F4", "deep": "#BBD6EE", "orange": "#FBE7C8",
         "ink": "#DFE3E6", "red": "#F8DCCE", "cream": "#FAF3E2"}
 
+# Token colours are separated by HUE, not by lightness of one hue. The first draft used
+# pale blue for a typed question, dark blue for a probability and grey for a coded
+# label: the first two then read as one thing in two amounts, and the first and third
+# were hard to tell apart at token size. Each category now has its own hue, and the one
+# continuous encoding (probability) is the only thing that varies in lightness.
+TOK = {"ask": "#9B8AC4",        # a question asked of every narrative
+       "gated": "#E4DEF2",      # a detail question its gate has not opened
+       "coded": "#6E7B87",      # a coded CRIS label
+       "human": "#E69F00",      # a human label
+       "open": "#1C2B36",       # a record a person opens
+       "queue": "#DCE1E5"}      # a record nobody opens
+
 
 def esc(s: str) -> str:
     return html.escape(s, quote=True)
 
 
+P_FLOOR = 1e-3
+
+
 def shade(p: float) -> str:
-    """A probability as a fill: pale at the grid floor, saturated at the top of the range."""
-    lo, hi = np.array([214, 230, 244]), np.array([0, 90, 158])
-    c = lo + (hi - lo) * float(np.clip(p, 0, 1)) ** 0.62
+    """A probability as a fill, on a LOG scale from 0.001 to 1.
+
+    Linear lightness cannot show this pipeline's own subject matter. Most of the mass
+    sits below p = 0.05, and recalibration moves values within that region -- 0.24 to
+    0.056, 0.01 to under 0.001 -- so on a linear ramp the raw and calibrated strips came
+    out looking identical and the figure failed at the one comparison it exists to make.
+    A log ramp spends its contrast where the data and the correction actually are.
+    """
+    lo, hi = np.array([233, 240, 246]), np.array([11, 79, 130])
+    f = np.log10(max(float(p), P_FLOOR) / P_FLOOR) / np.log10(1 / P_FLOOR)
+    c = lo + (hi - lo) * float(np.clip(f, 0, 1))
     return "#{:02X}{:02X}{:02X}".format(*(int(round(v)) for v in c))
+
+
+def pfmt(p: float) -> str:
+    """Print the value beside its cell: colour alone cannot be read to two decimals."""
+    return "&lt;0.01" if p < 0.005 else f"{p:.2f}"
 
 
 class Diagram:
@@ -106,12 +134,19 @@ class Diagram:
         self.raw(cid, f"rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor={fill};"
                       f"strokeColor={stroke};shadow=0;", "", x, y, s, s)
 
-    def strip(self, cid, x, y, vals, cols, size=20, gap=4, fill=None) -> tuple:
-        """A row-major grid of token squares. `fill` overrides the per-value shading."""
+    def strip(self, cid, x, y, vals, cols, size=20, gap=4, fill=None,
+              stroke_pale=False) -> tuple:
+        """A row-major grid of token squares. `fill` overrides the per-value shading.
+
+        `stroke_pale` outlines the near-white tokens, which otherwise read as empty space
+        rather than as a token that exists but is switched off.
+        """
         for i, v in enumerate(vals):
             r, c = divmod(i, cols)
+            col = fill(v) if fill else shade(v)
+            edge = "#B9C3CD" if (stroke_pale and not v) else "none"
             self.cell(f"{cid}{i}", x + c * (size + gap), y + r * (size + gap), size,
-                      fill(v) if fill else shade(v))
+                      col, stroke=edge)
         rows = -(-len(vals) // cols)
         return cols * (size + gap) - gap, rows * (size + gap) - gap
 
@@ -198,6 +233,9 @@ def build() -> Diagram:
 
     # the model's output: one token per variable, shaded by its probability
     sw, sh = d.strip("tp", 746, BY + 12, raw_p, cols=1, size=24, gap=5)
+    for i, v in enumerate(raw_p):
+        d.text(f"tpv{i}", pfmt(v), 772, BY + 14 + i * 29, 46, size=11,
+               colour="#5C6B78", align="left", h=20)
     d.dashed("tp_g", 740, BY + 6, sw + 12, sh + 12)
     d.text("tp_l", "p", 740, BY + BH + 20, sw + 12, size=17, colour="#2B6CA3", bold=True)
 
@@ -208,6 +246,9 @@ def build() -> Diagram:
     cal_p = list(platt.predict_proba(
         M._logit(np.array(raw_p)).reshape(-1, 1))[:, 1])
     sw2, _ = d.strip("cp", 1090, BY + 12, cal_p, cols=1, size=24, gap=5)
+    for i, v in enumerate(cal_p):
+        d.text(f"cpv{i}", pfmt(v), 1116, BY + 14 + i * 29, 46, size=11,
+               colour="#5C6B78", align="left", h=20)
     d.dashed("cp_g", 1084, BY + 6, sw2 + 12, sh + 12)
     d.text("cp_l", "calibrated p", 1056, BY + BH + 20, 120, size=17, colour="#C07C1E",
            bold=True)
@@ -216,10 +257,10 @@ def build() -> Diagram:
     NQ, COLS = 48, 12
     n_open = int(round(b90 * NQ))
     qw, qh = d.strip("q", 1202, BY + 30, [1] * NQ, cols=COLS, size=17, gap=4,
-                     fill=lambda _i: FILL["ink"])
+                     fill=lambda _i: TOK["queue"])
     for i in range(n_open):                       # overdraw the reviewed ones
         r, col = divmod(i, COLS)
-        d.cell(f"qo{i}", 1202 + col * 21, BY + 30 + r * 21, 17, S.INK)
+        d.cell(f"qo{i}", 1202 + col * 21, BY + 30 + r * 21, 17, TOK["open"])
     d.text("q_l", "Review queue", 1186, BY + BH + 20, qw + 30, size=17, colour=S.INK,
            bold=True)
     d.text("q_s", f"H(0.90) = {100 * b90:.1f}% of flags", 1176, BY + BH + 42, qw + 50,
@@ -232,7 +273,7 @@ def build() -> Diagram:
     # the 27 questions, as tokens, with the seven gated ones left hollow
     toks = [1] * (27 - n_gated) + [0] * n_gated
     d.strip("sq", 286, BY + BH + 62, toks, cols=9, size=15, gap=4,
-            fill=lambda v: FILL["deep"] if v else "#EFF4F9")
+            fill=lambda v: TOK["ask"] if v else TOK["gated"], stroke_pale=True)
     d.text("sq_l", "presence gates detail; gated answers stay uninterpreted",
            246, BY + BH + 114, 320, size=13)
     d.dashed("stage_g", 36, BY - 26, 684, BH + 22)
@@ -247,13 +288,13 @@ def build() -> Diagram:
            colour=S.INK, bold=True, align="left")
     d.block("r1", 596, RY, 196, 54, FILL["grey"], "Coded CRIS fields", size=16)
     d.strip("r1t", 812, RY + 17, [1] * 6, cols=6, size=18, gap=4,
-            fill=lambda _i: "#9AA7B4")
+            fill=lambda _i: TOK["coded"])
     d.text("r1x", f"agreement, {run['n_stage2_random']:,} crashes", 940, RY + 14, 250,
            size=14, align="left")
 
     d.block("r2", 596, RY + 74, 196, 54, FILL["orange"], "Human gold set", size=16)
     d.strip("r2t", 812, RY + 91, [1] * 6, cols=6, size=18, gap=4,
-            fill=lambda _i: S.ORANGE)
+            fill=lambda _i: TOK["human"])
     d.text("r2x", f"accuracy, {G['n_usable']:,} labels, 3 blinded coders", 940, RY + 88,
            280, size=14, align="left")
 
@@ -271,14 +312,22 @@ def build() -> Diagram:
 
     # ------------------------------------------------------------ legend
     LY = 502
-    items = [(FILL["deep"], "typed question"), ("#2B6CA3", "model probability"),
-             ("#9AA7B4", "coded CRIS label"), (S.ORANGE, "human label"),
-             (S.INK, "record a person opens")]
+    items = [(TOK["ask"], "question asked"), (TOK["gated"], "gate not opened"),
+             (TOK["coded"], "coded CRIS label"), (TOK["human"], "human label"),
+             (TOK["open"], "record a person opens")]
     x = 44
     for i, (col, lab) in enumerate(items):
-        d.cell(f"lg{i}", x, LY + 3, 16, col)
-        d.text(f"lgt{i}", lab, x + 24, LY, 190, size=14, align="left")
-        x += 26 + 9 * len(lab) + 22
+        d.cell(f"lg{i}", x, LY + 3, 16, col,
+               stroke="#B9C3CD" if col in (TOK["gated"], TOK["queue"]) else "none")
+        d.text(f"lgt{i}", lab, x + 23, LY, 200, size=14, align="left")
+        x += 25 + 8 * len(lab) + 20
+    # Probability is the one continuous encoding, so its key is a ramp with its end
+    # points named, not a single swatch a reader would take for another category.
+    for i, v in enumerate([0.001, 0.01, 0.05, 0.2, 0.6, 1.0]):
+        d.cell(f"lgr{i}", x + i * 18, LY + 3, 16, shade(v))
+    d.text("lgr_a", "p", x - 16, LY, 16, size=13, align="right")
+    d.text("lgr_b", "log scale, 0.001 to 1", x + 116, LY, 220,
+           size=14, align="left")
     d.text("lg_f", "&#10052; fixed, never trained&#160;&#160;&#160;"
                    "&#128293; the only fitted object in the pipeline",
            44, LY + 30, 640, size=14, align="left")
