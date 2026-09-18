@@ -265,7 +265,7 @@ def build() -> Diagram:
     for i in range(n_open):                       # overdraw the reviewed ones
         r, col = divmod(i, COLS)
         d.cell(f"qo{i}", 1202 + col * 21, BY + 30 + r * 21, 17, TOK["open"])
-    d.text("q_l", "Review queue", 1186, BY + BH + 20, qw + 30, size=17, colour=S.INK,
+    d.text("q_l", "Review budget", 1186, BY + BH + 20, qw + 30, size=17, colour=S.INK,
            bold=True)
     d.text("q_s", f"H(0.90) = {100 * b90:.1f}% of flags", 1176, BY + BH + 42, qw + 50,
            size=14)
@@ -317,7 +317,8 @@ def build() -> Diagram:
     LY = 502
     items = [(TOK["ask"], "question asked"), (TOK["gated"], "gate not opened"),
              (TOK["coded"], "coded CRIS label"), (TOK["human"], "human label"),
-             (TOK["open"], "record a person opens")]
+             (TOK["open"], "flagged record, checked"),
+             (TOK["queue"], "flagged record, accepted")]
     x = 44
     for i, (col, lab) in enumerate(items):
         d.cell(f"lg{i}", x, LY + 3, 16, col,

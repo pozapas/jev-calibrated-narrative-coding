@@ -283,7 +283,7 @@
         <mxCell id="qo3" parent="1" style="rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor=#1C2B36;strokeColor=none;shadow=0;" value="" vertex="1">
           <mxGeometry height="17" width="17" x="1265" y="122" as="geometry" />
         </mxCell>
-        <mxCell id="q_l" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=17;fontFamily=Helvetica;fontColor=#24323A;fontStyle=1;" value="Review queue" vertex="1">
+        <mxCell id="q_l" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=17;fontFamily=Helvetica;fontColor=#24323A;fontStyle=1;" value="Review budget" vertex="1">
           <mxGeometry height="41" width="248" x="1202" y="200" as="geometry" />
         </mxCell>
         <mxCell id="q_s" parent="1" style="text;html=1;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontFamily=Helvetica;fontColor=#5C6B78;fontStyle=0;" value="H(0.90) = 8.2% of flags" vertex="1">
@@ -517,8 +517,14 @@
         <mxCell id="lg4" parent="1" style="rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor=#1C2B36;strokeColor=none;shadow=0;" value="" vertex="1">
           <mxGeometry height="16" width="16" x="354" y="345.5" as="geometry" />
         </mxCell>
-        <mxCell id="lgt4" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontFamily=Helvetica;fontColor=#5C6B78;fontStyle=0;" value="record a person opens" vertex="1">
-          <mxGeometry height="38" width="200" x="377" y="334.5" as="geometry" />
+        <mxCell id="lgt4" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontFamily=Helvetica;fontColor=#5C6B78;fontStyle=0;" value="checked by a person" vertex="1">
+          <mxGeometry height="38" width="140" x="377" y="334.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lg5" parent="1" style="rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor=#DCE1E5;strokeColor=#B9C3CD;shadow=0;" value="" vertex="1">
+          <mxGeometry x="520" y="345.5" width="16" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lgt5" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=14;fontFamily=Helvetica;fontColor=#5C6B78;fontStyle=0;" value="accepted as is" vertex="1">
+          <mxGeometry x="543" y="334.5" width="130" height="38" as="geometry" />
         </mxCell>
         <mxCell id="lgr0" parent="1" style="rounded=1;arcSize=28;whiteSpace=wrap;html=1;fillColor=#E9F0F6;strokeColor=none;shadow=0;" value="" vertex="1">
           <mxGeometry height="16" width="16" x="334" y="386.5" as="geometry" />
