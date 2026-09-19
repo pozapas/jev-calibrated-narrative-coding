@@ -155,11 +155,12 @@ def paired_comparison(arms_raw: dict, seed: int = 7, B: int = 2000) -> dict:
 
 def costs() -> dict:
     """Analytic cost per 1,000 narratives. NOT measured by the accuracy harness."""
-    cm = json.loads((DATA / "cost_model.json").read_text())
-    tok = cm["per_question_set"]["27"]["mean_tokens"]
-    out = {"basis": ("measured input tokens for the 27-question schema times published list "
-                     "prices; output tokens assumed at 60 per narrative for the generative "
-                     "arm, which must emit JSON"),
+    # Both arms are priced on the SAME measured token count, so the ratio is a price
+    # ratio and not an artefact of two different token bases.
+    tok = P.run_input_tokens()
+    out = {"basis": ("the production run's measured mean input tokens times published "
+                     "list prices; output tokens assumed at 60 per narrative for the "
+                     "generative arm, which must emit JSON"),
            "input_tokens_per_narrative": tok,
            "jev_per_1k_usd": P.jev_cost_per_1k(tok),
            "jev_price_accessed": "2026-09-17"}

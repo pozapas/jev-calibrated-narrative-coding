@@ -12,6 +12,8 @@ from pathlib import Path
 
 import pandas as pd
 
+import pricing as P
+
 ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
 DATA = ROOT / "paper1" / "data"
 OUT = ROOT / "paper1" / "outputs" / "tables"
@@ -170,8 +172,8 @@ def t3_run(a: dict) -> pd.DataFrame:
         ("Schema overhead per question (tokens)",
          f"{cm['intercept_model']['beta_tokens_per_question']:.0f} "
          f"($R^2$ = {cm['intercept_model']['r2']:.3f})"),
-        ("Cost per 1{,}000 narratives (USD)",
-         f"{cm['per_question_set']['27']['cost_per_1k_narratives_usd']:.4f}"),
+        ("Cost per 1{,}000 narratives, realised (USD)",
+         f"{P.jev_cost_per_1k(P.run_input_tokens()):.4f}"),
         ("Stage-2 spend (USD)", f"{r['total_cost_usd']:.2f}"),
     ]
     return pd.DataFrame(rows, columns=["Quantity", "Value"])

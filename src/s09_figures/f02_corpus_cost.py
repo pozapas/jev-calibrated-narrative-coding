@@ -169,7 +169,8 @@ def main() -> None:
                 y=1.07)
     d.set_xlim(0, 31)
     d.legend(loc="lower right", fontsize=5.8)
-    r = P.llm_cost_per_1k(3683) / P.jev_cost_per_1k(3683)
+    # the same measured token count every other cost in the paper uses, not a literal
+    r = P.llm_cost_per_1k(P.run_input_tokens()) / P.jev_cost_per_1k(P.run_input_tokens())
     d.annotate(f"{r:.0f}×", xy=(27, meas[-1]), xytext=(21, llm_lo * 0.35),
                fontsize=7, color="#444444",
                arrowprops=dict(arrowstyle="<->", lw=0.6, color="#888888"))

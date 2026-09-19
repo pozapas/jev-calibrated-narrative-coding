@@ -10,5 +10,5 @@ Mean input tokens per narrative,"3,673"
 Median latency (s),0.20
 Token model (27 questions),"$a$ = 3562, $b$ = 0.236/char, $R^2$ = 0.975"
 Schema overhead per question (tokens),122 ($R^2$ = 0.987)
-"Cost per 1{,}000 narratives (USD)",0.1553
+"Cost per 1{,}000 narratives, realised (USD)",0.1543
 Stage-2 spend (USD),30.22

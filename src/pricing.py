@@ -24,3 +24,24 @@ def llm_cost_per_1k(input_tokens: float, output_tokens: float = 60.0,
 
 def jev_cost_per_1k(input_tokens: float) -> float:
     return 1000 * input_tokens * JEV_INPUT_PER_M / 1e6
+
+
+def run_input_tokens() -> float:
+    """The measured mean input tokens per narrative for the production run.
+
+    Every cost the paper quotes is derived from this one number, so the prose, the tables and
+    the figures cannot disagree. Three bases were in circulation before: this run mean, the
+    cost model's 27-question fit, and the random stratum's own mean, giving $0.1543, $0.1553
+    and $0.1539 per thousand. They are all defensible and that is exactly the problem, since a
+    reader who finds two of them stops trusting the third.
+
+    This one is chosen because it is checkable by division: multiplied by the price and by the
+    narratives coded it reproduces the realised spend. The cost model's fit remains the right
+    basis for the scaling law in Figure 2, which is a different claim about how cost grows
+    with schema size, not about what this run cost.
+    """
+    import json
+    from pathlib import Path
+    a = json.loads((Path(__file__).resolve().parent.parent / "data" /
+                    "analysis.json").read_text())
+    return float(a["run"]["mean_input_tokens"])

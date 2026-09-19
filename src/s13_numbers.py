@@ -55,7 +55,12 @@ def main() -> None:
     mac("MeanTokens", thousands(run["mean_input_tokens"]))
     mac("MedianLatency", f(run["p50_latency_s"], 2))
     mac("StageTwoCost", f(run["total_cost_usd"], 2))
-    mac("CostPerThousand", f(cm["per_question_set"]["27"]["cost_per_1k_narratives_usd"], 3))
+    # One measured token count drives every cost in the paper; see pricing.run_input_tokens.
+    import pricing as PR
+    tok_run = PR.run_input_tokens()
+    mac("CostPerThousand", f(PR.jev_cost_per_1k(tok_run), 3))
+    mac("CostWholeCorpus",
+        thousands(corpus["n_kept_gt_40"] * PR.jev_cost_per_1k(tok_run) / 1000))
     mac("TokensPerQuestion", f(cm["intercept_model"]["beta_tokens_per_question"], 0))
     mac("TokenAlpha", f(cm["intercept_model"]["alpha_tokens"], 0))
     mac("TokenBchar", f(cm["per_question_set"]["27"]["b_tokens_per_char"], 3))

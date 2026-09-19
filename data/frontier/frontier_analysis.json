@@ -1043,13 +1043,13 @@
   }
  },
  "cost": {
-  "basis": "measured input tokens for the 27-question schema times published list prices; output tokens assumed at 60 per narrative for the generative arm, which must emit JSON",
-  "input_tokens_per_narrative": 3696.9,
-  "jev_per_1k_usd": 0.1552698,
+  "basis": "the production run's measured mean input tokens times published list prices; output tokens assumed at 60 per narrative for the generative arm, which must emit JSON",
+  "input_tokens_per_narrative": 3673.1404289864545,
+  "jev_per_1k_usd": 0.15427189801743108,
   "jev_price_accessed": "2026-09-17",
-  "claude-sonnet-5_per_1k_usd": 7.9938,
-  "claude-opus-5_per_1k_usd": 19.9845,
-  "claude-haiku-4-5_per_1k_usd": 3.9969
+  "claude-sonnet-5_per_1k_usd": 7.9462808579729085,
+  "claude-opus-5_per_1k_usd": 19.86570214493227,
+  "claude-haiku-4-5_per_1k_usd": 3.9731404289864543
  },
  "paired": {
   "n_paired": 2416,
