@@ -17,6 +17,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parents[1]))
@@ -82,66 +83,78 @@ def main() -> None:
     n_corpus = stats["n_kept_gt_40"]
 
     S.setup()
-    fig, ax = plt.subplots(figsize=(S.W15, 2.95))
+    fig = plt.figure(figsize=(S.W15, 3.15))
+    ax = fig.add_axes([0.10, 0.18, 0.875, 0.69])
 
-    C_KW = 0.0012      # not free in practice: regex over 5 M narratives is ~1 CPU-hour
-    ax.scatter([C_KW], [f1_kw], s=40, color=S.GREEN, zorder=5, label="keyword rules")
-    ax.scatter([c_jev], [f1_jev], s=40 + 260 * lat_jev, color=S.BLUE, zorder=5,
-               label=f"Jev ({P.JEV_MODEL})")
-    ax.axvspan(c_llm * 0.92, c_llm * 1.08, color=S.RED, alpha=0.15, zorder=0)
-    ax.axvline(c_llm, color=S.RED, lw=0.9, ls=(0, (3, 2)), zorder=2)
-    ax.annotate(f"{P.LLM_BASELINE}\ncost measured, F1 in v2",
-                xy=(c_llm, 0.30), xytext=(c_llm * 0.62, 0.20), fontsize=6.0, color=S.RED,
-                ha="right", linespacing=1.45)
+    C_KW = 0.0012      # regex over 5 M narratives is about one CPU-hour
+    PARETO = "#9BA8B1"
+    ax.scatter([C_KW], [f1_kw], s=44, color=S.GREEN, edgecolor="white", linewidth=0.8, zorder=5)
+    ax.scatter([c_jev], [f1_jev], s=44 + 260 * lat_jev, color=S.BLUE,
+               edgecolor="white", linewidth=0.8, zorder=5)
+    ax.axvspan(c_llm * 0.92, c_llm * 1.08, color=S.ORANGE, alpha=0.12, zorder=0)
+    ax.axvline(c_llm, color=S.ORANGE, lw=1.0, ls=(0, (3, 2)), zorder=2)
 
-    # Pareto staircase over the methods that have both axes
+    # Pareto staircase over methods with observed cost and F1.
     pts = sorted([(C_KW, f1_kw), (c_jev, f1_jev)])
-    best = -1.0
-    xs, ys = [], []
-    for cx, fy in pts:
-        best = max(best, fy)
-        xs += [cx, cx]; ys += [best if len(ys) == 0 else ys[-1], best]
     ax.step([p[0] for p in pts] + [c_llm * 1.6],
             [p[1] for p in pts] + [max(f1_kw, f1_jev)], where="post",
-            color="#BBBBC4", lw=0.9, ls=(0, (4, 2)), zorder=1, label="Pareto frontier")
-
-    ax.annotate("", xy=(c_jev, f1_jev - 0.035), xytext=(C_KW, f1_kw - 0.035),
-                arrowprops=dict(arrowstyle="->", lw=0.7, color="#999999"))
-    ax.text(np.sqrt(C_KW * c_jev), min(f1_kw, f1_jev) - 0.075,
-            f"+{100*(f1_jev-f1_kw):.1f} F1 points\nfor {c_jev/C_KW:.0f}× the cost",
-            fontsize=6.0, ha="center", va="top", color="#666666", linespacing=1.45)
+            color=PARETO, lw=1.05, ls=(0, (4, 2)), zorder=1)
 
     ax.set_xscale("log")
     ax.set_xlabel("USD per 1,000 narratives (log scale)")
-    ax.set_ylabel(f"macro-F1 vs coded fields ({n_jev} variables)")
+    ax.set_ylabel(f"Macro-F1 vs coded fields ({n_jev} variables)")
     ax.set_xlim(C_KW * 0.35, c_llm * 4.0)
     ax.set_ylim(max(0, min(f1_kw, f1_jev) - 0.14), max(f1_kw, f1_jev) + 0.23)
-    ax.legend(loc="upper left", fontsize=6.2)
-    ax.set_title("Cost-accuracy frontier; marker area $\\propto$ median latency",
-                 loc="left", fontweight="bold", fontsize=7.4)
-    ax.text(0.99, 0.06,
-            f"{run}, n = {len(d):,}\nJev {tok:,.0f} input tok, p50 {lat_jev:.2f}s\n"
-            f"agreement with a noisy reference, not accuracy",
-            transform=ax.transAxes, ha="right", va="bottom", fontsize=5.6,
-            color="#777777", linespacing=1.5)
 
-    # inset: whole-corpus cost
-    ins = ax.inset_axes([0.60, 0.545, 0.375, 0.335])
-    labels = ["keyword", "Jev", P.LLM_BASELINE.replace("claude-", "")]
+    # One compact comparison bracket replaces the former diagonal arrow and
+    # multi-line callout in the middle of the data area.
+    comparison_y = min(f1_kw, f1_jev) - 0.050
+    ax.annotate("", xy=(c_jev, comparison_y), xytext=(C_KW, comparison_y),
+                arrowprops=dict(arrowstyle="<->", lw=0.75, color=PARETO))
+    ax.text(np.sqrt(C_KW * c_jev), comparison_y - 0.014,
+            f"+{100*(f1_jev-f1_kw):.1f} macro-F1\n{c_jev/C_KW:.0f}× cost",
+            fontsize=5.8, ha="center", va="top", color=S.MUTED, linespacing=1.35)
+
+    # The frontier F1 exists but lives on the human-label reference, not this axis, so the
+    # label says where it is rather than implying the number was never measured.
+    ax.text(c_llm * 0.85, max(f1_kw, f1_jev) + 0.055,
+            f"{P.LLM_BASELINE.replace('claude-', 'Claude ')}\nlist price; F1 vs human labels",
+            fontsize=5.6, color=S.ORANGE, rotation=90, rotation_mode="anchor",
+            ha="left", va="bottom", linespacing=1.25)
+    ax.text(0.015, 0.965, f"{run} random stratum · n = {len(d):,}",
+            transform=ax.transAxes, ha="left", va="top", fontsize=5.2, color=S.MUTED)
+
+    # Whole-corpus inset: shifted left and up so it cannot cover the Pareto or
+    # LLM price-reference guides.
+    ins = ax.inset_axes([0.40, 0.64, 0.34, 0.28])
+    labels = ["keywords", "Jev", P.LLM_BASELINE.replace("claude-", "")]
     vals = [C_KW * n_corpus / 1e3, c_jev * n_corpus / 1e3, c_llm * n_corpus / 1e3]
-    ins.barh([0, 1, 2], vals, color=[S.GREEN, S.BLUE, S.RED], height=0.6)
+    ins.barh([0, 1, 2], vals, color=[S.GREEN, S.BLUE, S.ORANGE], height=0.58)
     ins.set_xscale("log")
-    ins.set_yticks([0, 1, 2]); ins.set_yticklabels(labels, fontsize=5.2)
-    ins.set_xlabel("USD to code all 5.02 M", fontsize=5.4, labelpad=1.5)
-    ins.tick_params(labelsize=5.0)
+    ins.set_yticks([0, 1, 2]); ins.set_yticklabels(labels, fontsize=5.0)
+    ins.set_title("Cost to code all 5.02 M narratives", loc="left", fontsize=5.6, pad=2.4)
+    ins.tick_params(labelsize=4.8)
     for i, v in enumerate(vals):
-        ins.text(v * 1.25, i, f"${v:,.0f}", va="center", fontsize=5.0, color="#444444")
-    ins.set_xlim(min(vals) * 0.4, max(vals) * 9)
+        ins.text(v * 1.22, i, f"${v:,.0f}", va="center", fontsize=4.8, color=S.INK)
+    ins.set_xlim(min(vals) * 0.4, max(vals) * 8)
     for sp in ins.spines.values():
         sp.set_linewidth(0.5)
 
+    # Shared visual key: all method and guide meanings are outside the data area.
+    fig.legend(handles=[
+                   Line2D([], [], marker="o", lw=0, markerfacecolor=S.GREEN, markeredgecolor="white",
+                          markersize=5.8, label="keyword rules"),
+                   Line2D([], [], marker="o", lw=0, markerfacecolor=S.BLUE, markeredgecolor="white",
+                          markersize=5.8, label=f"Jev ({P.JEV_MODEL})"),
+                   Line2D([], [], color=PARETO, lw=1.05, ls=(0, (4, 2)), label="observed Pareto frontier"),
+                   Line2D([], [], color=S.ORANGE, lw=1.0, ls=(0, (3, 2)), label="LLM price reference"),
+                   Line2D([], [], marker="o", lw=0, color=S.INK, markerfacecolor=S.INK,
+                          markersize=3.8, label="circle area = p50 latency"),
+               ], loc="upper center", bbox_to_anchor=(0.56, 0.945), ncol=5,
+               fontsize=5.45, handlelength=1.15, handletextpad=0.35,
+               columnspacing=0.75, borderaxespad=0.0, frameon=False)
+
     S.finish(fig)
-    fig.tight_layout(pad=0.85)
     S.save(fig, "F9_frontier")
     print(f"  keyword macro-F1 {f1_kw:.3f} ({n_kw} vars) | Jev macro-F1 {f1_jev:.3f} ({n_jev} vars)")
     print(f"  Jev ${c_jev:.4f}/1k | {P.LLM_BASELINE} ${c_llm:.4f}/1k | whole corpus: "
