@@ -80,3 +80,12 @@ change, and the cost findings are stated at list prices.
 ## Status
 
 The manuscript is a preprint under submission. Results, numbering and text may change.
+
+## License
+
+The code in this repository is released under the MIT License; see `LICENSE`.
+
+The aggregated result files in `data/` and the figures and tables in `outputs/` are released
+under the same terms, with attribution to the paper. The CRIS crash narratives are not in this
+repository, are not covered by this licence, and remain subject to the data agreement with the
+Texas Department of Transportation.
