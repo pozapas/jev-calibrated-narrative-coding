@@ -1,7 +1,7 @@
-"""Shared publication figure system: white, aligned, colourblind-safe, 300 dpi PDF+PNG.
+"""Shared publication figure system: white, aligned, colorblind-safe, 300 dpi PDF+PNG.
 
-Palette convention from §3: blue = data/model, orange = human/decision. Greys carry
-reference/coded-field series so the "reference-noise gap" in F4 reads without colour.
+Palette convention from §3: blue = data/model, orange = human/decision. Grays carry
+reference/coded-field series so the "reference-noise gap" in F4 reads without color.
 seaborn is not installed and is not used.
 """
 from __future__ import annotations
@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 OUT = Path(__file__).resolve().parents[2] / "outputs" / "figures"
 
-# Okabe-Ito, colourblind-safe
+# Okabe-Ito, colorblind-safe
 BLUE = "#0072B2"    # data / model (Jev)
 ORANGE = "#E69F00"  # human / decision
 GREEN = "#009E73"   # keyword baseline
@@ -37,14 +37,18 @@ METHOD = {"jev": BLUE, "human": ORANGE, "keyword": GREEN, "llm": RED, "coded": G
 
 def setup() -> None:
     mpl.rcParams.update({
-        "font.family": "sans-serif",
-        "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
-        "font.size": 8,
-        "axes.titlesize": 8,
-        "axes.labelsize": 8,
-        "xtick.labelsize": 7,
-        "ytick.labelsize": 7,
-        "legend.fontsize": 7,
+        # Serif face matching the compiled document's text (the CAS class sets STIX/Times).
+        # Times New Roman is used where installed, STIX or Nimbus Roman otherwise, so that
+        # axis labels, legends and annotations read as the body font at 8 to 9 point.
+        "font.family": "serif",
+        "font.serif": ["Times New Roman", "STIXGeneral", "Nimbus Roman", "DejaVu Serif"],
+        "mathtext.fontset": "stix",
+        "font.size": 8.5,
+        "axes.titlesize": 8.5,
+        "axes.labelsize": 8.5,
+        "xtick.labelsize": 8,
+        "ytick.labelsize": 8,
+        "legend.fontsize": 8,
         "legend.frameon": False,
         "figure.facecolor": WHITE,
         "axes.facecolor": WHITE,

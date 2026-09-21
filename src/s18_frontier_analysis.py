@@ -31,9 +31,10 @@ import numpy as np
 import pandas as pd
 
 import pricing as P
-from s17_gold_analysis import block, MIN_N
+import s07_metrics as M
+from s17_gold_analysis import block, MIN_N, STRATUM, WCOL
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 FRONT = DATA / "frontier"
 GOLD = DATA / "gold"
@@ -79,7 +80,7 @@ def join_gold(arm: pd.DataFrame) -> pd.DataFrame:
 
 
 def arm_metrics(m: pd.DataFrame) -> dict:
-    d = m.rename(columns={"p": "p"})[["p", "y", "ht_weight", "variable"]].copy()
+    d = m[["Crash_ID", "p", "y", WCOL, STRATUM, "variable"]].copy()
     per = {v: block(s) for v, s in d.groupby("variable") if len(s) >= MIN_N}
     pooled = block(d)
     pooled["n_variables"] = len(per)
@@ -97,9 +98,11 @@ def arm_metrics(m: pd.DataFrame) -> dict:
 def paired_comparison(arms_raw: dict, seed: int = 7, B: int = 2000) -> dict:
     """Paired bootstrap of the F1 difference between arms on the SAME judgments.
 
-    Comparing two independent confidence intervals is the wrong test: the arms answer the
+    Comparing two independent confidence intervals is the wrong test. The arms answer the
     identical 2,416 pairs, so the comparison is paired and an unpaired reading would be
-    needlessly conservative. Resampling judgments (not models) preserves that pairing.
+    needlessly conservative. Resampling narratives with every arm attached preserves that
+    pairing, and the resampling unit is the narrative rather than the judgment for the reason
+    given in s17: one narrative supplies up to sixteen judgments that move together.
 
     This exists because the headline is a difference, not a level. "Model A scores 0.959 and
     model B 0.891" invites the reader to supply their own significance test; reporting the
@@ -113,9 +116,6 @@ def paired_comparison(arms_raw: dict, seed: int = 7, B: int = 2000) -> dict:
         m = m.merge(arm.rename(columns={"p": label})[["Crash_ID", "variable", label]],
                     on=["Crash_ID", "variable"], how="inner")
     names = ["Jev"] + list(arms_raw)
-    y = m.y.to_numpy(float)
-    w = m.ht_weight.to_numpy(float)
-    cols = {k: m[k].to_numpy(float) for k in names}
 
     def f1(p, y, w) -> float:
         pr = p > 0.5
@@ -124,31 +124,50 @@ def paired_comparison(arms_raw: dict, seed: int = 7, B: int = 2000) -> dict:
         fn = w[~pr & (y == 1)].sum()
         return 0.0 if tp == 0 else float(2 * tp / (2 * tp + fp + fn))
 
-    rng = np.random.default_rng(seed)
-    idx = np.arange(len(m))
-    point = {k: f1(v, y, w) for k, v in cols.items()}
-    draws = {k: [] for k in names}
-    for _ in range(B):
-        s_ = rng.choice(idx, len(idx), replace=True)
-        for k, v in cols.items():
-            draws[k].append(f1(v[s_], y[s_], w[s_]))
-    draws = {k: np.array(v) for k, v in draws.items()}
+    def stats(x: pd.DataFrame) -> dict:
+        y = x.y.to_numpy(float)
+        w = x[WCOL].to_numpy(float)
+        return {k: f1(x[k].to_numpy(float), y, w) for k in names}
 
-    out = {"n_paired": int(len(m)), "B": B,
-           "f1": {k: {"point": point[k],
-                      "ci95": [float(np.percentile(draws[k], 2.5)),
-                               float(np.percentile(draws[k], 97.5))]} for k in names},
+    r = M.cluster_bootstrap(stats, m, strata=STRATUM, B=B, seed=seed)
+    # the per-arm F1 draws are needed again for the paired differences, so the replicates are
+    # regenerated once with the same seed rather than stored twice
+    rng = np.random.default_rng(seed)
+    ids = m.Crash_ID.to_numpy()
+    uniq, inv = np.unique(ids, return_inverse=True)
+    rows_of = [np.flatnonzero(inv == k) for k in range(uniq.size)]
+    scol = m[STRATUM].to_numpy()
+    sv = np.array([scol[rows_of[k]][0] for k in range(uniq.size)])
+    groups = [np.flatnonzero(sv == u) for u in pd.unique(pd.Series(sv))]
+    draws = {k: np.empty(B) for k in names}
+    for b in range(B):
+        pick = np.concatenate([rng.choice(g, size=g.size, replace=True) for g in groups])
+        take = np.concatenate([rows_of[k] for k in pick])
+        x = m.iloc[take]
+        s_ = stats(x)
+        for k in names:
+            draws[k][b] = s_[k]
+
+    point = stats(m)
+    out = {"n_paired": int(len(m)), "n_narratives": int(uniq.size), "B": B,
+           "resampling_unit": "narrative, stratified by draw route",
+           "f1": {k: {"point": point[k], "ci95": [r[k]["lo"], r[k]["hi"]],
+                      "ci95_raw": [r[k].get("lo_raw"), r[k].get("hi_raw")]} for k in names},
            "differences": {}}
     for i, a in enumerate(names):
         for b in names[i + 1:]:
             d = draws[a] - draws[b]
+            pt = point[a] - point[b]
+            bias = float(d.mean()) - pt
+            lo = float(np.percentile(d, 2.5) - bias)
+            hi = float(np.percentile(d, 97.5) - bias)
             out["differences"][f"{a} - {b}"] = {
-                "point": point[a] - point[b],
-                "ci95": [float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
+                "point": pt, "ci95": [lo, hi],
+                "ci95_raw": [float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))],
                 "p_a_better": float(np.mean(d > 0)),
                 # The interval straddling zero is the claim worth making when it happens,
                 # so it is recorded rather than left for the reader to infer from the bounds.
-                "indistinguishable": bool(np.percentile(d, 2.5) < 0 < np.percentile(d, 97.5)),
+                "indistinguishable": bool(lo < 0 < hi),
             }
     return out
 

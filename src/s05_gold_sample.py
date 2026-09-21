@@ -24,7 +24,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 OUT = DATA / "gold"
 SEED = 42

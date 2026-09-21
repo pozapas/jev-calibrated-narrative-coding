@@ -113,7 +113,15 @@ def main() -> None:
             continue
         precision = 100 * (1 - fdr)
         color = HCOLOR[v]
-        b.plot(cov, precision, lw=2.15, color=color, zorder=4)
+        # A step, not a line: the output grid is discrete, so between two attainable
+        # thresholds there is no rule an agency could adopt.
+        # `where="pre"` is the conservative reading and the only one the grid supports:
+        # the interval between two attainable thresholds takes the precision of the LOWER
+        # one, because reaching any coverage inside it means accepting the whole tied
+        # block. `where="post"` would claim the higher precision across a range no
+        # threshold can deliver, which is how the alcohol curve came to cross the policy
+        # band at a coverage that panel (c) correctly reports as unattainable.
+        b.step(cov, precision, where="pre", lw=2.15, color=color, zorder=4)
         b.scatter([cov[0], cov[-1]], [precision[0], precision[-1]], s=28,
                   color=color, edgecolor="white", linewidth=0.8, zorder=5)
     b.text(0.98, 99.35, "90–95% policy band", fontsize=5.8,
@@ -122,7 +130,12 @@ def main() -> None:
     b.set_ylabel("Precision vs coded field (%)")
     b.set_title("(b) precision trajectories", loc="left", fontweight="bold",
                 y=1.08)
-    b.set_xlim(0, 1); b.set_ylim(20, 101)
+    # Add a small visual margin beyond the two endpoint circles while retaining
+    # the 0.0–1.0 data ticks.
+    b.set_xlim(-0.04, 1.035); b.set_xticks(np.linspace(0, 1, 6))
+    # Keep the 100% endpoint markers inside the panel rather than clipping
+    # their upper arcs against the axes boundary.
+    b.set_ylim(20, 103)
 
     # ------------------------------------------------- (c) policy frontier
     rows = []
@@ -173,8 +186,10 @@ def main() -> None:
     e.barh(yy, review / 1e3, color=S.ORANGE, height=0.66, label=f"to review at {TARGETS[0]:.0%}")
     e.set_yticks(yy); e.set_yticklabels(names, fontsize=6.0)
     e.invert_yaxis()
-    e.set_xlabel("narratives per year in Texas (thousands)")
-    e.set_title("(d) annual review load", loc="left", fontweight="bold", y=1.08)
+    # T13. These are variable-level review decisions, not documents: a narrative that two
+    # variables route to review is counted once for each of them.
+    e.set_xlabel("review decisions per year in Texas (thousands)")
+    e.set_title("(d) annual review decisions", loc="left", fontweight="bold", y=1.08)
     e.legend(loc="lower right", fontsize=6.0, frameon=False)
     for i, (f_, r_) in enumerate(zip(flagged, review)):
         e.text(f_ / 1e3 + max(flagged) / 1e3 * 0.02, i, f"{r_/1e3:,.1f}k of {f_/1e3:,.1f}k",

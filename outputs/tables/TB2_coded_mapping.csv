@@ -1,0 +1,11 @@
+narrative variable,reference column,CRIS fields and values,aggregation to crash level
+alcohol\_involved,\texttt{coded\_alcohol},\texttt{Contrib\_Factr\_1\_ID} or \texttt{Contrib\_Factr\_2\_ID} matches ``Under Influence - Alcohol'' or ``Had Been Drinking''; or \texttt{Prsn\_Alc\_Rslt\_ID} = 1; or \texttt{Prsn\_Bac\_Test\_Rslt} $>$ 0,any person or unit row of the crash
+drug\_involved,\texttt{coded\_drug},contributing factor matches ``Under Influence - Drug''; or \texttt{Prsn\_Drg\_Rslt\_ID} = 1,any row
+fatigue,\texttt{coded\_fatigue},contributing factor matches ``Fatigued Or Asleep'',any row
+medical\_episode,\texttt{coded\_medical},contributing factor matches ``Ill (Explain In Narrative)'',any row
+animal\_involved,\texttt{coded\_animal},contributing factor matches ``Animal On Road''; or \texttt{Harm\_Evnt\_ID} contains ``Animal'',any row
+phone\_use,\texttt{coded\_phone},contributing factor matches ``Cell/Mobile Device Use'',any row
+unbelted,\texttt{coded\_unbelted},\texttt{Prsn\_Rest\_ID} equals ``None'' (the only unbelted code; ``Not Applicable'' excluded),any person row
+hydroplane,\texttt{coded\_hydro\_proxy},"\texttt{Othr\_Factr\_ID} contains ``Lost Control Or Skidded'' and (\texttt{Surf\_Cond\_ID} contains ``Wet'' or ``Standing Water'', or \texttt{Wthr\_Cond\_ID} contains ``Rain'')",any row; proxy reference
+wrong\_way,\texttt{coded\_wrongway},"contributing factor matches ``Wrong Way - One Way Road'', ``Wrong Side - Not Passing'' or ``Wrong Side - Approach''",any row
+(sensitivity only),\texttt{coded\_wrongway\_proxy},\texttt{FHE\_Collsn\_ID} contains ``Opposite Direction'',any row; not used as a reference

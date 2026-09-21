@@ -605,11 +605,12 @@
    },
    "precision_vs_coded": 0.7119017054832203,
    "recall_vs_coded": 0.7138653916881207,
-   "ece_vs_coded": 0.018729733333333345,
+   "ece_vs_coded": 0.018729733333333335,
    "ece_vs_coded_ci95": [
-    0.018040175000000002,
-    0.019435494999999997
+    0.0180188234,
+    0.0193938434
    ],
+   "ece_vs_coded_equal_mass": 0.018729733333333345,
    "adaptive_ece_vs_coded": 0.018729733333333345,
    "mce_vs_coded": 0.022435418972365943,
    "brier_vs_coded": 0.019658395999999998,
@@ -618,8 +619,8 @@
    "uncertainty_vs_coded": 0.03493902915555555,
    "brier_skill_score_vs_coded": 0.4373513954129382,
    "calibration_slope_vs_coded": 0.7000454140411996,
-   "calibration_intercept_vs_coded": -1.8117594088967068,
-   "calibration_slope_se": 0.00521541956812723,
+   "calibration_intercept_vs_coded": -1.811759408896707,
+   "calibration_slope_se": 0.005215419568127236,
    "spiegelhalter_z_vs_coded": -1.4977683231385144,
    "aurc_vs_coded": 0.01629278419976076,
    "excess_aurc_vs_coded": 0.01585820068864965,
@@ -664,11 +665,12 @@
    },
    "precision_vs_coded": 0.4638196915776987,
    "recall_vs_coded": 0.5111111111111111,
-   "ece_vs_coded": 0.019908266666666667,
+   "ece_vs_coded": 0.019908266666666664,
    "ece_vs_coded_ci95": [
-    0.01961607666666667,
-    0.020225545000000004
+    0.019535877466666664,
+    0.020258710799999993
    ],
+   "ece_vs_coded_equal_mass": 0.019908266666666667,
    "adaptive_ece_vs_coded": 0.019908266666666667,
    "mce_vs_coded": 0.024562096299228568,
    "brier_vs_coded": 0.005396690666666666,
@@ -676,9 +678,9 @@
    "resolution_vs_coded": 9.593149162713197e-06,
    "uncertainty_vs_coded": 0.0050739900000000004,
    "brier_skill_score_vs_coded": -0.06359899539941272,
-   "calibration_slope_vs_coded": 0.879957902517659,
-   "calibration_intercept_vs_coded": -2.5729712702798984,
-   "calibration_slope_se": 0.013680181201156149,
+   "calibration_slope_vs_coded": 0.879957902517661,
+   "calibration_intercept_vs_coded": -2.5729712702798953,
+   "calibration_slope_se": 0.013680181201156117,
    "spiegelhalter_z_vs_coded": -42.5482939075409,
    "aurc_vs_coded": 0.0018169501886175351,
    "excess_aurc_vs_coded": 0.0017866268108397575,
@@ -723,11 +725,12 @@
    },
    "precision_vs_coded": 0.6525262154432793,
    "recall_vs_coded": 0.7796127562642369,
-   "ece_vs_coded": 0.014827200000000002,
+   "ece_vs_coded": 0.014831466666666666,
    "ece_vs_coded_ci95": [
-    0.014510170000000001,
-    0.015260600000000001
+    0.014448440533333336,
+    0.015232828866666668
    ],
+   "ece_vs_coded_equal_mass": 0.014827200000000002,
    "adaptive_ece_vs_coded": 0.014827200000000002,
    "mce_vs_coded": 0.033676558023890614,
    "brier_vs_coded": 0.006889290666666666,
@@ -737,7 +740,7 @@
    "brier_skill_score_vs_coded": 0.4045361648735365,
    "calibration_slope_vs_coded": 0.8254494574436899,
    "calibration_intercept_vs_coded": -2.417709516057921,
-   "calibration_slope_se": 0.008930444259476736,
+   "calibration_slope_se": 0.008930444259476715,
    "spiegelhalter_z_vs_coded": -22.964355547761613,
    "aurc_vs_coded": 0.00360121989447741,
    "excess_aurc_vs_coded": 0.00354586629447741,
@@ -782,11 +785,12 @@
    },
    "precision_vs_coded": 0.8482142857142857,
    "recall_vs_coded": 0.9857801691006918,
-   "ece_vs_coded": 0.014890200000000004,
+   "ece_vs_coded": 0.014896333333333333,
    "ece_vs_coded_ci95": [
-    0.014653755,
-    0.015127101666666663
+    0.014628303199999998,
+    0.015170556533333334
    ],
+   "ece_vs_coded_equal_mass": 0.014890200000000004,
    "adaptive_ece_vs_coded": 0.014890200000000004,
    "mce_vs_coded": 0.03465801963461415,
    "brier_vs_coded": 0.0030938899999999997,
@@ -794,9 +798,9 @@
    "resolution_vs_coded": 0.0011383342631213335,
    "uncertainty_vs_coded": 0.01704575982222222,
    "brier_skill_score_vs_coded": 0.8184950373425679,
-   "calibration_slope_vs_coded": 1.2406670786069718,
-   "calibration_intercept_vs_coded": -3.2788020149284764,
-   "calibration_slope_se": 0.023034966046271647,
+   "calibration_slope_vs_coded": 1.2406670803976536,
+   "calibration_intercept_vs_coded": -3.2788020066745664,
+   "calibration_slope_se": 0.02303496605980607,
    "spiegelhalter_z_vs_coded": -34.882474558912435,
    "aurc_vs_coded": 0.0014015853335791885,
    "excess_aurc_vs_coded": 0.001390651289134744,
@@ -843,9 +847,10 @@
    "recall_vs_coded": 0.8176197836166924,
    "ece_vs_coded": 0.02031466666666667,
    "ece_vs_coded_ci95": [
-    0.020048658333333334,
-    0.020613335
+    0.01993195173333334,
+    0.020737190066666668
    ],
+   "ece_vs_coded_equal_mass": 0.02031466666666667,
    "adaptive_ece_vs_coded": 0.02031466666666667,
    "mce_vs_coded": 0.042866975756214135,
    "brier_vs_coded": 0.007023785333333333,
@@ -853,9 +858,9 @@
    "resolution_vs_coded": 2.82470999345563e-05,
    "uncertainty_vs_coded": 0.004294728488888889,
    "brier_skill_score_vs_coded": -0.6354433933378854,
-   "calibration_slope_vs_coded": 0.8508884891780422,
-   "calibration_intercept_vs_coded": -3.5819303900956188,
-   "calibration_slope_se": 0.013874728700342873,
+   "calibration_slope_vs_coded": 0.8508884891780419,
+   "calibration_intercept_vs_coded": -3.5819303900956183,
+   "calibration_slope_se": 0.013874728700342879,
    "spiegelhalter_z_vs_coded": -27.205266638782117,
    "aurc_vs_coded": 0.0024836541092929576,
    "excess_aurc_vs_coded": 0.002425284509292958,
@@ -900,11 +905,12 @@
    },
    "precision_vs_coded": 0.20917225950782997,
    "recall_vs_coded": 0.07497995188452286,
-   "ece_vs_coded": 0.011816133333333336,
+   "ece_vs_coded": 0.012192533333333335,
    "ece_vs_coded_ci95": [
-    0.011605845,
-    0.012820536666666667
+    0.011506491333333339,
+    0.012844826333333339
    ],
+   "ece_vs_coded_equal_mass": 0.011816133333333336,
    "adaptive_ece_vs_coded": 0.011816133333333336,
    "mce_vs_coded": 0.013043783339243546,
    "brier_vs_coded": 0.018569214666666663,
@@ -912,9 +918,9 @@
    "resolution_vs_coded": 1.096776472451579e-05,
    "uncertainty_vs_coded": 0.016350220622222224,
    "brier_skill_score_vs_coded": -0.1357164588610209,
-   "calibration_slope_vs_coded": 0.514068968011907,
-   "calibration_intercept_vs_coded": -2.2064340023772306,
-   "calibration_slope_se": 0.012377749128350839,
+   "calibration_slope_vs_coded": 0.5140689680119053,
+   "calibration_intercept_vs_coded": -2.2064340023772364,
+   "calibration_slope_se": 0.012377749128350782,
    "spiegelhalter_z_vs_coded": -13.08609072140898,
    "aurc_vs_coded": 0.013564029865315257,
    "excess_aurc_vs_coded": 0.013160287820870814,
@@ -959,11 +965,12 @@
    },
    "precision_vs_coded": 0.7188208616780045,
    "recall_vs_coded": 0.8038034865293185,
-   "ece_vs_coded": 0.015192600000000002,
+   "ece_vs_coded": 0.016638866666666665,
    "ece_vs_coded_ci95": [
-    0.016502588333333332,
-    0.01730982333333333
+    0.0162000888,
+    0.017073165466666665
    ],
+   "ece_vs_coded_equal_mass": 0.015192600000000002,
    "adaptive_ece_vs_coded": 0.015192600000000002,
    "mce_vs_coded": 0.029630593002025876,
    "brier_vs_coded": 0.008991042000000001,
@@ -972,8 +979,8 @@
    "uncertainty_vs_coded": 0.020590932222222223,
    "brier_skill_score_vs_coded": 0.5633494441647156,
    "calibration_slope_vs_coded": 0.9697347266676485,
-   "calibration_intercept_vs_coded": -1.5859645568351182,
-   "calibration_slope_se": 0.00926786711565656,
+   "calibration_intercept_vs_coded": -1.5859645568351186,
+   "calibration_slope_se": 0.00926786711565655,
    "spiegelhalter_z_vs_coded": -22.317662307131908,
    "aurc_vs_coded": 0.0012079945499044314,
    "excess_aurc_vs_coded": 0.0010926469499044317,
@@ -1020,9 +1027,10 @@
    "recall_vs_coded": 0.6839506172839506,
    "ece_vs_coded": 0.045469800000000005,
    "ece_vs_coded_ci95": [
-    0.04509891333333334,
-    0.04580313333333333
+    0.04497892679999999,
+    0.045960778466666664
    ],
+   "ece_vs_coded_equal_mass": 0.045469800000000005,
    "adaptive_ece_vs_coded": 0.045469800000000005,
    "mce_vs_coded": 0.18771387614678903,
    "brier_vs_coded": 0.011236459333333334,
@@ -1032,7 +1040,7 @@
    "brier_skill_score_vs_coded": -1.0921232681169672,
    "calibration_slope_vs_coded": 1.0981984308173034,
    "calibration_intercept_vs_coded": -3.0878844210327867,
-   "calibration_slope_se": 0.017319177313970136,
+   "calibration_slope_se": 0.017319177313970167,
    "spiegelhalter_z_vs_coded": -64.00296770058719,
    "aurc_vs_coded": 0.0015764007574467773,
    "excess_aurc_vs_coded": 0.0014254385796689997,
@@ -1079,9 +1087,10 @@
    "recall_vs_coded": 0.8276315789473684,
    "ece_vs_coded": 0.0247688,
    "ece_vs_coded_ci95": [
-    0.02447165166666667,
-    0.025062516666666666
+    0.02438352913333334,
+    0.025182045800000004
    ],
+   "ece_vs_coded_equal_mass": 0.0247688,
    "adaptive_ece_vs_coded": 0.0247688,
    "mce_vs_coded": 0.036775790691847915,
    "brier_vs_coded": 0.006498442666666666,
@@ -1089,9 +1098,9 @@
    "resolution_vs_coded": 1.691478915829744e-05,
    "uncertainty_vs_coded": 0.005040995555555555,
    "brier_skill_score_vs_coded": -0.28911890420234454,
-   "calibration_slope_vs_coded": 1.0247581631841214,
-   "calibration_intercept_vs_coded": -2.9932369382584283,
-   "calibration_slope_se": 0.016037476461126545,
+   "calibration_slope_vs_coded": 1.024758163184122,
+   "calibration_intercept_vs_coded": -2.993236938258428,
+   "calibration_slope_se": 0.01603747646112653,
    "spiegelhalter_z_vs_coded": -43.34759958865565,
    "aurc_vs_coded": 0.001364909023049955,
    "excess_aurc_vs_coded": 0.0013126843119388436,
@@ -1121,6 +1130,53 @@
    "review_budget_5pct": 0.0
   }
  },
+ "annual_workload": {
+  "target_precision": 0.9,
+  "n_variables": 9,
+  "per_variable": {
+   "alcohol_involved": {
+    "share_of_corpus": 0.03634,
+    "per_year": 20261.89191111111
+   },
+   "drug_involved": {
+    "share_of_corpus": 0.00562,
+    "per_year": 3133.512177777778
+   },
+   "fatigue": {
+    "share_of_corpus": 0.013986666666666666,
+    "per_year": 7798.46802962963
+   },
+   "animal_involved": {
+    "share_of_corpus": 0.00142,
+    "per_year": 791.7415111111112
+   },
+   "phone_use": {
+    "share_of_corpus": 0.01038,
+    "per_year": 5787.518933333334
+   },
+   "unbelted": {
+    "share_of_corpus": 0.00596,
+    "per_year": 3323.0840888888893
+   },
+   "hydroplane": {
+    "share_of_corpus": 0.02352,
+    "per_year": 13113.915733333333
+   },
+   "wrong_way": {
+    "share_of_corpus": 0.014273333333333334,
+    "per_year": 7958.303170370372
+   },
+   "medical_episode": {
+    "share_of_corpus": 0.010546666666666666,
+    "per_year": 5880.446340740741
+   }
+  },
+  "union_share_of_corpus": 0.11118666666666667,
+  "union_per_year": 61993.73202962964,
+  "sum_of_variable_decisions_share": 0.12204666666666666,
+  "sum_of_variable_decisions_per_year": 68048.8818962963,
+  "note": "the union counts narratives, the sum counts variable-level review decisions; a narrative routed by more than one variable is read once"
+ },
  "keyword_baseline": {
   "medical_episode": {
    "n": 150000,
@@ -1132,7 +1188,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 347,
     "b_only": 499,
-    "p_value": 1.9408736613189342e-07
+    "p_value": 1.9408736613189345e-07
    }
   },
   "drug_involved": {
@@ -1158,7 +1214,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 1415,
     "b_only": 791,
-    "p_value": 1.1134586114346645e-40
+    "p_value": 1.1134586114346503e-40
    }
   },
   "fatigue": {
@@ -1184,7 +1240,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 466,
     "b_only": 1384,
-    "p_value": 2.3470173959331468e-105
+    "p_value": 2.3470173959331363e-105
    }
   },
   "animal_involved": {
@@ -1197,7 +1253,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 810,
     "b_only": 201,
-    "p_value": 3.7025979539120916e-87
+    "p_value": 3.7025979539121322e-87
    }
   },
   "alcohol_involved": {
@@ -1210,7 +1266,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 534,
     "b_only": 317,
-    "p_value": 9.742428146257575e-14
+    "p_value": 9.742428146257541e-14
    }
   },
   "phone_use": {
@@ -1223,7 +1279,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 901,
     "b_only": 446,
-    "p_value": 8.312600163998967e-36
+    "p_value": 8.312600163999188e-36
    }
   },
   "unbelted": {
@@ -1236,7 +1292,7 @@
    "mcnemar_jev_vs_keyword": {
     "a_only": 106,
     "b_only": 652,
-    "p_value": 1.084086905693058e-96
+    "p_value": 1.0840869056930663e-96
    }
   }
  },

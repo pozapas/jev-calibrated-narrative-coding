@@ -1,0 +1,521 @@
+{
+ "question": "what changes in a safety diagnosis when calibrated narrative variables are added to the coded fields",
+ "population": "Stage-2 random stratum",
+ "n_random_stratum": 150000,
+ "per_year_scale": 3.7170962962962966,
+ "severity_definitions": {
+  "fatal": "coded_killed, or death_cnt above zero",
+  "injury_or_fatal": "coded_injured or coded_killed, or tot_injry or death_cnt above zero"
+ },
+ "recalibration": "WP3 Platt map, per variable where the reference set carries at least 20 positives and pooled otherwise",
+ "B_bootstrap": 300,
+ "bootstrap_unit": "reference-set narrative, stratified by draw route",
+ "n_severity": {
+  "fatal": 964,
+  "injury_or_fatal": 44403
+ },
+ "per_variable": {
+  "alcohol_involved": {
+   "coded_field": "coded_alcohol",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.7092197119964798,
+   "narrative_only_confirmed_ci95": [
+    0.39025744042757876,
+    0.9397822658270933
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 272.0,
+    "added_count": 8.67677464393704,
+    "total_count": 280.67677464393705,
+    "coded_share": 0.2821576763485477,
+    "augmented_share": 0.2911584799210965,
+    "relative_increase": 0.031899906779180295,
+    "added_count_ci95": [
+     5.055163243819491,
+     19.32367437326105
+    ],
+    "coded_per_year": 1011.0501925925927,
+    "added_per_year": 32.252406892775994,
+    "added_per_year_ci95": [
+     18.790528570774605,
+     71.82795844368431
+    ],
+    "total_per_year": 1043.3025994853688
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 2295.0,
+    "added_count": 479.9971962896264,
+    "total_count": 2774.9971962896266,
+    "coded_share": 0.051685696912370786,
+    "augmented_share": 0.06249571416998011,
+    "relative_increase": 0.20914910513709212,
+    "added_count_ci95": [
+     411.6553621552153,
+     712.6679818540465
+    ],
+    "coded_per_year": 8530.736,
+    "added_per_year": 1784.1958005607767,
+    "added_per_year_ci95": [
+     1530.1626220176615,
+     2649.0555158386323
+    ],
+    "total_per_year": 10314.931800560778
+   }
+  },
+  "drug_involved": {
+   "coded_field": "coded_drug",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.5230511147264904,
+   "narrative_only_confirmed_ci95": [
+    0.01257911709342505,
+    0.9874208829065749
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 232.0,
+    "added_count": 7.6892078489463636,
+    "total_count": 239.68920784894635,
+    "coded_share": 0.24066390041493776,
+    "augmented_share": 0.24864025710471613,
+    "relative_increase": 0.03314313727994122,
+    "added_count_ci95": [
+     6.220459276857285,
+     10.004354045882675
+    ],
+    "coded_per_year": 862.3663407407408,
+    "added_per_year": 28.58152601677094,
+    "added_per_year_ci95": [
+     23.122046139268154,
+     37.18714737078736
+    ],
+    "total_per_year": 890.9478667575117
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 493.0,
+    "added_count": 268.40410918303803,
+    "total_count": 761.404109183038,
+    "coded_share": 0.011102853410805576,
+    "augmented_share": 0.017147582577371756,
+    "relative_increase": 0.5444302417505842,
+    "added_count_ci95": [
+     219.85558350597785,
+     354.2068691205076
+    ],
+    "coded_per_year": 1832.5284740740742,
+    "added_per_year": 997.6839201549775,
+    "added_per_year_ci95": [
+     817.2243751701315,
+     1316.6210413305457
+    ],
+    "total_per_year": 2830.212394229052
+   }
+  },
+  "fatigue": {
+   "coded_field": "coded_fatigue",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.885481724763804,
+   "narrative_only_confirmed_ci95": [
+    0.5158622513140327,
+    0.9791374745399076
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 9.0,
+    "added_count": 9.943110255227037,
+    "total_count": 18.943110255227037,
+    "coded_share": 0.00933609958506224,
+    "augmented_share": 0.01965052931040149,
+    "relative_increase": 1.1047900283585597,
+    "added_count_ci95": [
+     5.603829162305323,
+     12.695398713055411
+    ],
+    "coded_per_year": 33.45386666666667,
+    "added_per_year": 36.95949830337014,
+    "added_per_year_ci95": [
+     20.829972624282295,
+     47.19001953630304
+    ],
+    "total_per_year": 70.41336497003681
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 666.0,
+    "added_count": 244.94177614020356,
+    "total_count": 910.9417761402035,
+    "coded_share": 0.014998986554962502,
+    "augmented_share": 0.02051532049952038,
+    "relative_increase": 0.3677804446549603,
+    "added_count_ci95": [
+     213.14194302693693,
+     274.5409901719979
+    ],
+    "coded_per_year": 2475.5861333333337,
+    "added_per_year": 910.4721688989872,
+    "added_per_year_ci95": [
+     792.2691270108235,
+     1020.4952977498514
+    ],
+    "total_per_year": 3386.0583022323203
+   }
+  },
+  "animal_involved": {
+   "coded_field": "coded_animal",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": null,
+   "narrative_only_confirmed_ci95": null,
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 7.0,
+    "added_count": 1.8173383151611953,
+    "total_count": 8.817338315161194,
+    "coded_share": 0.007261410788381743,
+    "augmented_share": 0.009146616509503314,
+    "relative_increase": 0.2596197593087422,
+    "added_count_ci95": [
+     0.37650029946472424,
+     3.6783212917532535
+    ],
+    "coded_per_year": 26.019674074074075,
+    "added_per_year": 6.755221520403031,
+    "added_per_year_ci95": [
+     1.399487868694773,
+     13.672674450163829
+    ],
+    "total_per_year": 32.7748955944771
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 458.0,
+    "added_count": 168.21382954911485,
+    "total_count": 626.2138295491148,
+    "coded_share": 0.01031461838164088,
+    "augmented_share": 0.014102962177085216,
+    "relative_increase": 0.36727910381902806,
+    "added_count_ci95": [
+     136.92456581973732,
+     201.78883597463857
+    ],
+    "coded_per_year": 1702.430103703704,
+    "added_per_year": 625.2670028028314,
+    "added_per_year_ci95": [
+     508.9617964805241,
+     750.0685348352699
+    ],
+    "total_per_year": 2327.697106506535
+   }
+  },
+  "phone_use": {
+   "coded_field": "coded_phone",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.9015189867371014,
+   "narrative_only_confirmed_ci95": [
+    0.4734903291247935,
+    0.9968402764687481
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 6.0,
+    "added_count": 8.59287728942111,
+    "total_count": 14.59287728942111,
+    "coded_share": 0.006224066390041493,
+    "augmented_share": 0.015137839511847625,
+    "relative_increase": 1.4321462149035185,
+    "added_count_ci95": [
+     6.703844056653582,
+     9.740931139413435
+    ],
+    "coded_per_year": 22.302577777777778,
+    "added_per_year": 31.94055234703577,
+    "added_per_year_ci95": [
+     24.91883391393497,
+     36.20797906079095
+    ],
+    "total_per_year": 54.24313012481355
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 197.0,
+    "added_count": 358.9485517756938,
+    "total_count": 555.9485517756938,
+    "coded_share": 0.004436637164155575,
+    "augmented_share": 0.012520517797799557,
+    "relative_increase": 1.8220738668816943,
+    "added_count_ci95": [
+     293.605649754731,
+     409.3790815233116
+    ],
+    "coded_per_year": 732.2679703703704,
+    "added_per_year": 1334.2463323663508,
+    "added_per_year_ci95": [
+     1091.3604732749784,
+     1521.7014677114812
+    ],
+    "total_per_year": 2066.514302736721
+   }
+  },
+  "unbelted": {
+   "coded_field": "coded_unbelted",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.14634200697055216,
+   "narrative_only_confirmed_ci95": [
+    0.019206671982528466,
+    0.45447105567655766
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 263.0,
+    "added_count": 10.045905591496986,
+    "total_count": 273.045905591497,
+    "coded_share": 0.27282157676348545,
+    "augmented_share": 0.28324264065507987,
+    "relative_increase": 0.03819735966348664,
+    "added_count_ci95": [
+     8.671124790515442,
+     12.090960594483146
+    ],
+    "coded_per_year": 977.596325925926,
+    "added_per_year": 37.3415984670957,
+    "added_per_year_ci95": [
+     32.231405843547954,
+     44.94326484441777
+    ],
+    "total_per_year": 1014.9379243930217
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 1712.0,
+    "added_count": 282.2899633499262,
+    "total_count": 1994.2899633499262,
+    "coded_share": 0.038555953426570276,
+    "augmented_share": 0.04491340592639971,
+    "relative_increase": 0.1648889972838354,
+    "added_count_ci95": [
+     215.17181382235427,
+     382.772181645114
+    ],
+    "coded_per_year": 6363.66885925926,
+    "added_per_year": 1049.298977249628,
+    "added_per_year_ci95": [
+     799.8143522264293,
+     1422.8010587183066
+    ],
+    "total_per_year": 7412.967836508888
+   }
+  },
+  "hydroplane": {
+   "coded_field": "coded_hydro_proxy",
+   "proxy_only": true,
+   "narrative_only_confirmed_rate": 0.8776637143643098,
+   "narrative_only_confirmed_ci95": [
+    0.5549838829718047,
+    0.9974714214555382
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 20.0,
+    "added_count": 6.414934829127322,
+    "total_count": 26.414934829127322,
+    "coded_share": 0.02074688796680498,
+    "augmented_share": 0.02740138467751797,
+    "relative_increase": 0.3207467414563661,
+    "added_count_ci95": [
+     5.216154786345493,
+     8.678595376009378
+    ],
+    "coded_per_year": 74.34192592592593,
+    "added_per_year": 23.844930494331283,
+    "added_per_year_ci95": [
+     19.388949637233033,
+     32.25917472921862
+    ],
+    "total_per_year": 98.18685642025721
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 796.0,
+    "added_count": 310.44837741318156,
+    "total_count": 1106.4483774131816,
+    "coded_share": 0.017926716663288517,
+    "augmented_share": 0.02491832482970028,
+    "relative_increase": 0.39001052438841904,
+    "added_count_ci95": [
+     250.7888739528899,
+     386.50173431782184
+    ],
+    "coded_per_year": 2958.808651851852,
+    "added_per_year": 1153.966513873732,
+    "added_per_year_ci95": [
+     932.2063945226058,
+     1436.6641651448708
+    ],
+    "total_per_year": 4112.775165725584
+   }
+  },
+  "wrong_way": {
+   "coded_field": "coded_wrongway",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.2862631931091076,
+   "narrative_only_confirmed_ci95": [
+    0.13210287969809986,
+    0.5291916660085066
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 62.0,
+    "added_count": 12.3080964201721,
+    "total_count": 74.3080964201721,
+    "coded_share": 0.06431535269709543,
+    "augmented_share": 0.07708308757279264,
+    "relative_increase": 0.1985176841963242,
+    "added_count_ci95": [
+     8.861881893512813,
+     26.327605974431194
+    ],
+    "coded_per_year": 230.4599703703704,
+    "added_per_year": 45.750379617879425,
+    "added_per_year_ci95": [
+     32.94046836459169,
+     97.86224665790644
+    ],
+    "total_per_year": 276.21034998824985
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 415.0,
+    "added_count": 335.7378511517272,
+    "total_count": 750.7378511517272,
+    "coded_share": 0.009346215345809967,
+    "augmented_share": 0.016907367771360655,
+    "relative_increase": 0.8090068702451259,
+    "added_count_ci95": [
+     248.69921163068682,
+     750.7861440023603
+    ],
+    "coded_per_year": 1542.594962962963,
+    "added_per_year": 1247.9699230425626,
+    "added_per_year_ci95": [
+     924.4389184442348,
+     2790.7443951817513
+    ],
+    "total_per_year": 2790.5648860055258
+   }
+  },
+  "medical_episode": {
+   "coded_field": "coded_medical",
+   "proxy_only": false,
+   "narrative_only_confirmed_rate": 0.6031088211032334,
+   "narrative_only_confirmed_ci95": [
+    0.3513801106159917,
+    0.8724015701408403
+   ],
+   "fatal": {
+    "n_severity": 964,
+    "coded_count": 8.0,
+    "added_count": 10.84898889909944,
+    "total_count": 18.84898889909944,
+    "coded_share": 0.008298755186721992,
+    "augmented_share": 0.01955289304885834,
+    "relative_increase": 1.35612361238743,
+    "added_count_ci95": [
+     8.835688863766647,
+     14.125818921251291
+    ],
+    "coded_per_year": 29.736770370370373,
+    "added_per_year": 40.32673645540217,
+    "added_per_year_ci95": [
+     32.843106350733436,
+     52.507029194335324
+    ],
+    "total_per_year": 70.06350682577254
+   },
+   "injury_or_fatal": {
+    "n_severity": 44403,
+    "coded_count": 516.0,
+    "added_count": 442.1827200580553,
+    "total_count": 958.1827200580553,
+    "coded_share": 0.011620836429970948,
+    "augmented_share": 0.021579233836859116,
+    "relative_increase": 0.8569432559264637,
+    "added_count_ci95": [
+     368.7865977571151,
+     578.4900158667281
+    ],
+    "coded_per_year": 1918.021688888889,
+    "added_per_year": 1643.6357510140194,
+    "added_per_year_ci95": [
+     1370.8152966466846,
+     2150.3030954226006
+    ],
+    "total_per_year": 3561.6574399029087
+   }
+  }
+ },
+ "ranking": {
+  "fatal": {
+   "coded_only": [
+    "alcohol_involved",
+    "unbelted",
+    "drug_involved",
+    "wrong_way",
+    "hydroplane",
+    "fatigue",
+    "medical_episode",
+    "animal_involved",
+    "phone_use"
+   ],
+   "augmented": [
+    "alcohol_involved",
+    "unbelted",
+    "drug_involved",
+    "wrong_way",
+    "hydroplane",
+    "fatigue",
+    "medical_episode",
+    "phone_use",
+    "animal_involved"
+   ],
+   "n_variables_that_move": 2,
+   "variables_that_move": [
+    "animal_involved",
+    "phone_use"
+   ],
+   "largest_rank_change": 1
+  },
+  "injury_or_fatal": {
+   "coded_only": [
+    "alcohol_involved",
+    "unbelted",
+    "hydroplane",
+    "fatigue",
+    "medical_episode",
+    "drug_involved",
+    "animal_involved",
+    "wrong_way",
+    "phone_use"
+   ],
+   "augmented": [
+    "alcohol_involved",
+    "unbelted",
+    "hydroplane",
+    "medical_episode",
+    "fatigue",
+    "drug_involved",
+    "wrong_way",
+    "animal_involved",
+    "phone_use"
+   ],
+   "n_variables_that_move": 4,
+   "variables_that_move": [
+    "fatigue",
+    "medical_episode",
+    "animal_involved",
+    "wrong_way"
+   ],
+   "largest_rank_change": 1
+  }
+ }
+}

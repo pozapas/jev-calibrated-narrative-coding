@@ -11,7 +11,7 @@ import sys
 import time
 from pathlib import Path
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 SRC = ROOT / "paper1" / "src"
 LOGS = ROOT / "paper1" / "logs"
 DATA = ROOT / "paper1" / "data"

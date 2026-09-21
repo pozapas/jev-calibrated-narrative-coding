@@ -1,0 +1,21 @@
+equation,quantity,script (\texttt{paper1/src/}),function,result file (\texttt{paper1/data/})
+Eq.~(\ref{eq:gate}),gating operator and no-match override,\texttt{s06\_flatten.py},\texttt{flatten},\texttt{stage2\_flat.parquet}
+Eq.~(\ref{eq:leak}),leakage rate $\lambda_v$,\texttt{s06\_flatten.py},\texttt{flatten},\texttt{stage2\_leakage.json}
+Eq.~(\ref{eq:ht}),H\'ajek ratio with calibration weights $w_i$,\texttt{s05b\_design\_weights.py; s17\_gold\_analysis.py},"\texttt{design\_weights; wrate, block}",\texttt{gold\_design\_weights.csv; gold\_analysis.json}
+Eq.~(\ref{eq:htvar}),stratified cluster bootstrap interval,\texttt{s07\_metrics.py},\texttt{cluster\_bootstrap; weighted\_bootstrap},\texttt{analysis.json; gold\_analysis.json}
+Eq.~(\ref{eq:brier}),Brier score and Murphy decomposition,\texttt{s07\_metrics.py},"\texttt{brier, brier\_decomposition}",\texttt{analysis.json}
+Eq.~(\ref{eq:ece}),"expected and maximum calibration error, equal-mass bins",\texttt{s07\_metrics.py},"\texttt{ece, mce, equal\_mass\_bins}",\texttt{analysis.json}
+Eq.~(\ref{eq:ecegrid}),exact calibration error on the output grid,\texttt{s07\_metrics.py},"\texttt{ece\_discrete, discrete\_reliability}",\texttt{analysis.json; gold\_analysis.json}
+Eq.~(\ref{eq:cox}),calibration slope and intercept,\texttt{s07\_metrics.py},\texttt{calibration\_slope},\texttt{analysis.json; gold\_analysis.json}
+Eq.~(\ref{eq:spieg}),Spiegelhalter statistic,\texttt{s07\_metrics.py},\texttt{spiegelhalter\_z},\texttt{analysis.json; gold\_analysis.json}
+Eq.~(\ref{eq:floor}),resolution-floor bound,\texttt{s07\_metrics.py},\texttt{resolution\_floor\_report},\texttt{analysis.json}
+Eq.~(\ref{eq:prec}),precision and coverage over flagged records,\texttt{s07\_metrics.py},"\texttt{precision\_coverage, coverage\_at\_precision}",\texttt{analysis.json}
+Eq.~(\ref{eq:budget}),"review budget $H(\pi^*)$, cross-fitted",\texttt{s07\_metrics.py; s17\_gold\_analysis.py},\texttt{positive\_review\_budget; held\_out\_budget},\texttt{analysis.json; gold\_analysis.json}
+Eq.~(\ref{eq:riskcov}),risk--coverage curve and area,\texttt{s07\_metrics.py},"\texttt{risk\_coverage, aurc, coverage\_at\_risk}",\texttt{analysis.json}
+Eq.~(\ref{eq:noise}),one-sided reference-noise bound,\texttt{s17\_gold\_analysis.py},\texttt{narrative\_only},\texttt{gold\_analysis.json}
+Eq.~(\ref{eq:cost}),token cost model,\texttt{s08\_cost\_model.py},\texttt{main},\texttt{cost\_model.json}
+Eq.~(\ref{eq:twostage}),two-stage cost and break-even fraction,\texttt{s08\_cost\_model.py; pricing.py},\texttt{main; jev\_cost\_per\_1k},\texttt{cost\_model.json}
+Eq.~(\ref{eq:platt}),"Platt and isotonic recalibration, split over narratives",\texttt{s17\_gold\_analysis.py},\texttt{recalibration},\texttt{gold\_analysis.json}
+Eq.~(\ref{eq:kappa}),"Cohen's kappa, weighted against the reference set",\texttt{s07\_metrics.py; s16\_gold\_ingest.py},\texttt{cohen\_kappa},\texttt{gold\_reliability.json; gold\_analysis.json}
+Eq.~(\ref{eq:cp}),Clopper--Pearson interval,\texttt{s07\_metrics.py},\texttt{clopper\_pearson},\texttt{analysis.json}
+Eq.~(\ref{eq:mcnemar}),McNemar test,\texttt{s07\_metrics.py},\texttt{mcnemar},\texttt{analysis.json}

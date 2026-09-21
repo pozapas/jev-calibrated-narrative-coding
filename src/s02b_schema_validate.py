@@ -19,7 +19,7 @@ import numpy as np
 import jev_runner as J
 import s07_metrics as M
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 OUT = DATA / "schema_validate_v1_1.jsonl"
 SCHEMA = ROOT / "schemas" / "crash_factors_v1_1.json"

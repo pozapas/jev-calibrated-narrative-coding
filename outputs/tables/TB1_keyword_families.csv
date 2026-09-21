@@ -1,0 +1,14 @@
+family,narrative variable,scope,regular expression (case-insensitive)
+preg,preg\_mentioned,all narratives,\texttt{pregnan|\allowbreak{}unborn|\allowbreak{}fetus|\allowbreak{}fetal|\allowbreak{}trimester|\allowbreak{}weeks along|\allowbreak{}miscarr}
+medical,medical\_episode,all narratives,\texttt{seizure|\allowbreak{}diabet|\allowbreak{}passed out|\allowbreak{}blacked out|\allowbreak{}fainted|\allowbreak{}heart attack|\allowbreak{}stroke|\allowbreak{}unconscious|\allowbreak{}medical (episode|\allowbreak{}condition|\allowbreak{}emergency|\allowbreak{}event)|\allowbreak{}dementia|\allowbreak{}alzheimer}
+drug,drug\_involved,all narratives,\texttt{marijuana|\allowbreak{}methamphetamine|\allowbreak{}meth |\allowbreak{}cocaine|\allowbreak{}fentanyl|\allowbreak{}xanax|\allowbreak{}heroin|\allowbreak{}pills|\allowbreak{}narcotic|\allowbreak{}controlled substance|\allowbreak{}under the influence of (a )?drug}
+hydro,hydroplane,all narratives,\texttt{hydroplan}
+defect,vehicle\_defect,all narratives,\texttt{tire blow|\allowbreak{}blowout|\allowbreak{}blew out|\allowbreak{}brake fail|\allowbreak{}brakes fail|\allowbreak{}mechanical fail|\allowbreak{}steering fail}
+rage,aggression,all narratives,\texttt{road rage|\allowbreak{}angry|\allowbreak{}anger|\allowbreak{}enraged|\allowbreak{}argument|\allowbreak{}fight|\allowbreak{}confront|\allowbreak{}brandish|\allowbreak{}assault}
+fatigue,fatigue,all narratives,\texttt{fell asleep|\allowbreak{}asleep|\allowbreak{}drowsy|\allowbreak{}fatigue|\allowbreak{}nodded off}
+intent,intentional,all narratives,\texttt{suicid|\allowbreak{}intentional|\allowbreak{}deliberate|\allowbreak{}on purpose|\allowbreak{}rammed}
+wrongway,wrong\_way,all narratives,\texttt{wrong way|\allowbreak{}wrong direction}
+animal,animal\_involved,all narratives,\texttt{deer|\allowbreak{}hog|\allowbreak{}cow|\allowbreak{}horse|\allowbreak{}dog|\allowbreak{}coyote|\allowbreak{}cattle}
+alcohol,alcohol\_involved,working set,\texttt{\textbackslash{}balcohol|\allowbreak{}intoxicat|\allowbreak{}\textbackslash{}bdwi\textbackslash{}b|\allowbreak{}\textbackslash{}bdui\textbackslash{}b|\allowbreak{}drunk|\allowbreak{}\textbackslash{}bbac\textbackslash{}b|\allowbreak{}been drinking|\allowbreak{}odor of an alcoholic|\allowbreak{}open container|\allowbreak{}breathalyz|\allowbreak{}field sobriety}
+phone,phone\_use,working set,\texttt{cell ?phone|\allowbreak{}cellular|\allowbreak{}mobile (phone|\allowbreak{}device)|\allowbreak{}texting|\allowbreak{}\textbackslash{}btext(ed|\allowbreak{}ing)?\textbackslash{}b|\allowbreak{}on (the|\allowbreak{}his|\allowbreak{}her|\allowbreak{}their) phone|\allowbreak{}looking at (his|\allowbreak{}her|\allowbreak{}their) phone}
+unbelted,unbelted,working set,\texttt{not wearing (a )?(seat ?belt|\allowbreak{}safety belt)|\allowbreak{}unbelted|\allowbreak{}unrestrained|\allowbreak{}no (seat ?belt|\allowbreak{}restraint)|\allowbreak{}seat ?belt was not|\allowbreak{}without a seat ?belt}

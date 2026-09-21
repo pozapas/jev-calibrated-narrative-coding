@@ -1,17 +1,32 @@
-\begin{table}[!htbp]
+\begin{table}[pos=!htbp]
 \centering
-\footnotesize
-\caption{Post-hoc recalibration on the gold set, split-half validated.}
+\rmfamily\small
+\setlength{\tabcolsep}{3.0pt}
+\caption{Post-hoc recalibration on the human reference set, validated across narrative splits.}
 \label{tab:recal}
-\begin{tabular}{lrr}
+\begin{threeparttable}
+\begin{tabular}{l>{\raggedright\arraybackslash}p{112.9pt}r>{\raggedleft\arraybackslash}p{90.2pt}>{\raggedleft\arraybackslash}p{59.5pt}rr}
 \toprule
-\jevhead{mapping} & \jevhead{ECE} & \jevhead{Brier} \\
+\jevhead{scope} & \jevheadp{mapping} & \jevhead{$n$} & \jevheadp{ECE, held out} & \jevheadp{Brier} & \jevhead{slope} & \jevhead{intercept} \\
 \midrule
-none (raw model output) & 0.0628 & 0.0299 \\
-Platt (logistic on the logit) & 0.0313 & 0.0246 \\
-isotonic & 0.0120 & 0.0253 \\
+pooled & none (raw model output) & 2{,}416 & 0.0231 [0.0212, 0.0244] & 0.0045 & 1.63 & -0.82 \\
+pooled & Platt (logistic on the logit) & 2{,}416 & 0.0069 [0.0045, 0.0112] & 0.0036 & 0.97 & -0.06 \\
+pooled & isotonic & 2{,}416 & 0.0069 [0.0045, 0.0111] & 0.0036 & 0.77 & -0.38 \\
+animal\_involved & raw / Platt & 129 & 0.0146 / 0.0007 & 0.0006 / 0.0005 & -- & 0.10 \\
+fatigue & raw / Platt & 120 & 0.0159 / 0.0008 & 0.0008 / 0.0004 & -- & 0.00 \\
+transported & raw / Platt & 146 & 0.0240 / 0.0014 & 0.0020 / 0.0008 & -- & -0.31 \\
+hydroplane & raw / Platt & 130 & 0.0169 / 0.0020 & 0.0013 / 0.0015 & 0.79 & -0.41 \\
+medical\_episode & raw / Platt & 164 & 0.0260 / 0.0025 & 0.0028 / 0.0015 & 0.92 & -0.11 \\
+aggression & raw / Platt & 165 & 0.0290 / 0.0034 & 0.0037 / 0.0018 & 0.93 & -0.06 \\
+alcohol\_involved & raw / Platt & 140 & 0.0261 / 0.0053 & 0.0046 / 0.0030 & 0.90 & 0.08 \\
+wrong\_way & raw / Platt & 183 & 0.0462 / 0.0103 & 0.0096 / 0.0059 & 0.96 & -0.11 \\
+hit\_and\_run & raw / Platt & 205 & 0.0349 / 0.0114 & 0.0074 / 0.0059 & 0.93 & -0.05 \\
+witness\_cited & raw / Platt & 206 & 0.0549 / 0.0194 & 0.0119 / 0.0108 & 0.96 & -0.02 \\
+vehicle\_defect & raw / Platt & 132 & 0.0324 / 0.0339 & 0.0173 / 0.0185 & 0.62 & -1.20 \\
 \bottomrule
 \end{tabular}
-\par\vspace{5pt}
-\begin{minipage}{0.86\textwidth}\footnotesize Each mapping is fitted on one half of the gold set and scored on the other, both ways; an in-sample recalibration would be circular. ``none'' uses the same half-sample protocol, so it is comparable to the rows below it but not to the full-sample ECE of Table~\ref{tab:gold}. Isotonic wins on ECE, Platt on Brier: the calibration gain costs some sharpness.\end{minipage}
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~Each mapping is fitted on one half of the narratives and scored on the other, both ways and over \RecalRepeats{} repeats, because an in-sample fit would be circular and a split over pairs would place one narrative on both sides of it. The row ``none'' uses the same protocol, so it is comparable to the rows below but not to the full-sample ECE of Table~\ref{tab:gold}. The Platt map is unpenalised, fitting an intercept and a slope. The pooled block is one map over all variables; the per-variable block is what an analyst deploys, and variables with fewer than \RecalMinPositives{} positive labels are omitted from it.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}

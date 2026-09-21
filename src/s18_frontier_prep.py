@@ -22,7 +22,7 @@ import json
 import math
 from pathlib import Path
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 TASKS = ROOT / "tool-gold" / "data" / "gold_tasks.json"
 OUT = ROOT / "paper1" / "data" / "frontier"
 BATCH_SIZE = 20

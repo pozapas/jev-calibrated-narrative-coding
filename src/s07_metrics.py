@@ -10,6 +10,7 @@ perfectly calibrated Bernoulli draws must give ECE ~ 0 and calibration slope ~ 1
 """
 from __future__ import annotations
 import numpy as np
+import pandas as pd
 from scipy import stats
 from scipy.optimize import minimize
 
@@ -295,6 +296,75 @@ def weighted_bootstrap(fn, *arrays, w=None, strata=None, B: int = 1000, seed: in
             "se": float(out.std(ddof=1)), "n_boot": int(out.size)}
 
 
+def cluster_bootstrap(fn, df, cluster: str = "Crash_ID", strata=None, B: int = 1000,
+                      seed: int = 42, alpha: float = 0.05):
+    """Stratified cluster bootstrap (WP2): the resampling unit is the narrative, not the row.
+
+    One narrative supplies up to sixteen judgments and they are not independent, because a
+    narrative that is terse, or that a coder read strictly, moves every one of its pairs the
+    same way. Resampling rows treats those judgments as sixteen observations and reports an
+    interval that is too narrow. This resamples narratives with replacement and carries all of
+    a narrative's pairs with it, so the interval reflects the number of narratives the
+    reference set actually holds.
+
+    Stratification follows the draw route recorded by the frame, which is the cell the greedy
+    rule drew the narrative to fill, rather than a post-hoc probability bin. `fn` takes the
+    resampled frame and returns a float; the pair weights travel on the frame and are held
+    fixed across replicates, which is conservative because recalibrating inside each replicate
+    would remove the part of the variance the calibration totals already fix.
+
+    The bias shift is the one `weighted_bootstrap` applies and is described there; the raw
+    percentile bounds are returned beside the shifted ones.
+    """
+    rng = np.random.default_rng(seed)
+    ids = df[cluster].to_numpy()
+    uniq, inv = np.unique(ids, return_inverse=True)
+    rows_of = [np.flatnonzero(inv == k) for k in range(uniq.size)]
+
+    if strata is None:
+        groups = [np.arange(uniq.size)]
+    else:
+        # `strata` names a column that is constant within a cluster; one value per cluster
+        col = df[strata].to_numpy()
+        s = np.array([col[rows_of[k]][0] for k in range(uniq.size)])
+        groups = [np.flatnonzero(s == u) for u in pd.unique(pd.Series(s))]
+
+    p0 = fn(df)
+    scalar = not isinstance(p0, dict)
+    keys = ["value"] if scalar else list(p0.keys())
+    point = {"value": float(p0)} if scalar else {k: float(v) for k, v in p0.items()}
+
+    draws = {k: np.full(B, np.nan) for k in keys}
+    for b in range(B):
+        pick = np.concatenate([rng.choice(gidx, size=gidx.size, replace=True)
+                               for gidx in groups])
+        take = np.concatenate([rows_of[k] for k in pick])
+        try:
+            r = fn(df.iloc[take])
+            r = {"value": float(r)} if scalar else r
+            for k in keys:
+                v = r.get(k, np.nan)
+                draws[k][b] = float(v) if v is not None else np.nan
+        except Exception:
+            pass
+
+    def summarize(k):
+        o = draws[k][np.isfinite(draws[k])]
+        if o.size < 2:
+            return {"point": point[k], "lo": float("nan"), "hi": float("nan"),
+                    "n_boot": int(o.size)}
+        lo, hi = np.quantile(o, [alpha / 2, 1 - alpha / 2])
+        bias = float(o.mean()) - point[k]
+        return {"point": point[k], "lo": float(lo - bias), "hi": float(hi - bias),
+                "lo_raw": float(lo), "hi_raw": float(hi), "bias": bias,
+                "se": float(o.std(ddof=1)), "n_boot": int(o.size)}
+
+    meta = {"n_clusters": int(uniq.size), "unit": cluster, "B": int(B)}
+    if scalar:
+        return {**summarize("value"), **meta}
+    return {**{k: summarize(k) for k in keys}, "_meta": meta}
+
+
 def clopper_pearson(k: int, n: int, alpha: float = 0.05):
     """Exact binomial CI (§5.8) for prevalences and confirmation rates."""
     if n == 0:
@@ -304,13 +374,24 @@ def clopper_pearson(k: int, n: int, alpha: float = 0.05):
     return lo, hi
 
 
-def cohen_kappa(a, b) -> float:
-    """Cohen (1960) kappa for two label vectors."""
+def cohen_kappa(a, b, w=None) -> float:
+    """Cohen (1960) kappa for two label vectors, weighted to the population when `w` is given.
+
+    The reference set is a calibrated sample and its weights span two orders of magnitude, so
+    an unweighted kappa describes the labelled sample rather than the population it stands
+    for. Passing the pair weights makes both the observed and the chance agreement
+    population quantities, which is what the reported statistic has to be.
+    """
     a, b = np.asarray(a), np.asarray(b)
     cats = np.unique(np.concatenate([a, b]))
-    n = a.size
-    po = float(np.mean(a == b))
-    pe = float(sum((np.mean(a == c) * np.mean(b == c)) for c in cats))
+    if w is None:
+        w = np.ones(a.size, dtype=float)
+    w = np.asarray(w, dtype=float)
+    tot = w.sum()
+    if tot <= 0:
+        return float("nan")
+    po = float(w[a == b].sum() / tot)
+    pe = float(sum((w[a == c].sum() / tot) * (w[b == c].sum() / tot) for c in cats))
     return float("nan") if pe >= 1 - EPS else (po - pe) / (1 - pe)
 
 

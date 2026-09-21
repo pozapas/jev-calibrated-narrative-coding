@@ -40,7 +40,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent / "s09_figures"))
 import style as S
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # project root, relative to this file (was a hard-coded D: path)
 DATA = ROOT / "paper1" / "data"
 OUT = ROOT / "paper1" / "outputs" / "figures"
 DRAWIO_EXE = Path(r"C:/Program Files/draw.io/draw.io.exe")
@@ -195,7 +195,9 @@ def build() -> Diagram:
     G = json.loads((DATA / "gold" / "gold_analysis.json").read_text())
     c, run, P = a["corpus"], a["run"], G["pooled"]
     q27 = cm["per_question_set"]["27"]
-    b90 = P["review_budget_90"]
+    # WP4. The budget is now cross-fitted, so the figure prints the held-out value that the
+    # results report rather than the in-sample one the old key held.
+    b90 = P["held_out_budget_90"]["review_budget_heldout_mean"]
 
     # Real returned probabilities, so the strip shows the model's actual output grid rather
     # than an invented gradient. Quantiles rather than a random draw so it is reproducible.
@@ -245,7 +247,7 @@ def build() -> Diagram:
 
     d.block("n4", 836, BY, 206, BH, FILL["orange"], "Recalibration",
             size=22, sub=("Platt, fitted out of fold",
-                          "isotonic is the achievable floor"))
+                          "two parameters, per variable"))
 
     cal_p = list(platt.predict_proba(
         M._logit(np.array(raw_p)).reshape(-1, 1))[:, 1])
@@ -281,8 +283,8 @@ def build() -> Diagram:
     d.dashed("stage_g", 36, BY - 26, 684, BH + 22)
     d.text("stage_l",
            f"Stage 1 screens 10 questions and sizes the Stage 2 frame: "
-           f"{run['n_stage2_random']:,} random plus rare-class enrichment, "
-           f"inverse-probability weighted.",
+           f"{run['n_stage2_random']:,} random plus rare-class enrichment. "
+           f"The reference set drawn from it is calibration-weighted.",
            39, BY + BH + 28, 498, size=13, align="left")
 
     # ------------------------------------------------------------ the two references
@@ -295,11 +297,11 @@ def build() -> Diagram:
     d.text("r1x", f"agreement, {run['n_stage2_random']:,} crashes", 940, RY + 14, 250,
            size=14, align="left")
 
-    d.block("r2", 596, RY + 74, 196, 54, FILL["orange"], "Human gold set", size=16)
+    d.block("r2", 596, RY + 74, 196, 54, FILL["orange"], "Human reference", size=16)
     d.strip("r2t", 812, RY + 91, [1] * 6, cols=6, size=18, gap=4,
             fill=lambda _i: TOK["human"])
-    d.text("r2x", f"accuracy, {G['n_usable']:,} labels, 3 blinded coders", 940, RY + 88,
-           280, size=14, align="left")
+    d.text("r2x", f"what the narrative states, {G['n_usable']:,} labels, 3 blinded coders",
+           940, RY + 88, 280, size=14, align="left")
 
     d.elbow("e_r1", [(792, RY + 27), (960, RY + 27), (960, BY + BH)], "#9AA7B4", 2.0,
             dashed=True)

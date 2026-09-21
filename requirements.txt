@@ -1,0 +1,24 @@
+# Paper 1 pipeline dependencies.
+#
+# Pinned to the versions the reported run used. The analysis scripts are pure NumPy, pandas,
+# SciPy and scikit-learn; only the two runner scripts need the vendor SDK and the environment
+# loader, and every other script imports and runs without them.
+#
+# Python 3.11 or later. The reported run used 3.11.15 on Windows; the figures and tables were
+# produced under the same interpreter.
+
+numpy==2.4.6
+pandas==3.0.5
+pyarrow==25.0.1
+scipy==1.17.1
+scikit-learn==1.9.0
+matplotlib==3.11.1
+
+# Needed only by src/jev_runner.py, src/s02_screen.py, src/s03_full.py, src/s02b_schema_validate.py,
+# src/s08_cost_model.py and src/s15_gold_export.py, which are the scripts that call the model.
+# Everything downstream of data/ runs without them.
+python-dotenv>=1.0
+typesafe-sdk>=0.5
+
+# The coded-field join in src/s04_join_fst.R needs R with the fst and data.table packages.
+# It is not a Python dependency and is not installed by this file.

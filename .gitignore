@@ -37,3 +37,7 @@ manuscript/*.abs
 __pycache__/
 *.pyc
 .venv/
+
+# The manuscript itself is not published here.
+manuscript/
+*.tex.bak

@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # project root, relative to this file (was a hard-coded D: path)
 DATA = ROOT / "paper1" / "data"
 TAU_GATE = 0.5
 

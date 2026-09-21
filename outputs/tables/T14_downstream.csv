@@ -1,0 +1,10 @@
+factor,coded field,coded\newline per year,added by narratives\newline per year,95\% interval,increase \%,narrative-only flags\newline confirmed
+alcohol\_involved,coded\_alcohol,"8{,}531","1{,}784","[1{,}530, 2{,}649]",21,0.71
+medical\_episode,coded\_medical,"1{,}918","1{,}644","[1{,}371, 2{,}150]",86,0.60
+phone\_use,coded\_phone,732,"1{,}334","[1{,}091, 1{,}522]",182,0.90
+wrong\_way,coded\_wrongway,"1{,}543","1{,}248","[924, 2{,}791]",81,0.29
+hydroplane$^{\dagger}$,coded\_hydro\_proxy,"2{,}959","1{,}154","[932, 1{,}437]",39,0.88
+unbelted,coded\_unbelted,"6{,}364","1{,}049","[800, 1{,}423]",16,0.15
+drug\_involved,coded\_drug,"1{,}833",998,"[817, 1{,}317]",54,0.52
+fatigue,coded\_fatigue,"2{,}476",910,"[792, 1{,}020]",37,0.89
+animal\_involved,coded\_animal,"1{,}702",625,"[509, 750]",37,--

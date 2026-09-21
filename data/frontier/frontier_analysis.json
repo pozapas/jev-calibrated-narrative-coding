@@ -5,531 +5,2169 @@
  "jev": {
   "pooled": {
    "n": 2416,
-   "base_rate_weighted": 0.17712490159011174,
-   "base_rate_unweighted": 0.1734271523178808,
-   "flagged_rate_weighted": 0.1919362069819143,
-   "precision": 0.8564925156107384,
-   "recall": 0.9281130054493737,
-   "f1": 0.8908656097131968,
-   "accuracy_weighted": 0.9597227409374203,
-   "cohens_kappa": 0.850563034556382,
-   "ece": 0.05564571728208488,
-   "ece_ci95": [
-    0.05071642843526628,
-    0.060232666590192
-   ],
-   "brier": 0.029870035237687654,
-   "brier_skill_score": 0.7950621418729267,
-   "calibration_slope": 1.6307638199695509,
-   "calibration_slope_raw": 1.6307638199695509,
+   "n_narratives": 400,
+   "n_effective": 1259.844275220099,
+   "base_rate_weighted": 0.026606675253090167,
+   "flagged_rate_weighted": 0.026987018972518838,
+   "precision": 0.9018428160246856,
+   "recall": 0.9147347030313877,
+   "f1": 0.908243013957355,
+   "accuracy_weighted": 0.995082404146967,
+   "cohens_kappa_weighted": 0.9057166445417706,
+   "ece": 0.023051356185489286,
+   "brier": 0.004464763409720663,
+   "expected_p_weighted": 0.047867275237267505,
+   "ci95": {
+    "base_rate_weighted": [
+     0.02364478368329414,
+     0.029886485757729928
+    ],
+    "flagged_rate_weighted": [
+     0.02436600808521288,
+     0.02992025294998749
+    ],
+    "precision": [
+     0.8770189551735572,
+     0.9258385064934037
+    ],
+    "recall": [
+     0.8470889734575571,
+     0.9596261601002437
+    ],
+    "f1": [
+     0.8707747816103635,
+     0.9363879628576651
+    ],
+    "accuracy_weighted": [
+     0.9928968649557806,
+     0.9966275726505547
+    ],
+    "cohens_kappa_weighted": [
+     0.8672288145533747,
+     0.9346543498065378
+    ],
+    "ece": [
+     0.02120893875511378,
+     0.024544381135899348
+    ],
+    "brier": [
+     0.0032727181423047027,
+     0.0063549397822357185
+    ],
+    "expected_p_weighted": [
+     0.04517137105863768,
+     0.050758861163303255
+    ]
+   },
+   "ci95_raw": {
+    "base_rate_weighted": [
+     0.023695194226688778,
+     0.029936896301124567
+    ],
+    "flagged_rate_weighted": [
+     0.0243377030020684,
+     0.02989194786684301
+    ],
+    "precision": [
+     0.8773185583883333,
+     0.9261381097081798
+    ],
+    "recall": [
+     0.8457116718871549,
+     0.9582488585298415
+    ],
+    "f1": [
+     0.8699720760462781,
+     0.9355852572935798
+    ],
+    "accuracy_weighted": [
+     0.992845270590931,
+     0.9965759782857051
+    ],
+    "cohens_kappa_weighted": [
+     0.8664000542684204,
+     0.9338255895215835
+    ],
+    "ece": [
+     0.02197352262484773,
+     0.0253089650056333
+    ],
+    "brier": [
+     0.0033245306786203865,
+     0.006406752318551402
+    ],
+    "expected_p_weighted": [
+     0.04514511916840001,
+     0.05073260927306558
+    ]
+   },
+   "cohens_kappa_unweighted": 0.850563034556382,
+   "brier_skill_score": 0.827607059370574,
+   "calibration_slope": 1.634042476721082,
+   "calibration_slope_raw": 1.634042476721082,
    "separated": false,
-   "calibration_intercept": -0.9557108707873783,
-   "spiegelhalter_z": -8.209429523480146,
-   "expected_p_weighted": 0.22111197344205052,
+   "calibration_intercept": -0.8228886827642099,
+   "spiegelhalter_z": -5.274100566370772,
+   "mean_p_minus_prevalence": 0.02126059998417734,
    "base_rate_below_grid_floor": false,
-   "aurc": 0.0032606866431194583,
-   "excess_aurc": 0.0016384290455252889,
-   "review_budget_90": 0.08186285218496969,
-   "review_budget_95": 0.17271947488130956,
-   "n_variables": 16
+   "aurc": 0.0002456110553986296,
+   "excess_aurc": 0.00022142830642485695,
+   "review_budget_90_insample": 0.0,
+   "review_budget_95_insample": 0.10111998870720518,
+   "ece_ci95": [
+    0.02120893875511378,
+    0.024544381135899348
+   ],
+   "cohens_kappa": 0.9057166445417706,
+   "n_variables": 16,
+   "held_out_budget_90": {
+    "target_precision": 0.9,
+    "n_splits": 100,
+    "n_splits_with_no_feasible_threshold": 0,
+    "coverage_heldout_mean": 0.9924476482723296,
+    "coverage_heldout_sd": 0.013307751126883873,
+    "review_budget_heldout_mean": 0.007552351727670437,
+    "review_budget_heldout_p90": 0.029776650864864362,
+    "precision_heldout_mean": 0.9060517381979812,
+    "precision_heldout_lcb95": 0.8444405834645272,
+    "precision_lcb_note": "Clopper-Pearson at Kish's effective accepted count, approximate because that count is estimated",
+    "threshold_median": 0.5,
+    "threshold_iqr": [
+     0.5,
+     0.53
+    ],
+    "coverage_insample": 1.0,
+    "review_budget_insample": 0.0,
+    "precision_insample": 0.9018428160246856,
+    "threshold_insample": 0.5,
+    "optimism": 0.007552351727670437
+   },
+   "held_out_budget_95": {
+    "target_precision": 0.95,
+    "n_splits": 100,
+    "n_splits_with_no_feasible_threshold": 0,
+    "coverage_heldout_mean": 0.9000520600346359,
+    "coverage_heldout_sd": 0.024646169588830834,
+    "review_budget_heldout_mean": 0.09994793996536411,
+    "review_budget_heldout_p90": 0.12690923301938983,
+    "precision_heldout_mean": 0.9505057965957278,
+    "precision_heldout_lcb95": 0.8945652714276234,
+    "precision_lcb_note": "Clopper-Pearson at Kish's effective accepted count, approximate because that count is estimated",
+    "threshold_median": 0.69,
+    "threshold_iqr": [
+     0.6775,
+     0.71
+    ],
+    "coverage_insample": 0.8988800112927948,
+    "review_budget_insample": 0.10111998870720518,
+    "precision_insample": 0.9504422197760464,
+    "threshold_insample": 0.69,
+    "optimism": -0.0011720487418410697
+   },
+   "spiegelhalter": {
+    "z": -5.274100566370772,
+    "bootstrap_se": 0.22932733490205182,
+    "p_value_cluster": 0.0,
+    "ci95": [
+     -5.593342053555007,
+     -4.751081563172985
+    ],
+    "n_clusters": 400
+   }
   }
  },
  "arms": {
   "claude-fable-5-1": {
    "pooled": {
     "n": 2416,
-    "base_rate_weighted": 0.17712490159011174,
-    "base_rate_unweighted": 0.1734271523178808,
-    "flagged_rate_weighted": 0.1780817171242608,
-    "precision": 0.9560154746346177,
-    "recall": 0.961179799067859,
-    "f1": 0.9585906813138402,
-    "accuracy_weighted": 0.9852911359262234,
-    "cohens_kappa": 0.9468340216584511,
-    "ece": 0.04656694845280416,
-    "ece_ci95": [
-     0.04330097109292413,
-     0.049697359192498465
-    ],
-    "brier": 0.013905190338932396,
-    "brier_skill_score": 0.9045967002638634,
-    "calibration_slope": 2.145268336912186,
-    "calibration_slope_raw": 2.145268336912186,
+    "n_narratives": 400,
+    "n_effective": 1259.844275220099,
+    "base_rate_weighted": 0.026606675253090167,
+    "flagged_rate_weighted": 0.027087301018071372,
+    "precision": 0.9587834147937905,
+    "recall": 0.9761029786928176,
+    "f1": 0.9673656812636711,
+    "accuracy_weighted": 0.9982477336641462,
+    "cohens_kappa_weighted": 0.9664654517813395,
+    "ece": 0.028152415753526592,
+    "brier": 0.0025377266900476203,
+    "expected_p_weighted": 0.0505491249044625,
+    "ci95": {
+     "base_rate_weighted": [
+      0.02364478368329414,
+      0.029886485757729928
+     ],
+     "flagged_rate_weighted": [
+      0.024145924185692884,
+      0.03055181892457412
+     ],
+     "precision": [
+      0.9380764050770886,
+      0.9773172804791489
+     ],
+     "recall": [
+      0.9630190716756496,
+      0.9871282512063535
+     ],
+     "f1": [
+      0.95498351072096,
+      0.9793048456015545
+     ],
+     "accuracy_weighted": [
+      0.9976537318709219,
+      0.9988804037623465
+     ],
+     "cohens_kappa_weighted": [
+      0.9538926967672474,
+      0.9787143323132642
+     ],
+     "ece": [
+      0.026989271301841047,
+      0.02951723825360846
+     ],
+     "brier": [
+      0.0020677566431815454,
+      0.0031063661067376475
+     ],
+     "expected_p_weighted": [
+      0.04763847673273945,
+      0.05341572916782308
+     ]
+    },
+    "ci95_raw": {
+     "base_rate_weighted": [
+      0.023695194226688778,
+      0.029936896301124567
+     ],
+     "flagged_rate_weighted": [
+      0.024171377961924284,
+      0.03057727270080552
+     ],
+     "precision": [
+      0.9386434227163737,
+      0.977884298118434
+     ],
+     "recall": [
+      0.9626707150439838,
+      0.9867798945746877
+     ],
+     "f1": [
+      0.9550627258708013,
+      0.9793840607513958
+     ],
+     "accuracy_weighted": [
+      0.9976600588649055,
+      0.9988867307563302
+     ],
+     "cohens_kappa_weighted": [
+      0.9539751334097389,
+      0.9787967689557557
+     ],
+     "ece": [
+      0.027416567518292877,
+      0.029944534470060288
+     ],
+     "brier": [
+      0.0020756984926029102,
+      0.0031143079561590124
+     ],
+     "expected_p_weighted": [
+      0.047630450327681005,
+      0.05340770276276463
+     ]
+    },
+    "cohens_kappa_unweighted": 0.9468340216584511,
+    "brier_skill_score": 0.902013583595808,
+    "calibration_slope": 2.55072422834663,
+    "calibration_slope_raw": 2.55072422834663,
     "separated": false,
-    "calibration_intercept": 0.08302052064047023,
-    "spiegelhalter_z": -9.177390466241206,
-    "expected_p_weighted": 0.19414455227793764,
+    "calibration_intercept": -0.072915035398347,
+    "spiegelhalter_z": -5.97193032650765,
+    "mean_p_minus_prevalence": 0.023942449651372332,
     "base_rate_below_grid_floor": false,
-    "aurc": 0.0004853649431086198,
-    "excess_aurc": 0.0002690142607677769,
-    "review_budget_90": 0.0,
-    "review_budget_95": 0.0,
+    "aurc": 8.349421653181569e-06,
+    "excess_aurc": 5.2789843414136244e-06,
+    "review_budget_90_insample": 0.0,
+    "review_budget_95_insample": 0.0,
+    "ece_ci95": [
+     0.026989271301841047,
+     0.02951723825360846
+    ],
+    "cohens_kappa": 0.9664654517813395,
     "n_variables": 16
    },
    "per_variable": {
     "aggression": {
      "n": 165,
-     "base_rate_weighted": 0.1664468314592639,
-     "base_rate_unweighted": 0.18787878787878787,
-     "flagged_rate_weighted": 0.1501208326988806,
-     "precision": 0.9657780981143861,
-     "recall": 0.8710493976976428,
-     "f1": 0.9159710779484097,
-     "accuracy_weighted": 0.9733991604244013,
-     "cohens_kappa": 0.8968621077634705,
-     "ece": 0.07861617433777023,
-     "ece_ci95": [
-      0.0685978000281274,
-      0.08823220036453089
-     ],
-     "brier": 0.02496446284466779,
-     "brier_skill_score": 0.8200659368668504,
-     "calibration_slope": 2.7731495164522757,
-     "calibration_slope_raw": 2.7731495164522757,
+     "n_narratives": 165,
+     "n_effective": 78.50677720271943,
+     "base_rate_weighted": 0.009472060771478458,
+     "flagged_rate_weighted": 0.008450435857151434,
+     "precision": 0.9583252417420949,
+     "recall": 0.8549634742648182,
+     "f1": 0.9036984247712813,
+     "accuracy_weighted": 0.9982740353426316,
+     "cohens_kappa_weighted": 0.9028304940352144,
+     "ece": 0.02691429717613748,
+     "brier": 0.0024037507092170168,
+     "expected_p_weighted": 0.031846918369146125,
+     "ci95": {
+      "base_rate_weighted": [
+       0.005890983443046879,
+       0.013551412284971046
+      ],
+      "flagged_rate_weighted": [
+       0.0052018650395399876,
+       0.01229789072825964
+      ],
+      "precision": [
+       0.8637355172505075,
+       0.9986169429052852
+      ],
+      "recall": [
+       0.7047413165666102,
+       0.9700430000703493
+      ],
+      "f1": [
+       0.8057022775539678,
+       0.9786123035819144
+      ],
+      "accuracy_weighted": [
+       0.9964685169039109,
+       0.9996105428907113
+      ],
+      "cohens_kappa_weighted": [
+       0.8044252131060194,
+       0.9784136864466871
+      ],
+      "ece": [
+       0.024273411003101875,
+       0.03009422987353607
+      ],
+      "brier": [
+       0.0016042279160018633,
+       0.0033994744598829572
+      ],
+      "expected_p_weighted": [
+       0.027783021984596663,
+       0.03633716063855754
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.005977327301721357,
+       0.013637756143645523
+      ],
+      "flagged_rate_weighted": [
+       0.005311471878976268,
+       0.012407497567695921
+      ],
+      "precision": [
+       0.8651185743452222,
+       1.0
+      ],
+      "recall": [
+       0.7097962987730804,
+       0.9750979822768194
+      ],
+      "f1": [
+       0.807220399282362,
+       0.9801304253103086
+      ],
+      "accuracy_weighted": [
+       0.996495444917384,
+       0.9996374709041843
+      ],
+      "cohens_kappa_weighted": [
+       0.8059598725294932,
+       0.9799483458701609
+      ],
+      "ece": [
+       0.024402498312947867,
+       0.030223317183382063
+      ],
+      "brier": [
+       0.0016008643045177723,
+       0.0033961108483988663
+      ],
+      "expected_p_weighted": [
+       0.027910733784804357,
+       0.036464872438765235
+      ]
+     },
+     "cohens_kappa_unweighted": 0.8968621077634705,
+     "brier_skill_score": 0.7438005343040295,
+     "calibration_slope": 3.275865185716283,
+     "calibration_slope_raw": 3.275865185716283,
      "separated": false,
-     "calibration_intercept": 1.2576253845510212,
-     "spiegelhalter_z": -2.575390685792239,
-     "expected_p_weighted": 0.16717640847347945,
-     "base_rate_below_grid_floor": false,
-     "aurc": 0.0015804935203044502,
-     "excess_aurc": 0.0008728888541777083,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "calibration_intercept": 1.0715840001841264,
+     "spiegelhalter_z": -1.4345843132691347,
+     "mean_p_minus_prevalence": 0.022374857597667667,
+     "base_rate_below_grid_floor": true,
+     "aurc": 6.39539484884429e-06,
+     "excess_aurc": 3.416440850359355e-06,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.024273411003101875,
+      0.03009422987353607
+     ],
+     "cohens_kappa": 0.9028304940352144
     },
     "alcohol_involved": {
      "n": 140,
-     "base_rate_weighted": 0.19635625848840996,
-     "base_rate_unweighted": 0.17857142857142858,
-     "flagged_rate_weighted": 0.2017796929709152,
-     "precision": 0.9731220005211975,
+     "n_narratives": 140,
+     "n_effective": 69.60143178223831,
+     "base_rate_weighted": 0.03045333999485753,
+     "flagged_rate_weighted": 0.030744377389703724,
+     "precision": 0.9905336383574428,
      "recall": 1.0,
-     "f1": 0.9863779333099004,
-     "accuracy_weighted": 0.9945765655174946,
-     "cohens_kappa": 0.9760273972602741,
-     "ece": 0.04990632427161771,
-     "ece_ci95": [
-      0.04404409568767613,
-      0.05609703303033772
-     ],
-     "brier": 0.0060233987581409945,
-     "brier_skill_score": 0.9618290208921434,
+     "f1": 0.9952443096363,
+     "accuracy_weighted": 0.9997089626051539,
+     "cohens_kappa_weighted": 0.9950942011866566,
+     "ece": 0.03005570294528006,
+     "brier": 0.001347371842471992,
+     "expected_p_weighted": 0.05526998209907123,
+     "ci95": {
+      "base_rate_weighted": [
+       0.01869404680224758,
+       0.04553643807667894
+      ],
+      "flagged_rate_weighted": [
+       0.01894550226470323,
+       0.045847302156799954
+      ],
+      "precision": [
+       0.9677780823603382,
+       0.9999302277821946
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9836482938258878,
+       0.9999870293826287
+      ],
+      "accuracy_weighted": [
+       0.9990293905452018,
+       0.9999980637652506
+      ],
+      "cohens_kappa_weighted": [
+       0.9831955387796488,
+       0.9999862484927348
+      ],
+      "ece": [
+       0.02785794305852301,
+       0.032525466817134904
+      ],
+      "brier": [
+       0.0010253454397732048,
+       0.001722918677171348
+      ],
+      "expected_p_weighted": [
+       0.04435742513741351,
+       0.06875793032881651
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.01932363324720672,
+       0.04616602452163808
+      ],
+      "flagged_rate_weighted": [
+       0.019573152474912887,
+       0.04647495236700961
+      ],
+      "precision": [
+       0.9678478545781436,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9836612644432591,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9990313267799512,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9832092902869141,
+       1.0
+      ],
+      "ece": [
+       0.027928248434316367,
+       0.03259577219292826
+      ],
+      "brier": [
+       0.0010338925443000798,
+       0.001731465781698223
+      ],
+      "expected_p_weighted": [
+       0.044955402392051376,
+       0.06935590758345438
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9760273972602741,
+     "brier_skill_score": 0.9543664956064765,
      "calibration_slope": null,
-     "calibration_slope_raw": 42.92118468953705,
+     "calibration_slope_raw": 47.75818904960455,
      "separated": true,
-     "calibration_intercept": -39.437984747666945,
-     "spiegelhalter_z": -2.510474721728651,
-     "expected_p_weighted": 0.21154258525293676,
+     "calibration_intercept": -47.6922216029456,
+     "spiegelhalter_z": -1.493202246963065,
+     "mean_p_minus_prevalence": 0.024816642104213704,
      "base_rate_below_grid_floor": false,
-     "aurc": 2.941364158602622e-05,
-     "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 8.470276519887806e-08,
+     "excess_aurc": 1.3234889800848443e-23,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.02785794305852301,
+      0.032525466817134904
+     ],
+     "cohens_kappa": 0.9950942011866566
     },
     "animal_involved": {
      "n": 129,
-     "base_rate_weighted": 0.22153148612609702,
-     "base_rate_unweighted": 0.17829457364341086,
-     "flagged_rate_weighted": 0.22153148612609702,
+     "n_narratives": 129,
+     "n_effective": 88.69864494155482,
+     "base_rate_weighted": 0.01921132682421048,
+     "flagged_rate_weighted": 0.01921132682421048,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.02082338076283348,
-     "ece_ci95": [
-      0.01942200699977297,
-      0.022357698655716598
-     ],
-     "brier": 0.0015785415156567804,
-     "brier_skill_score": 0.9908466620819654,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.016856871886448462,
+     "brier": 0.0004143830087155114,
+     "expected_p_weighted": 0.034988010640425206,
+     "ci95": {
+      "base_rate_weighted": [
+       0.012712582849385133,
+       0.02677411758406737
+      ],
+      "flagged_rate_weighted": [
+       0.012712582849385133,
+       0.02677411758406737
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.01573228787089069,
+       0.018024886565574067
+      ],
+      "brier": [
+       0.00028763224667313056,
+       0.0006320939852068927
+      ],
+      "expected_p_weighted": [
+       0.02863461756610186,
+       0.04276078732705284
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.012976807883359883,
+       0.02703834261804212
+      ],
+      "flagged_rate_weighted": [
+       0.012976807883359883,
+       0.02703834261804212
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.01577290559702959,
+       0.018065504291712966
+      ],
+      "brier": [
+       0.0002899957302535819,
+       0.000634457468787344
+      ],
+      "expected_p_weighted": [
+       0.028924677102353254,
+       0.04305084686330423
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.9780077766551191,
      "calibration_slope": null,
-     "calibration_slope_raw": 18.435703429069502,
+     "calibration_slope_raw": 25.060798199780248,
      "separated": true,
-     "calibration_intercept": 12.90880545609025,
-     "spiegelhalter_z": -1.5534665407475745,
-     "expected_p_weighted": 0.2300195210407006,
+     "calibration_intercept": 23.933704495870856,
+     "spiegelhalter_z": -1.24264601799197,
+     "mean_p_minus_prevalence": 0.015776683816214727,
      "base_rate_below_grid_floor": false,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.01573228787089069,
+      0.018024886565574067
+     ],
+     "cohens_kappa": 1.0
     },
     "drug_involved": {
      "n": 148,
-     "base_rate_weighted": 0.04092604569412409,
-     "base_rate_unweighted": 0.05405405405405406,
-     "flagged_rate_weighted": 0.0483921013444369,
-     "precision": 0.8457174736601699,
+     "n_narratives": 148,
+     "n_effective": 83.39746199285797,
+     "base_rate_weighted": 0.004100914746400871,
+     "flagged_rate_weighted": 0.004479012555894807,
+     "precision": 0.9155845613791989,
      "recall": 1.0,
-     "f1": 0.916410540322903,
-     "accuracy_weighted": 0.992533944349687,
-     "cohens_kappa": 0.9376053962900502,
-     "ece": 0.044383143316027,
-     "ece_ci95": [
-      0.03840496518987476,
-      0.05075789270901852
-     ],
-     "brier": 0.006705273320996725,
-     "brier_skill_score": 0.829169818017205,
+     "f1": 0.9559322828536355,
+     "accuracy_weighted": 0.999621902190506,
+     "cohens_kappa_weighted": 0.9557427897350542,
+     "ece": 0.030509900932462152,
+     "brier": 0.0017733564375304674,
+     "expected_p_weighted": 0.034041047211376164,
+     "ci95": {
+      "base_rate_weighted": [
+       0.0015846663303667754,
+       0.00717997731542129
+      ],
+      "flagged_rate_weighted": [
+       0.001818554503393132,
+       0.007758865362577951
+      ],
+      "precision": [
+       0.7187101955317725,
+       0.9989292187880146
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.838635238520141,
+       1.0015743095063352
+      ],
+      "accuracy_weighted": [
+       0.998778936658882,
+       0.9999976612916183
+      ],
+      "cohens_kappa_weighted": [
+       0.8382830502626314,
+       1.0015716210044592
+      ],
+      "ece": [
+       0.025998697048184135,
+       0.03599922741403028
+      ],
+      "brier": [
+       0.0010375201890458268,
+       0.002741969168735709
+      ],
+      "expected_p_weighted": [
+       0.028805398111445907,
+       0.040484357306696694
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.001673924510948371,
+       0.007269235496002886
+      ],
+      "flagged_rate_weighted": [
+       0.001905473975593009,
+       0.007845784834777828
+      ],
+      "precision": [
+       0.719780976743758,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.8370609290138058,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9987812753672637,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.8367114292581723,
+       1.0
+      ],
+      "ece": [
+       0.026025226662493982,
+       0.03602575702834012
+      ],
+      "brier": [
+       0.0010367830023054962,
+       0.0027412319819953785
+      ],
+      "expected_p_weighted": [
+       0.02890409355786502,
+       0.04058305275311581
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9376053962900502,
+     "brier_skill_score": 0.5657898597159359,
      "calibration_slope": null,
-     "calibration_slope_raw": 79.32640935736559,
+     "calibration_slope_raw": 86.37548523204926,
      "separated": true,
-     "calibration_intercept": -47.1977612477734,
-     "spiegelhalter_z": -2.28473286943426,
-     "expected_p_weighted": 0.07962305023930652,
-     "base_rate_below_grid_floor": false,
-     "aurc": 5.5741986973568425e-05,
-     "excess_aurc": 2.0328790734103208e-20,
-     "review_budget_90": 0.15428252633983008,
-     "review_budget_95": 0.15428252633983008
+     "calibration_intercept": -47.63690456673449,
+     "spiegelhalter_z": -1.6246600923230108,
+     "mean_p_minus_prevalence": 0.029940132464975296,
+     "base_rate_below_grid_floor": true,
+     "aurc": 1.4295795354415534e-07,
+     "excess_aurc": 0.0,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.08441543862080114,
+     "ece_ci95": [
+      0.025998697048184135,
+      0.03599922741403028
+     ],
+     "cohens_kappa": 0.9557427897350542
     },
     "fatigue": {
      "n": 120,
-     "base_rate_weighted": 0.22453631509049007,
-     "base_rate_unweighted": 0.225,
-     "flagged_rate_weighted": 0.2349767743194679,
-     "precision": 0.9555681225975837,
+     "n_narratives": 120,
+     "n_effective": 64.38523475569953,
+     "base_rate_weighted": 0.013365765285844709,
+     "flagged_rate_weighted": 0.014018122100641591,
+     "precision": 0.9534633233957189,
      "recall": 1.0,
-     "f1": 0.9772792996117173,
-     "accuracy_weighted": 0.9895595407710224,
-     "cohens_kappa": 0.9534342258440045,
-     "ece": 0.03421239441761722,
-     "ece_ci95": [
-      0.02654371371323255,
-      0.04164032564466558
-     ],
-     "brier": 0.006887628707220505,
-     "brier_skill_score": 0.9604431526058707,
+     "f1": 0.9761773481759637,
+     "accuracy_weighted": 0.9993476431852033,
+     "cohens_kappa_weighted": 0.9758468320408734,
+     "ece": 0.021905407759545952,
+     "brier": 0.0008918386836530381,
+     "expected_p_weighted": 0.03428794043999939,
+     "ci95": {
+      "base_rate_weighted": [
+       0.008278617664089721,
+       0.01989463706231813
+      ],
+      "flagged_rate_weighted": [
+       0.008706034088549584,
+       0.020652817259253442
+      ],
+      "precision": [
+       0.8789996741628997,
+       1.000623944321739
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9358637267534053,
+       1.000613434021194
+      ],
+      "accuracy_weighted": [
+       0.9981917840068244,
+       1.0000058783486399
+      ],
+      "cohens_kappa_weighted": [
+       0.9347540342838433,
+       1.0006162111533348
+      ],
+      "ece": [
+       0.020248096373100096,
+       0.023781340189746068
+      ],
+      "brier": [
+       0.000546921582861936,
+       0.0014285440405495146
+      ],
+      "expected_p_weighted": [
+       0.02909056898551409,
+       0.04087497071000006
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.008466327042542075,
+       0.020082346440770484
+      ],
+      "flagged_rate_weighted": [
+       0.008899621815641513,
+       0.02084640498634537
+      ],
+      "precision": [
+       0.8783757298411605,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9352502927322114,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9981859056581845,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9341378231305086,
+       1.0
+      ],
+      "ece": [
+       0.020360302852816564,
+       0.023893546669462536
+      ],
+      "brier": [
+       0.0005509873060843448,
+       0.0014326097637719234
+      ],
+      "expected_p_weighted": [
+       0.029289676240660374,
+       0.041074077965146345
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9534342258440045,
+     "brier_skill_score": 0.9323704815635332,
      "calibration_slope": null,
-     "calibration_slope_raw": 40.35233872417958,
+     "calibration_slope_raw": 29.866488373624467,
      "separated": true,
-     "calibration_intercept": -37.80154780436036,
-     "spiegelhalter_z": -1.7413225919044035,
-     "expected_p_weighted": 0.24245573528639042,
+     "calibration_intercept": -27.898130010682237,
+     "spiegelhalter_z": -1.1953231767526022,
+     "mean_p_minus_prevalence": 0.020922175154154676,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.00011725302983382085,
-     "excess_aurc": 8.249840921872455e-06,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 4.565754498693438e-07,
+     "excess_aurc": 3.100603605738678e-08,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.020248096373100096,
+      0.023781340189746068
+     ],
+     "cohens_kappa": 0.9758468320408734
     },
     "hit_and_run": {
      "n": 205,
-     "base_rate_weighted": 0.44005258332000713,
-     "base_rate_unweighted": 0.44878048780487806,
-     "flagged_rate_weighted": 0.4391007057643288,
-     "precision": 0.9896558482939705,
-     "recall": 0.9875151241497567,
-     "f1": 0.9885843273185807,
-     "accuracy_weighted": 0.9899638738150198,
-     "cohens_kappa": 0.9802808772604847,
-     "ece": 0.07170842005006182,
-     "ece_ci95": [
-      0.0635464520367599,
-      0.08323070511116376
-     ],
-     "brier": 0.01706780572582493,
-     "brier_skill_score": 0.9307330809935057,
-     "calibration_slope": 2.2226719149443017,
-     "calibration_slope_raw": 2.2226719149443017,
+     "n_narratives": 205,
+     "n_effective": 90.71997860120241,
+     "base_rate_weighted": 0.16092378923747347,
+     "flagged_rate_weighted": 0.16077374227624988,
+     "precision": 0.9955466173450396,
+     "recall": 0.9946183596561242,
+     "f1": 0.9950822720204542,
+     "accuracy_weighted": 0.9984179790483241,
+     "cohens_kappa_weighted": 0.9941396406585613,
+     "ece": 0.03839503805625175,
+     "brier": 0.00454838192807359,
+     "expected_p_weighted": 0.17718377718796163,
+     "ci95": {
+      "base_rate_weighted": [
+       0.12209910667898008,
+       0.2076274547126952
+      ],
+      "flagged_rate_weighted": [
+       0.12208546569075232,
+       0.20670817741534242
+      ],
+      "precision": [
+       0.9846376547129473,
+       0.9998595842423273
+      ],
+      "recall": [
+       0.9818280774324046,
+       1.0001157186363676
+      ],
+      "f1": [
+       0.9867886422430387,
+       0.9999999427717651
+      ],
+      "accuracy_weighted": [
+       0.995805219224733,
+       1.000000009963559
+      ],
+      "cohens_kappa_weighted": [
+       0.984445089273969,
+       1.0000041018379173
+      ],
+      "ece": [
+       0.0331527049275392,
+       0.044610182441563284
+      ],
+      "brier": [
+       0.002863691977951993,
+       0.006601263676358567
+      ],
+      "expected_p_weighted": [
+       0.14026273734165975,
+       0.21954734779920526
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.12343762846116216,
+       0.20896597649487728
+      ],
+      "flagged_rate_weighted": [
+       0.12337605310177671,
+       0.2079987648263668
+      ],
+      "precision": [
+       0.9847780704706199,
+       1.0
+      ],
+      "recall": [
+       0.981712358796037,
+       1.0
+      ],
+      "f1": [
+       0.9867886994712737,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9958052092611739,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9844409874360518,
+       1.0
+      ],
+      "ece": [
+       0.0336410175443124,
+       0.045098495058336484
+      ],
+      "brier": [
+       0.0028899927016222903,
+       0.006627564400028864
+      ],
+      "expected_p_weighted": [
+       0.1414516679125128,
+       0.2207362783700583
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9802808772604847,
+     "brier_skill_score": 0.9663150996621698,
+     "calibration_slope": 2.810721061483817,
+     "calibration_slope_raw": 2.810721061483817,
      "separated": false,
-     "calibration_intercept": 0.402515218410916,
-     "spiegelhalter_z": -3.1265650723706635,
-     "expected_p_weighted": 0.43157426517804237,
+     "calibration_intercept": 0.37000778483178465,
+     "spiegelhalter_z": -1.8766644056390223,
+     "mean_p_minus_prevalence": 0.016259987950488164,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.0011207739685438543,
-     "excess_aurc": 0.0010200501397430153,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 5.78163335920075e-05,
+     "excess_aurc": 5.5313543300465994e-05,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.0331527049275392,
+      0.044610182441563284
+     ],
+     "cohens_kappa": 0.9941396406585613
     },
     "hydroplane": {
      "n": 130,
-     "base_rate_weighted": 0.27079650514461234,
-     "base_rate_unweighted": 0.23846153846153847,
-     "flagged_rate_weighted": 0.27775271425456627,
-     "precision": 0.9749553874617464,
+     "n_narratives": 130,
+     "n_effective": 77.90252789308303,
+     "base_rate_weighted": 0.020848073639737306,
+     "flagged_rate_weighted": 0.021583976824281648,
+     "precision": 0.9659051160712671,
      "recall": 1.0,
-     "f1": 0.9873188970762314,
-     "accuracy_weighted": 0.9930437908900462,
-     "cohens_kappa": 0.9790525298098615,
-     "ece": 0.06997635568850803,
-     "ece_ci95": [
-      0.06236798244627373,
-      0.07761354030660585
-     ],
-     "brier": 0.015822036401595685,
-     "brier_skill_score": 0.9198745313305594,
-     "calibration_slope": 5.6233139541740425,
-     "calibration_slope_raw": 5.6233139541740425,
-     "separated": false,
-     "calibration_intercept": -0.196703772154834,
-     "spiegelhalter_z": -2.626303074679004,
-     "expected_p_weighted": 0.2694880214119405,
+     "f1": 0.9826569025890378,
+     "accuracy_weighted": 0.9992640968154557,
+     "cohens_kappa_weighted": 0.9822810908369586,
+     "ece": 0.02539065638336217,
+     "brier": 0.001840487659325964,
+     "expected_p_weighted": 0.04132916836595487,
+     "ci95": {
+      "base_rate_weighted": [
+       0.013135974112988794,
+       0.029623184518241908
+      ],
+      "flagged_rate_weighted": [
+       0.013697705898877584,
+       0.030863580266746213
+      ],
+      "precision": [
+       0.8894598430648634,
+       1.0013730050928666
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9417488295821965,
+       1.0010221867253226
+      ],
+      "accuracy_weighted": [
+       0.9974687989747544,
+       1.000041308511951
+      ],
+      "cohens_kappa_weighted": [
+       0.940669821128318,
+       1.0010431070288193
+      ],
+      "ece": [
+       0.02266196462660866,
+       0.02863386826426233
+      ],
+      "brier": [
+       0.001117861810785885,
+       0.0027009960735333858
+      ],
+      "expected_p_weighted": [
+       0.034043879447043915,
+       0.04969418589913397
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.013370301873097599,
+       0.029857512278350713
+      ],
+      "flagged_rate_weighted": [
+       0.01397334217093726,
+       0.03113921653880589
+      ],
+      "precision": [
+       0.8880868379719967,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9407266428568739,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9974274904628034,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9396267140994988,
+       1.0
+      ],
+      "ece": [
+       0.022727972990997596,
+       0.028699876628651266
+      ],
+      "brier": [
+       0.0011414343607125009,
+       0.0027245686234600016
+      ],
+      "expected_p_weighted": [
+       0.03429742181755437,
+       0.04994772826964443
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9790525298098615,
+     "brier_skill_score": 0.9098393789177924,
+     "calibration_slope": null,
+     "calibration_slope_raw": 5.907838325757044,
+     "separated": true,
+     "calibration_intercept": -0.8426503432024016,
+     "spiegelhalter_z": -1.4016744138063393,
+     "mean_p_minus_prevalence": 0.020481094726217564,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.00015206340551626114,
-     "excess_aurc": 0.00010367456033485569,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 1.1509149995086424e-06,
+     "excess_aurc": 6.093615024861639e-07,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.02266196462660866,
+      0.02863386826426233
+     ],
+     "cohens_kappa": 0.9822810908369586
     },
     "intentional": {
      "n": 173,
-     "base_rate_weighted": 0.022674373245726655,
-     "base_rate_unweighted": 0.028901734104046242,
-     "flagged_rate_weighted": 0.02716924859691554,
-     "precision": 0.8345601890624542,
+     "n_narratives": 173,
+     "n_effective": 85.55022937473602,
+     "base_rate_weighted": 0.0016131779071571109,
+     "flagged_rate_weighted": 0.0019363560249130941,
+     "precision": 0.833099846516868,
      "recall": 1.0,
-     "f1": 0.9098204507413337,
-     "accuracy_weighted": 0.9955051246488112,
-     "cohens_kappa": 0.906131307650569,
-     "ece": 0.05745662281071393,
+     "f1": 0.9089519570904638,
+     "accuracy_weighted": 0.9996768218822438,
+     "cohens_kappa_weighted": 0.908791425018594,
+     "ece": 0.02488284060860746,
+     "brier": 0.0017342992843716696,
+     "expected_p_weighted": 0.02560984241085262,
+     "ci95": {
+      "base_rate_weighted": [
+       0.00028853408789854767,
+       0.0033482805580232686
+      ],
+      "flagged_rate_weighted": [
+       0.0005344407869155001,
+       0.0038063452678193917
+      ],
+      "precision": [
+       0.49045506482935847,
+       1.0032122545332411
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.6668080891770043,
+       1.0115784159549097
+      ],
+      "accuracy_weighted": [
+       0.9989486589276283,
+       1.0000143333290819
+      ],
+      "cohens_kappa_weighted": [
+       0.667499162317834,
+       1.012475300778505
+      ],
+      "ece": [
+       0.022678247875444302,
+       0.027329137213795995
+      ],
+      "brier": [
+       0.00114497566982317,
+       0.002503820000182333
+      ],
+      "expected_p_weighted": [
+       0.02311307659727675,
+       0.02823826617369452
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0003155284818353718,
+       0.003375274951960093
+      ],
+      "flagged_rate_weighted": [
+       0.0005757685099343055,
+       0.003847672990838197
+      ],
+      "precision": [
+       0.4872428102961173,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.6552296732220947,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9989343255985466,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.6550238615393291,
+       1.0
+      ],
+      "ece": [
+       0.022753330466060515,
+       0.027404219804412207
+      ],
+      "brier": [
+       0.0011659277553630516,
+       0.0025247720857222147
+      ],
+      "expected_p_weighted": [
+       0.023198986307021906,
+       0.028324175883439676
+      ]
+     },
+     "cohens_kappa_unweighted": 0.906131307650569,
+     "brier_skill_score": -0.07681956868406048,
+     "calibration_slope": null,
+     "calibration_slope_raw": 3.823758366672211,
+     "separated": true,
+     "calibration_intercept": -0.8904917488378402,
+     "spiegelhalter_z": -1.4953182592903984,
+     "mean_p_minus_prevalence": 0.02399666450369551,
+     "base_rate_below_grid_floor": true,
+     "aurc": 1.2559056678924365e-06,
+     "excess_aurc": 1.1514615720961468e-06,
+     "review_budget_90_insample": 0.6470423735288663,
+     "review_budget_95_insample": 0.6470423735288663,
      "ece_ci95": [
-      0.053010741740272545,
-      0.06228308460181449
+      0.022678247875444302,
+      0.027329137213795995
      ],
-     "brier": 0.012096351618414306,
-     "brier_skill_score": 0.4541418179837452,
-     "calibration_slope": 3.3393454351133243,
-     "calibration_slope_raw": 3.3393454351133243,
-     "separated": false,
-     "calibration_intercept": -0.7351505653929671,
-     "spiegelhalter_z": -2.713837554166991,
-     "expected_p_weighted": 0.06758228405039525,
-     "base_rate_below_grid_floor": false,
-     "aurc": 0.00019084720664826497,
-     "excess_aurc": 0.00017064330222553965,
-     "review_budget_90": 0.6501306812863372,
-     "review_budget_95": 0.6501306812863372
+     "cohens_kappa": 0.908791425018594
     },
     "medical_episode": {
      "n": 164,
-     "base_rate_weighted": 0.11970871332780286,
-     "base_rate_unweighted": 0.14634146341463414,
-     "flagged_rate_weighted": 0.12421493709262157,
-     "precision": 0.9637223680960478,
+     "n_narratives": 164,
+     "n_effective": 73.20836688819271,
+     "base_rate_weighted": 0.0088254225670348,
+     "flagged_rate_weighted": 0.009184786674251278,
+     "precision": 0.9608739843437054,
      "recall": 1.0,
-     "f1": 0.981526089179742,
-     "accuracy_weighted": 0.9954937762351812,
-     "cohens_kappa": 0.976009362200117,
-     "ece": 0.04577059440956306,
-     "ece_ci95": [
-      0.0422667958533163,
-      0.04965570227365645
-     ],
-     "brier": 0.006435405481271731,
-     "brier_skill_score": 0.9389305863669495,
+     "f1": 0.9800466445224475,
+     "accuracy_weighted": 0.9996406358927835,
+     "cohens_kappa_weighted": 0.979865402553714,
+     "ece": 0.025474671682852522,
+     "brier": 0.0010463185025776,
+     "expected_p_weighted": 0.03207597355821801,
+     "ci95": {
+      "base_rate_weighted": [
+       0.004835236096492506,
+       0.013730891242184606
+      ],
+      "flagged_rate_weighted": [
+       0.005156954363016336,
+       0.014161995306599251
+      ],
+      "precision": [
+       0.871045039142421,
+       0.9992286416299143
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9315122786812414,
+       0.9999931421962808
+      ],
+      "accuracy_weighted": [
+       0.9988109445581153,
+       0.9999973010587322
+      ],
+      "cohens_kappa_weighted": [
+       0.9309482253896718,
+       0.9999916153277337
+      ],
+      "ece": [
+       0.023785116760615267,
+       0.027469593978144007
+      ],
+      "brier": [
+       0.0007651944569255021,
+       0.001420710763428037
+      ],
+      "expected_p_weighted": [
+       0.02813702666091213,
+       0.03719049340092738
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0050369088243867426,
+       0.013932563970078842
+      ],
+      "flagged_rate_weighted": [
+       0.005355928149642723,
+       0.014360969093225638
+      ],
+      "precision": [
+       0.8718163975125067,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9315191364849607,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9988136434993831,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9309566100619381,
+       1.0
+      ],
+      "ece": [
+       0.02382360488589702,
+       0.02750808210342576
+      ],
+      "brier": [
+       0.0007728322872847465,
+       0.0014283485937872816
+      ],
+      "expected_p_weighted": [
+       0.02832503715619621,
+       0.03737850389621146
+      ]
+     },
+     "cohens_kappa_unweighted": 0.976009362200117,
+     "brier_skill_score": 0.8803870388227147,
      "calibration_slope": null,
-     "calibration_slope_raw": 135.24025006240967,
+     "calibration_slope_raw": 91.71401854483953,
      "separated": true,
-     "calibration_intercept": -31.805064533124124,
-     "spiegelhalter_z": -2.554333111958391,
-     "expected_p_weighted": 0.13309087844716982,
-     "base_rate_below_grid_floor": false,
-     "aurc": 2.0306052618617246e-05,
-     "excess_aurc": 6.776263578034403e-21,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "calibration_intercept": -20.73159034401654,
+     "spiegelhalter_z": -1.3965880941417732,
+     "mean_p_minus_prevalence": 0.023250550991183207,
+     "base_rate_below_grid_floor": true,
+     "aurc": 1.291425615555004e-07,
+     "excess_aurc": -1.0587911840678754e-22,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.023785116760615267,
+      0.027469593978144007
+     ],
+     "cohens_kappa": 0.979865402553714
     },
     "phone_use": {
      "n": 123,
-     "base_rate_weighted": 0.13574819787446613,
-     "base_rate_unweighted": 0.12195121951219512,
-     "flagged_rate_weighted": 0.13574819787446613,
+     "n_narratives": 123,
+     "n_effective": 70.27280160917464,
+     "base_rate_weighted": 0.00828706071411367,
+     "flagged_rate_weighted": 0.00828706071411367,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.04857612495261115,
-     "ece_ci95": [
-      0.04423999137444624,
-      0.053660060334275304
-     ],
-     "brier": 0.006159422537908793,
-     "brier_skill_score": 0.9474992350545928,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.02841027154975097,
+     "brier": 0.0011196920473646864,
+     "expected_p_weighted": 0.03592124314843497,
+     "ci95": {
+      "base_rate_weighted": [
+       0.0043109497527311635,
+       0.013067796025735358
+      ],
+      "flagged_rate_weighted": [
+       0.0043109497527311635,
+       0.013067796025735358
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.02634492408268832,
+       0.030601193681600466
+      ],
+      "brier": [
+       0.0008986586446257142,
+       0.0013820696294008356
+      ],
+      "expected_p_weighted": [
+       0.031503702935981745,
+       0.04121845042116929
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.004524158371229393,
+       0.013281004644233587
+      ],
+      "flagged_rate_weighted": [
+       0.004524158371229393,
+       0.013281004644233587
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.026372170800643926,
+       0.030628440399556072
+      ],
+      "brier": [
+       0.0009057428756887264,
+       0.0013891538604638477
+      ],
+      "expected_p_weighted": [
+       0.03172673514559803,
+       0.04144148263078558
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.8637576602701001,
      "calibration_slope": null,
-     "calibration_slope_raw": 24.18687328691805,
+     "calibration_slope_raw": 40.60264389494793,
      "separated": true,
-     "calibration_intercept": -5.581946229647597,
-     "spiegelhalter_z": -2.3670643497676034,
-     "expected_p_weighted": 0.1699544058647316,
-     "base_rate_below_grid_floor": false,
+     "calibration_intercept": -27.550109681770543,
+     "spiegelhalter_z": -1.4370621268446382,
+     "mean_p_minus_prevalence": 0.0276341824343213,
+     "base_rate_below_grid_floor": true,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.02634492408268832,
+      0.030601193681600466
+     ],
+     "cohens_kappa": 1.0
     },
     "preg_mentioned": {
      "n": 107,
-     "base_rate_weighted": 0.03481817978834368,
-     "base_rate_unweighted": 0.037383177570093455,
-     "flagged_rate_weighted": 0.03481817978834368,
+     "n_narratives": 107,
+     "n_effective": 93.19444880070192,
+     "base_rate_weighted": 0.0021876237851466192,
+     "flagged_rate_weighted": 0.0021876237851466192,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.015075721074892183,
-     "ece_ci95": [
-      0.014137352468155782,
-      0.016037232344403747
-     ],
-     "brier": 0.00025514564599167435,
-     "brier_skill_score": 0.9924077069117722,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.014798515847385882,
+     "brier": 0.00024413604950285865,
+     "expected_p_weighted": 0.016884924225316518,
+     "ci95": {
+      "base_rate_weighted": [
+       0.00041874892931629886,
+       0.004634566130272209
+      ],
+      "flagged_rate_weighted": [
+       0.00041874892931629886,
+       0.004634566130272209
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.013842768508429172,
+       0.015777749547609646
+      ],
+      "brier": [
+       0.00021538214180789352,
+       0.0002734917660393906
+      ],
+      "expected_p_weighted": [
+       0.01486951418878531,
+       0.019364531251805796
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0003999428052708356,
+       0.004615760006226746
+      ],
+      "flagged_rate_weighted": [
+       0.0003999428052708356,
+       0.004615760006226746
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.013843603519372926,
+       0.0157785845585534
+      ],
+      "brier": [
+       0.00021540484087771117,
+       0.00027351446510920824
+      ],
+      "expected_p_weighted": [
+       0.014852669550049581,
+       0.019347686613070066
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.8881565925934269,
      "calibration_slope": null,
-     "calibration_slope_raw": 4.356308738003648,
+     "calibration_slope_raw": 4.18334439265775,
      "separated": true,
-     "calibration_intercept": -0.3269199840639786,
-     "spiegelhalter_z": -1.2583011769939325,
-     "expected_p_weighted": 0.04828295831007641,
-     "base_rate_below_grid_floor": false,
+     "calibration_intercept": -0.8161548917016516,
+     "spiegelhalter_z": -1.1898625055257825,
+     "mean_p_minus_prevalence": 0.014697300440169899,
+     "base_rate_below_grid_floor": true,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.013842768508429172,
+      0.015777749547609646
+     ],
+     "cohens_kappa": 1.0
     },
     "transported": {
      "n": 146,
-     "base_rate_weighted": 0.22551136086871704,
-     "base_rate_unweighted": 0.23972602739726026,
-     "flagged_rate_weighted": 0.24717225052226344,
-     "precision": 0.9123652043958094,
+     "n_narratives": 146,
+     "n_effective": 82.78708759242083,
+     "base_rate_weighted": 0.04355977063316317,
+     "flagged_rate_weighted": 0.04634351475549785,
+     "precision": 0.9399323910363436,
      "recall": 1.0,
-     "f1": 0.9541746548186762,
-     "accuracy_weighted": 0.9783391103464535,
-     "cohens_kappa": 0.9276690611840476,
-     "ece": 0.0670714963584676,
-     "ece_ci95": [
-      0.059087433337418505,
-      0.07750148381775687
-     ],
-     "brier": 0.018513982536457835,
-     "brier_skill_score": 0.893997435440074,
-     "calibration_slope": 2.282671647160252,
-     "calibration_slope_raw": 2.282671647160252,
+     "f1": 0.969036235880588,
+     "accuracy_weighted": 0.9972162558776655,
+     "cohens_kappa_weighted": 0.9675803149945182,
+     "ece": 0.042000167340203294,
+     "brier": 0.004099059761057434,
+     "expected_p_weighted": 0.08134951124161362,
+     "ci95": {
+      "base_rate_weighted": [
+       0.02857283371163946,
+       0.06094854423481238
+      ],
+      "flagged_rate_weighted": [
+       0.030784155868345108,
+       0.06379134804422154
+      ],
+      "precision": [
+       0.875877370202757,
+       0.9894955717192638
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9340628629357872,
+       0.9949966576377158
+      ],
+      "accuracy_weighted": [
+       0.9942679918165025,
+       0.9994644808874614
+      ],
+      "cohens_kappa_weighted": [
+       0.9301394564962727,
+       0.9946491329618645
+      ],
+      "ece": [
+       0.03765196566434237,
+       0.04739652041473955
+      ],
+      "brier": [
+       0.0024753871618479074,
+       0.006073903965309695
+      ],
+      "expected_p_weighted": [
+       0.06698270128453829,
+       0.09782285185851938
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.028563348350980518,
+       0.060939058874153434
+      ],
+      "flagged_rate_weighted": [
+       0.030774611485486752,
+       0.06378180366136318
+      ],
+      "precision": [
+       0.8751491947981318,
+       0.9887673963146386
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9334181822124742,
+       0.9943519769144028
+      ],
+      "accuracy_weighted": [
+       0.9942680508387017,
+       0.9994645399096607
+      ],
+      "cohens_kappa_weighted": [
+       0.9294949748665926,
+       0.9940046513321844
+      ],
+      "ece": [
+       0.03773164836857129,
+       0.047476203118968476
+      ],
+      "brier": [
+       0.002483051245550678,
+       0.006081568049012466
+      ],
+      "expected_p_weighted": [
+       0.06702959241504114,
+       0.09786974298902223
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9276690611840476,
+     "brier_skill_score": 0.9016122948820258,
+     "calibration_slope": 2.3221998484846593,
+     "calibration_slope_raw": 2.3221998484846593,
      "separated": false,
-     "calibration_intercept": -2.9196147981743366,
-     "spiegelhalter_z": -2.0343049402928854,
-     "expected_p_weighted": 0.27088547103313043,
+     "calibration_intercept": -2.581442581719825,
+     "spiegelhalter_z": -1.7833573959242413,
+     "mean_p_minus_prevalence": 0.037789740608450445,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.001073031690881557,
-     "excess_aurc": 0.000603837550298449,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.06363534046853137
+     "aurc": 2.6584885024494508e-05,
+     "excess_aurc": 1.8835653685861793e-05,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.03492610346250047,
+     "ece_ci95": [
+      0.03765196566434237,
+      0.04739652041473955
+     ],
+     "cohens_kappa": 0.9675803149945182
     },
     "unbelted": {
      "n": 145,
-     "base_rate_weighted": 0.03455501274308218,
-     "base_rate_unweighted": 0.034482758620689655,
-     "flagged_rate_weighted": 0.04238377273360364,
-     "precision": 0.8152887417614316,
+     "n_narratives": 145,
+     "n_effective": 80.79905737866875,
+     "base_rate_weighted": 0.0020255796651798257,
+     "flagged_rate_weighted": 0.0030333791375991024,
+     "precision": 0.6677634325602494,
      "recall": 1.0,
-     "f1": 0.898246899245716,
-     "accuracy_weighted": 0.9921712400094788,
-     "cohens_kappa": 0.9055374592833872,
-     "ece": 0.039358149952871894,
-     "ece_ci95": [
-      0.037230186604108755,
-      0.04189043684447939
-     ],
-     "brier": 0.005451890049256088,
-     "brier_skill_score": 0.8365787608587348,
+     "f1": 0.8007891521342921,
+     "accuracy_weighted": 0.9989922005275808,
+     "cohens_kappa_weighted": 0.8003040713315459,
+     "ece": 0.030485529267108263,
+     "brier": 0.0015384350389936522,
+     "expected_p_weighted": 0.03233884129573402,
+     "ci95": {
+      "base_rate_weighted": [
+       0.000446224037999862,
+       0.004196502092357456
+      ],
+      "flagged_rate_weighted": [
+       0.0007933599851301586,
+       0.006031567922247311
+      ],
+      "precision": [
+       0.19890904556493436,
+       0.958752667811975
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.40734426584475325,
+       0.9959610893695564
+      ],
+      "accuracy_weighted": [
+       0.9967111968588936,
+       1.00003235449857
+      ],
+      "cohens_kappa_weighted": [
+       0.3837891048412569,
+       0.997532853166229
+      ],
+      "ece": [
+       0.02818357406820873,
+       0.03302933136386685
+      ],
+      "brier": [
+       0.0009342851433332916,
+       0.002478192611942223
+      ],
+      "expected_p_weighted": [
+       0.029542269953738824,
+       0.03569791030503019
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0004642602182885144,
+       0.004214538272646108
+      ],
+      "flagged_rate_weighted": [
+       0.0008437506639887057,
+       0.006081958601105858
+      ],
+      "precision": [
+       0.24015637775295937,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.41138317647519684,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9966788423603237,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.3862562516750279,
+       1.0
+      ],
+      "ece": [
+       0.028173190497077123,
+       0.033018947792735245
+      ],
+      "brier": [
+       0.0009505458395518823,
+       0.002494453308160814
+      ],
+      "expected_p_weighted": [
+       0.02955204903895804,
+       0.0357076893902494
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9055374592833872,
+     "brier_skill_score": 0.23895484675636902,
      "calibration_slope": null,
-     "calibration_slope_raw": 14.888756296517716,
+     "calibration_slope_raw": 14.514541319195502,
      "separated": true,
-     "calibration_intercept": -18.958249391747458,
-     "spiegelhalter_z": -2.101521923102663,
-     "expected_p_weighted": 0.07097439386909687,
-     "base_rate_below_grid_floor": false,
-     "aurc": 6.128948298918957e-05,
-     "excess_aurc": -2.710505431213761e-20,
-     "review_budget_90": 0.1847112582385685,
-     "review_budget_95": 0.1847112582385685
+     "calibration_intercept": -16.19219578682638,
+     "spiegelhalter_z": -1.5715939387973576,
+     "mean_p_minus_prevalence": 0.030313261630554193,
+     "base_rate_below_grid_floor": true,
+     "aurc": 1.0156597766086534e-06,
+     "excess_aurc": -2.117582368135751e-22,
+     "review_budget_90_insample": 0.3322365674397506,
+     "review_budget_95_insample": 0.3322365674397506,
+     "ece_ci95": [
+      0.02818357406820873,
+      0.03302933136386685
+     ],
+     "cohens_kappa": 0.8003040713315459
     },
     "vehicle_defect": {
      "n": 132,
-     "base_rate_weighted": 0.27159883433798204,
-     "base_rate_unweighted": 0.24242424242424243,
-     "flagged_rate_weighted": 0.26413429795620935,
+     "n_narratives": 132,
+     "n_effective": 70.5507908021778,
+     "base_rate_weighted": 0.038554001211688796,
+     "flagged_rate_weighted": 0.037920244410883513,
      "precision": 1.0,
-     "recall": 0.9725163165741587,
-     "f1": 0.9860666889318439,
-     "accuracy_weighted": 0.9925354636182272,
-     "cohens_kappa": 0.9791535060012635,
-     "ece": 0.0891911102621702,
-     "ece_ci95": [
-      0.08323066000036417,
-      0.09577714534421332
-     ],
-     "brier": 0.02279380760248711,
-     "brier_skill_score": 0.884782527397798,
+     "recall": 0.9835618410310905,
+     "f1": 0.9917128074210357,
+     "accuracy_weighted": 0.9993662431991945,
+     "cohens_kappa_weighted": 0.9913833543091198,
+     "ece": 0.03714910173409549,
+     "brier": 0.005708235813234645,
+     "expected_p_weighted": 0.05301647211844529,
+     "ci95": {
+      "base_rate_weighted": [
+       0.017288727772847488,
+       0.07297431112826397
+      ],
+      "flagged_rate_weighted": [
+       0.016785470598968764,
+       0.07266615501326168
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.9319817934216984,
+       1.0019038363455106
+      ],
+      "f1": [
+       0.9648482957115202,
+       1.0010758701821723
+      ],
+      "accuracy_weighted": [
+       0.9979414976563659,
+       0.9999985464114414
+      ],
+      "cohens_kappa_weighted": [
+       0.9642257964001677,
+       1.001075334211255
+      ],
+      "ece": [
+       0.028583395476626097,
+       0.052342246391992316
+      ],
+      "brier": [
+       0.0019371235141027597,
+       0.013055706340742466
+      ],
+      "expected_p_weighted": [
+       0.039392449597022317,
+       0.07274416339554671
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.017868771243898376,
+       0.07355435459931486
+      ],
+      "flagged_rate_weighted": [
+       0.017366967658578192,
+       0.07324765207287111
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.9300779570761877,
+       1.0
+      ],
+      "f1": [
+       0.963772425529348,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9979429512449245,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9631504621889126,
+       1.0
+      ],
+      "ece": [
+       0.028809362587553997,
+       0.052568213502920215
+      ],
+      "brier": [
+       0.0020336035280599245,
+       0.01315218635469963
+      ],
+      "expected_p_weighted": [
+       0.039816786952316774,
+       0.07316850075084116
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9791535060012635,
+     "brier_skill_score": 0.8460046692518215,
      "calibration_slope": null,
-     "calibration_slope_raw": 66.89516823508373,
+     "calibration_slope_raw": 68.65979120912317,
      "separated": true,
-     "calibration_intercept": 38.9027438551189,
-     "spiegelhalter_z": -2.8899713099582263,
-     "expected_p_weighted": 0.2475523168653362,
+     "calibration_intercept": 36.88503009962212,
+     "spiegelhalter_z": -1.5007036938992646,
+     "mean_p_minus_prevalence": 0.014462470906756494,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.0003957853284900656,
-     "excess_aurc": 0.0003400660250952587,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 1.1327536939619682e-05,
+     "excess_aurc": 1.0925889257052697e-05,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.028583395476626097,
+      0.052342246391992316
+     ],
+     "cohens_kappa": 0.9913833543091198
     },
     "witness_cited": {
      "n": 206,
-     "base_rate_weighted": 0.2138074849219233,
-     "base_rate_unweighted": 0.19902912621359223,
-     "flagged_rate_weighted": 0.2435101034337907,
-     "precision": 0.8540547282815211,
-     "recall": 0.9727019393072069,
-     "f1": 0.9095252862226929,
-     "accuracy_weighted": 0.9586243220881884,
-     "cohens_kappa": 0.884545327168278,
-     "ece": 0.07639080107409375,
-     "ece_ci95": [
-      0.06616922828320008,
-      0.08750619182236233
-     ],
-     "brier": 0.024008831986904147,
-     "brier_skill_score": 0.8571700701772417,
-     "calibration_slope": 2.2194337675218385,
-     "calibration_slope_raw": 2.2194337675218385,
+     "n_narratives": 206,
+     "n_effective": 85.61529124629243,
+     "base_rate_weighted": 0.052974429210514054,
+     "flagged_rate_weighted": 0.06195648890304581,
+     "precision": 0.8335059918137074,
+     "recall": 0.9748307910447238,
+     "f1": 0.8986459967439413,
+     "accuracy_weighted": 0.9883512913512964,
+     "cohens_kappa_weighted": 0.8925065654566714,
+     "ece": 0.046397093904606834,
+     "brier": 0.007715137690239257,
+     "expected_p_weighted": 0.09149435611930636,
+     "ci95": {
+      "base_rate_weighted": [
+       0.03538414107020914,
+       0.07337156501891136
+      ],
+      "flagged_rate_weighted": [
+       0.043581610125096724,
+       0.08492743424769211
+      ],
+      "precision": [
+       0.7104368940761638,
+       0.9334398305815274
+      ],
+      "recall": [
+       0.9147263555864834,
+       1.0002420412754411
+      ],
+      "f1": [
+       0.8202330028557354,
+       0.9594770966480738
+      ],
+      "accuracy_weighted": [
+       0.9795183692551636,
+       0.995262832727876
+      ],
+      "cohens_kappa_weighted": [
+       0.8127367994807875,
+       0.956452211418467
+      ],
+      "ece": [
+       0.04087289860083318,
+       0.05376562961154454
+      ],
+      "brier": [
+       0.004682299107549416,
+       0.011830601625125382
+      ],
+      "expected_p_weighted": [
+       0.07513286996018194,
+       0.11253042552211455
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.03594117458270597,
+       0.0739285985314082
+      ],
+      "flagged_rate_weighted": [
+       0.04395987739394182,
+       0.08530570151653721
+      ],
+      "precision": [
+       0.7134122124143135,
+       0.936415148919677
+      ],
+      "recall": [
+       0.9144843143110423,
+       1.0
+      ],
+      "f1": [
+       0.8207075954990426,
+       0.959951689291381
+      ],
+      "accuracy_weighted": [
+       0.9796338359010363,
+       0.9953782993737487
+      ],
+      "cohens_kappa_weighted": [
+       0.8132785963122503,
+       0.9569940082499299
+      ],
+      "ece": [
+       0.041499330078779643,
+       0.054392061089491
+      ],
+      "brier": [
+       0.00467392869068707,
+       0.011822231208263034
+      ],
+      "expected_p_weighted": [
+       0.07561634505917336,
+       0.11301390062110597
+      ]
+     },
+     "cohens_kappa_unweighted": 0.884545327168278,
+     "brier_skill_score": 0.8462143935424691,
+     "calibration_slope": 2.313499046012041,
+     "calibration_slope_raw": 2.313499046012041,
      "separated": false,
-     "calibration_intercept": -1.7013020485137702,
-     "spiegelhalter_z": -2.591760790223322,
-     "expected_p_weighted": 0.2574920335889557,
+     "calibration_intercept": -1.982557506663728,
+     "spiegelhalter_z": -1.7734754343516168,
+     "mean_p_minus_prevalence": 0.0385199269087923,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.0015854255614133218,
-     "excess_aurc": -0.00012652116124865038,
-     "review_budget_90": 0.061928015445339324,
-     "review_budget_95": 0.1282213823242474
+     "aurc": 0.00012121094386397916,
+     "excess_aurc": -1.448146931840113e-05,
+     "review_budget_90_insample": 0.11259779964092287,
+     "review_budget_95_insample": 0.1470150880761023,
+     "ece_ci95": [
+      0.04087289860083318,
+      0.05376562961154454
+     ],
+     "cohens_kappa": 0.8925065654566714
     },
     "wrong_way": {
      "n": 183,
-     "base_rate_weighted": 0.11155287308862277,
-     "base_rate_unweighted": 0.11475409836065574,
-     "flagged_rate_weighted": 0.05964378030950766,
+     "n_narratives": 183,
+     "n_effective": 78.11011313763777,
+     "base_rate_weighted": 0.010208275797591565,
+     "flagged_rate_weighted": 0.004239154158675662,
      "precision": 1.0,
-     "recall": 0.5346682578235692,
-     "f1": 0.6967867551803324,
-     "accuracy_weighted": 0.9480909072208847,
-     "cohens_kappa": 0.7024390243902436,
-     "ece": 0.0731768119968313,
-     "ece_ci95": [
-      0.05858442939503291,
-      0.08955022794471075
-     ],
-     "brier": 0.029822553179405083,
-     "brier_skill_score": 0.699092872940946,
-     "calibration_slope": 6.158871468069358,
-     "calibration_slope_raw": 6.158871468069358,
+     "recall": 0.41526642135548536,
+     "f1": 0.5868385133560363,
+     "accuracy_weighted": 0.994030878361084,
+     "cohens_kappa_weighted": 0.5843485076215771,
+     "ece": 0.030303935246746596,
+     "brier": 0.004226620552730963,
+     "expected_p_weighted": 0.032140039685434836,
+     "ci95": {
+      "base_rate_weighted": [
+       0.005391608411384551,
+       0.015808030145896934
+      ],
+      "flagged_rate_weighted": [
+       0.00207083691113803,
+       0.00692949370875181
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.21506316773410206,
+       0.6740665373112038
+      ],
+      "f1": [
+       0.36755285317689557,
+       0.8105317337437571
+      ],
+      "accuracy_weighted": [
+       0.9895142849368035,
+       0.997801428006077
+      ],
+      "cohens_kappa_weighted": [
+       0.3644592815984699,
+       0.8096343890610995
+      ],
+      "ece": [
+       0.0266155094094907,
+       0.034875671889612374
+      ],
+      "brier": [
+       0.0023148643816232346,
+       0.006690149851324125
+      ],
+      "expected_p_weighted": [
+       0.028870400705090924,
+       0.036607098356645565
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.005449859996294778,
+       0.01586628173080716
+      ],
+      "flagged_rate_weighted": [
+       0.002122842676899519,
+       0.006981499474513299
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.22824310165247674,
+       0.6872464712295785
+      ],
+      "f1": [
+       0.3716578377996158,
+       0.8146367183664773
+      ],
+      "accuracy_weighted": [
+       0.989508039117655,
+       0.9977951821869284
+      ],
+      "cohens_kappa_weighted": [
+       0.3686594005227624,
+       0.813834507985392
+      ],
+      "ece": [
+       0.02701025616239762,
+       0.03527041864251929
+      ],
+      "brier": [
+       0.0023277482606319875,
+       0.006703033730332878
+      ],
+      "expected_p_weighted": [
+       0.02894429172018086,
+       0.0366809893717355
+      ]
+     },
+     "cohens_kappa_unweighted": 0.7024390243902436,
+     "brier_skill_score": 0.5816911553162455,
+     "calibration_slope": 5.649458514705757,
+     "calibration_slope_raw": 5.649458514705757,
      "separated": false,
-     "calibration_intercept": 8.638210248555234,
-     "spiegelhalter_z": -1.4605116493430927,
-     "expected_p_weighted": 0.10611221700808529,
+     "calibration_intercept": 7.132579697883855,
+     "spiegelhalter_z": -1.4327660063732077,
+     "mean_p_minus_prevalence": 0.02193176388784327,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.002112033468774693,
-     "excess_aurc": -0.000582520444376085,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 3.024706172810914e-05,
+     "excess_aurc": -5.383351412064506e-06,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.0266155094094907,
+      0.034875671889612374
+     ],
+     "cohens_kappa": 0.5843485076215771
     }
    },
    "label_probability_disagreement": 0.0,
@@ -541,498 +2179,1994 @@
   "gpt-5.6-sol": {
    "pooled": {
     "n": 2416,
-    "base_rate_weighted": 0.17712490159011174,
-    "base_rate_unweighted": 0.1734271523178808,
-    "flagged_rate_weighted": 0.14677345214867493,
-    "precision": 0.9736935237979164,
-    "recall": 0.8068451050058704,
-    "f1": 0.8824519061179438,
-    "accuracy_weighted": 0.9619263659064696,
-    "cohens_kappa": 0.8622919239065279,
-    "ece": 0.038794460944242326,
-    "ece_ci95": [
-     0.0312090020105944,
-     0.046200386536174934
-    ],
-    "brier": 0.03770733953998401,
-    "brier_skill_score": 0.7412905160806615,
-    "calibration_slope": 0.7525272806881245,
-    "calibration_slope_raw": 0.7525272806881245,
+    "n_narratives": 400,
+    "n_effective": 1259.844275220099,
+    "base_rate_weighted": 0.026606675253090167,
+    "flagged_rate_weighted": 0.022333430856959127,
+    "precision": 0.9701068770017724,
+    "recall": 0.8142999700371549,
+    "f1": 0.8854012213484272,
+    "accuracy_weighted": 0.9943915236127101,
+    "cohens_kappa_weighted": 0.8825491034193339,
+    "ece": 0.0026850275633685467,
+    "brier": 0.005618866336987488,
+    "expected_p_weighted": 0.02753345572786134,
+    "ci95": {
+     "base_rate_weighted": [
+      0.02364478368329414,
+      0.029886485757729928
+     ],
+     "flagged_rate_weighted": [
+      0.019833394140648216,
+      0.025006375755436596
+     ],
+     "precision": [
+      0.947812051370814,
+      0.989029894196782
+     ],
+     "recall": [
+      0.7415811659827661,
+      0.868874201292118
+     ],
+     "f1": [
+      0.8403540106855688,
+      0.9200183172995936
+     ],
+     "accuracy_weighted": [
+      0.9920379668011317,
+      0.9961526852260129
+     ],
+     "cohens_kappa_weighted": [
+      0.8361575063524085,
+      0.9181008629465186
+     ],
+     "ece": [
+      0.001615011748609221,
+      0.004728850241447568
+     ],
+     "brier": [
+      0.0038597767431976173,
+      0.007928438578245312
+     ],
+     "expected_p_weighted": [
+      0.02502364851702807,
+      0.03018908835797683
+     ]
+    },
+    "ci95_raw": {
+     "base_rate_weighted": [
+      0.023695194226688778,
+      0.029936896301124567
+     ],
+     "flagged_rate_weighted": [
+      0.019815232729413684,
+      0.024988214344202064
+     ],
+     "precision": [
+      0.9483376508154447,
+      0.9895554936414127
+     ],
+     "recall": [
+      0.7406281401720043,
+      0.8679211754813562
+     ],
+     "f1": [
+      0.839606785913652,
+      0.9192710925276768
+     ],
+     "accuracy_weighted": [
+      0.9919928133522309,
+      0.9961075317771121
+     ],
+     "cohens_kappa_weighted": [
+      0.8353909959832038,
+      0.9173343525773139
+     ],
+     "ece": [
+      0.002228068656779708,
+      0.005341907149618056
+     ],
+     "brier": [
+      0.0039055576385985716,
+      0.007974219473646266
+     ],
+     "expected_p_weighted": [
+      0.025010283867841897,
+      0.03017572370879066
+     ]
+    },
+    "cohens_kappa_unweighted": 0.8622919239065279,
+    "brier_skill_score": 0.7830449674605338,
+    "calibration_slope": 0.9789816830263691,
+    "calibration_slope_raw": 0.9789816830263691,
     "separated": false,
-    "calibration_intercept": 0.6559380757278843,
-    "spiegelhalter_z": 14.602786529756452,
-    "expected_p_weighted": 0.14840158880088364,
+    "calibration_intercept": -0.2406714294365889,
+    "spiegelhalter_z": -0.32102837179606525,
+    "mean_p_minus_prevalence": 0.0009267804747711723,
     "base_rate_below_grid_floor": false,
-    "aurc": 0.03115882008456539,
-    "excess_aurc": 0.02970921847147733,
-    "review_budget_90": 0.0,
-    "review_budget_95": 0.0,
+    "aurc": 0.0038930531845260893,
+    "excess_aurc": 0.003861598177139297,
+    "review_budget_90_insample": 0.0,
+    "review_budget_95_insample": 0.0,
+    "ece_ci95": [
+     0.001615011748609221,
+     0.004728850241447568
+    ],
+    "cohens_kappa": 0.8825491034193339,
     "n_variables": 16
    },
    "per_variable": {
     "aggression": {
      "n": 165,
-     "base_rate_weighted": 0.1664468314592639,
-     "base_rate_unweighted": 0.18787878787878787,
-     "flagged_rate_weighted": 0.09850856368437683,
+     "n_narratives": 165,
+     "n_effective": 78.50677720271943,
+     "base_rate_weighted": 0.009472060771478458,
+     "flagged_rate_weighted": 0.005832880709626863,
      "precision": 1.0,
-     "recall": 0.5918320151891012,
-     "f1": 0.7435860185520828,
-     "accuracy_weighted": 0.9320617322251129,
-     "cohens_kappa": 0.720022624434389,
-     "ece": 0.07057226082994505,
-     "ece_ci95": [
-      0.036464896630201,
-      0.11221811735338219
-     ],
-     "brier": 0.06795440068772025,
-     "brier_skill_score": 0.5102113151963428,
-     "calibration_slope": 0.8127677091114098,
-     "calibration_slope_raw": 0.8127677091114098,
+     "recall": 0.615798488876928,
+     "f1": 0.7622218898161528,
+     "accuracy_weighted": 0.9963608199381483,
+     "cohens_kappa_weighted": 0.7604926920654584,
+     "ece": 0.0030118940644950558,
+     "brier": 0.0037157024273403584,
+     "expected_p_weighted": 0.011883475269156257,
+     "ci95": {
+      "base_rate_weighted": [
+       0.005890983443046879,
+       0.013551412284971046
+      ],
+      "flagged_rate_weighted": [
+       0.0031465005312211088,
+       0.00907378079054549
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.44189194063636633,
+       0.7859824986266459
+      ],
+      "f1": [
+       0.6168214966803421,
+       0.8838726365818097
+      ],
+      "accuracy_weighted": [
+       0.9940707912493202,
+       0.9982589062784273
+      ],
+      "cohens_kappa_weighted": [
+       0.6144874014104338,
+       0.882939287872834
+      ],
+      "ece": [
+       0.001272506087546039,
+       0.004860326998190001
+      ],
+      "brier": [
+       0.0018400948301664825,
+       0.006051871553717276
+      ],
+      "expected_p_weighted": [
+       0.009365048399715258,
+       0.014967926062043656
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.005977327301721357,
+       0.013637756143645523
+      ],
+      "flagged_rate_weighted": [
+       0.0032151251257688104,
+       0.009142405385093191
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.44243990598187083,
+       0.7865304639721504
+      ],
+      "f1": [
+       0.613460382595032,
+       0.8805115224964996
+      ],
+      "accuracy_weighted": [
+       0.9940530719851934,
+       0.9982411870143005
+      ],
+      "cohens_kappa_weighted": [
+       0.6111425015839398,
+       0.87959438804634
+      ],
+      "ece": [
+       0.001376966227744233,
+       0.004964787138388195
+      ],
+      "brier": [
+       0.0018610212966606349,
+       0.006072798020211429
+      ],
+      "expected_p_weighted": [
+       0.009443267982843442,
+       0.01504614564517184
+      ]
+     },
+     "cohens_kappa_unweighted": 0.720022624434389,
+     "brier_skill_score": 0.6039685093301932,
+     "calibration_slope": 1.1731736150461318,
+     "calibration_slope_raw": 1.1731736150461318,
      "separated": false,
-     "calibration_intercept": 1.6114495177527528,
-     "spiegelhalter_z": 7.895200112923519,
-     "expected_p_weighted": 0.09949112837692838,
-     "base_rate_below_grid_floor": false,
-     "aurc": 0.06933462024787829,
-     "excess_aurc": 0.06471901201962603,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "calibration_intercept": 0.32753147755702566,
+     "spiegelhalter_z": -0.3201443310796648,
+     "mean_p_minus_prevalence": 0.002411414497677799,
+     "base_rate_below_grid_floor": true,
+     "aurc": 0.0035794244842868857,
+     "excess_aurc": 0.003566180852764308,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.001272506087546039,
+      0.004860326998190001
+     ],
+     "cohens_kappa": 0.7604926920654584
     },
     "alcohol_involved": {
      "n": 140,
-     "base_rate_weighted": 0.19635625848840996,
-     "base_rate_unweighted": 0.17857142857142858,
-     "flagged_rate_weighted": 0.19635625848840996,
+     "n_narratives": 140,
+     "n_effective": 69.60143178223831,
+     "base_rate_weighted": 0.03045333999485753,
+     "flagged_rate_weighted": 0.03045333999485753,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.008698680321916353,
-     "ece_ci95": [
-      0.007280868225937613,
-      0.011033800802446135
-     ],
-     "brier": 0.000270022643285943,
-     "brier_skill_score": 0.998288835076445,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.00617814714279239,
+     "brier": 5.125602649998856e-05,
+     "expected_p_weighted": 0.03573784412594765,
+     "ci95": {
+      "base_rate_weighted": [
+       0.01869404680224758,
+       0.04553643807667894
+      ],
+      "flagged_rate_weighted": [
+       0.01869404680224758,
+       0.04553643807667894
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.005971971251828919,
+       0.0064291849371638475
+      ],
+      "brier": [
+       3.750043429394567e-05,
+       7.850775771560978e-05
+      ],
+      "expected_p_weighted": [
+       0.024175971862925305,
+       0.050542767913597415
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.01932363324720672,
+       0.04616602452163808
+      ],
+      "flagged_rate_weighted": [
+       0.01932363324720672,
+       0.04616602452163808
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.005985748080615489,
+       0.006442961765950417
+      ],
+      "brier": [
+       3.839307756299989e-05,
+       7.940040098466399e-05
+      ],
+      "expected_p_weighted": [
+       0.02479830651324033,
+       0.05116510256391244
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.9982640337012012,
      "calibration_slope": null,
-     "calibration_slope_raw": 5.446709621928661,
+     "calibration_slope_raw": 5.694156428684108,
      "separated": true,
-     "calibration_intercept": -4.972758408213265,
-     "spiegelhalter_z": -1.0706139191771125,
-     "expected_p_weighted": 0.19927385977848644,
+     "calibration_intercept": -0.6801429904674189,
+     "spiegelhalter_z": -0.675047967192434,
+     "mean_p_minus_prevalence": 0.005284504131090124,
      "base_rate_below_grid_floor": false,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.005971971251828919,
+      0.0064291849371638475
+     ],
+     "cohens_kappa": 1.0
     },
     "animal_involved": {
      "n": 129,
-     "base_rate_weighted": 0.22153148612609702,
-     "base_rate_unweighted": 0.17829457364341086,
-     "flagged_rate_weighted": 0.22153148612609702,
+     "n_narratives": 129,
+     "n_effective": 88.69864494155482,
+     "base_rate_weighted": 0.01921132682421048,
+     "flagged_rate_weighted": 0.01921132682421048,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.006794345206133838,
-     "ece_ci95": [
-      0.0063420887414998165,
-      0.007581718134508695
-     ],
-     "brier": 8.89343373776909e-05,
-     "brier_skill_score": 0.9994843049520964,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.004211957054192492,
+     "brier": 2.235442444225e-05,
+     "expected_p_weighted": 0.02284694407367666,
+     "ci95": {
+      "base_rate_weighted": [
+       0.012712582849385133,
+       0.02677411758406737
+      ],
+      "flagged_rate_weighted": [
+       0.012712582849385133,
+       0.02677411758406737
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.004100810283830774,
+       0.00434243208391807
+      ],
+      "brier": [
+       1.8669355400118433e-05,
+       2.8288423381964613e-05
+      ],
+      "expected_p_weighted": [
+       0.016438410199055127,
+       0.030264104780225117
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.012976807883359883,
+       0.02703834261804212
+      ],
+      "flagged_rate_weighted": [
+       0.012976807883359883,
+       0.02703834261804212
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.004104757714974919,
+       0.004346379515062215
+      ],
+      "brier": [
+       1.880942859570889e-05,
+       2.842849657755507e-05
+      ],
+      "expected_p_weighted": [
+       0.016698655913154777,
+       0.030524350494324767
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.9988136012222023,
      "calibration_slope": null,
-     "calibration_slope_raw": 5.073312511216449,
+     "calibration_slope_raw": 3.978997105692634,
      "separated": true,
-     "calibration_intercept": 0.24783251450515376,
-     "spiegelhalter_z": -0.8975134561520879,
-     "expected_p_weighted": 0.2216798867484479,
+     "calibration_intercept": -0.15508902297285335,
+     "spiegelhalter_z": -0.6293755097884235,
+     "mean_p_minus_prevalence": 0.003635617249466181,
      "base_rate_below_grid_floor": false,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.004100810283830774,
+      0.00434243208391807
+     ],
+     "cohens_kappa": 1.0
     },
     "drug_involved": {
      "n": 148,
-     "base_rate_weighted": 0.04092604569412409,
-     "base_rate_unweighted": 0.05405405405405406,
-     "flagged_rate_weighted": 0.04092604569412409,
+     "n_narratives": 148,
+     "n_effective": 83.39746199285797,
+     "base_rate_weighted": 0.004100914746400871,
+     "flagged_rate_weighted": 0.004100914746400871,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.012598337840847606,
-     "ece_ci95": [
-      0.009997547889771564,
-      0.01665551023848562
-     ],
-     "brier": 0.0013150537760037169,
-     "brier_skill_score": 0.9664963879744602,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.00971730860064291,
+     "brier": 0.0006531368963165058,
+     "expected_p_weighted": 0.013561761522777686,
+     "ci95": {
+      "base_rate_weighted": [
+       0.0015846663303667754,
+       0.00717997731542129
+      ],
+      "flagged_rate_weighted": [
+       0.0015846663303667754,
+       0.00717997731542129
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.0060446752912104605,
+       0.016606681010155756
+      ],
+      "brier": [
+       6.735499525366646e-05,
+       0.0017677273882817503
+      ],
+      "expected_p_weighted": [
+       0.00857799469232148,
+       0.02111992262119238
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.001673924510948371,
+       0.007269235496002886
+      ],
+      "flagged_rate_weighted": [
+       0.001673924510948371,
+       0.007269235496002886
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.00600563800349133,
+       0.016567643722436628
+      ],
+      "brier": [
+       6.004020535946594e-05,
+       0.0017604125983875498
+      ],
+      "expected_p_weighted": [
+       0.008623168852134249,
+       0.02116509678100515
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.840078025278877,
      "calibration_slope": null,
-     "calibration_slope_raw": 11.693450502135631,
+     "calibration_slope_raw": 9.906943967753477,
      "separated": true,
-     "calibration_intercept": -24.269493089485245,
-     "spiegelhalter_z": -1.309990169419274,
-     "expected_p_weighted": 0.05096496228684056,
-     "base_rate_below_grid_floor": false,
+     "calibration_intercept": -20.347338473613675,
+     "spiegelhalter_z": -0.8945993649502681,
+     "mean_p_minus_prevalence": 0.009460846776376815,
+     "base_rate_below_grid_floor": true,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.0060446752912104605,
+      0.016606681010155756
+     ],
+     "cohens_kappa": 1.0
     },
     "fatigue": {
      "n": 120,
-     "base_rate_weighted": 0.22453631509049007,
-     "base_rate_unweighted": 0.225,
-     "flagged_rate_weighted": 0.21548435362652246,
+     "n_narratives": 120,
+     "n_effective": 64.38523475569953,
+     "base_rate_weighted": 0.013365765285844709,
+     "flagged_rate_weighted": 0.012800166721759692,
      "precision": 1.0,
-     "recall": 0.9596859801483802,
-     "f1": 0.9794283266502896,
-     "accuracy_weighted": 0.9909480385360325,
-     "cohens_kappa": 0.9757869249394674,
-     "ece": 0.009094301488975939,
-     "ece_ci95": [
-      0.0036823305747012086,
-      0.025681079450394044
-     ],
-     "brier": 0.009166235909929264,
-     "brier_skill_score": 0.9473567158625218,
-     "calibration_slope": 1.0886190385665186,
-     "calibration_slope_raw": 1.0886190385665186,
-     "separated": false,
-     "calibration_intercept": 1.0029988821971287,
-     "spiegelhalter_z": 0.18643913084994918,
-     "expected_p_weighted": 0.21849981639227356,
+     "recall": 0.9576830393180683,
+     "f1": 0.978384161362162,
+     "accuracy_weighted": 0.9994344014359153,
+     "cohens_kappa_weighted": 0.9780977488420965,
+     "ece": 0.005370679732348471,
+     "brier": 0.0006041386836167429,
+     "expected_p_weighted": 0.01843953414391008,
+     "ci95": {
+      "base_rate_weighted": [
+       0.008278617664089721,
+       0.01989463706231813
+      ],
+      "flagged_rate_weighted": [
+       0.007781873427660423,
+       0.01946769610941155
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.8678359090362133,
+       0.9996816554274631
+      ],
+      "f1": [
+       0.9297239709020038,
+       1.0002994577406588
+      ],
+      "accuracy_weighted": [
+       0.9980692148250104,
+       1.000015326699259
+      ],
+      "cohens_kappa_weighted": [
+       0.928953215621151,
+       1.000306895369236
+      ],
+      "ece": [
+       0.003997475715032289,
+       0.006064853670257788
+      ],
+      "brier": [
+       2.2209551242551182e-05,
+       0.001954336044232504
+      ],
+      "expected_p_weighted": [
+       0.013563571401711924,
+       0.024881176708144798
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.008466327042542075,
+       0.020082346440770484
+      ],
+      "flagged_rate_weighted": [
+       0.007954256106854107,
+       0.01964007878860523
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.8681542536087502,
+       1.0
+      ],
+      "f1": [
+       0.929424513161345,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9980538881257514,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.928646320251915,
+       1.0
+      ],
+      "ece": [
+       0.003983394525710839,
+       0.006050772480936338
+      ],
+      "brier": [
+       3.750559244957198e-05,
+       0.0019696320854395246
+      ],
+      "expected_p_weighted": [
+       0.013734269698518837,
+       0.02505187500495171
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9757869249394674,
+     "brier_skill_score": 0.95418722130948,
+     "calibration_slope": null,
+     "calibration_slope_raw": 1.5794860797461752,
+     "separated": true,
+     "calibration_intercept": 0.6130234888759193,
+     "spiegelhalter_z": -0.5650845106933787,
+     "mean_p_minus_prevalence": 0.00507376885806537,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.009358579223421898,
-     "excess_aurc": 0.009276641217076744,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 0.0005121277955415469,
+     "excess_aurc": 0.0005118078938058519,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.003997475715032289,
+      0.006064853670257788
+     ],
+     "cohens_kappa": 0.9780977488420965
     },
     "hit_and_run": {
      "n": 205,
-     "base_rate_weighted": 0.44005258332000713,
-     "base_rate_unweighted": 0.44878048780487806,
-     "flagged_rate_weighted": 0.30581919916752204,
-     "precision": 0.9821337410023421,
-     "recall": 0.6825442356972139,
-     "f1": 0.8053806597885627,
-     "accuracy_weighted": 0.8548389258099484,
-     "cohens_kappa": 0.6956048307265887,
-     "ece": 0.14841301793447068,
-     "ece_ci95": [
-      0.10476489989900599,
-      0.19534447852475023
-     ],
-     "brier": 0.14467221753942444,
-     "brier_skill_score": 0.4128712890356685,
-     "calibration_slope": 0.5521597634518262,
-     "calibration_slope_raw": 0.5521597634518262,
+     "n_narratives": 205,
+     "n_effective": 90.71997860120241,
+     "base_rate_weighted": 0.16092378923747347,
+     "flagged_rate_weighted": 0.12804939168731913,
+     "precision": 0.9905201949323316,
+     "recall": 0.7881712767024149,
+     "f1": 0.8778358462829094,
+     "accuracy_weighted": 0.9646978359053872,
+     "cohens_kappa_weighted": 0.8575151318977485,
+     "ece": 0.03274600922970515,
+     "brier": 0.03520380631824947,
+     "expected_p_weighted": 0.13057109744871007,
+     "ci95": {
+      "base_rate_weighted": [
+       0.12209910667898008,
+       0.2076274547126952
+      ],
+      "flagged_rate_weighted": [
+       0.09431743281580948,
+       0.1669370203267491
+      ],
+      "precision": [
+       0.9689064464608872,
+       0.9999652141696286
+      ],
+      "recall": [
+       0.700418752786758,
+       0.8648737359521553
+      ],
+      "f1": [
+       0.8210643621678322,
+       0.9244895193417221
+      ],
+      "accuracy_weighted": [
+       0.9482589217654802,
+       0.9783728718032141
+      ],
+      "cohens_kappa_weighted": [
+       0.7943575030181795,
+       0.9103298314274991
+      ],
+      "ece": [
+       0.018375757262552618,
+       0.04933787191266353
+      ],
+      "brier": [
+       0.021677044852691216,
+       0.05158820156065422
+      ],
+      "expected_p_weighted": [
+       0.09752035423386773,
+       0.16821039116699613
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.12343762846116216,
+       0.20896597649487728
+      ],
+      "flagged_rate_weighted": [
+       0.095373850564229,
+       0.16799343807516862
+      ],
+      "precision": [
+       0.9689412322912586,
+       1.0
+      ],
+      "recall": [
+       0.6998874503955769,
+       0.8643424335609742
+      ],
+      "f1": [
+       0.8201369933920113,
+       0.9235621505659012
+      ],
+      "accuracy_weighted": [
+       0.947970220716005,
+       0.9780841707537389
+      ],
+      "cohens_kappa_weighted": [
+       0.7932276254698957,
+       0.9091999538792153
+      ],
+      "ece": [
+       0.019359227454839652,
+       0.05032134210495057
+      ],
+      "brier": [
+       0.02196165580078327,
+       0.05187281250874627
+      ],
+      "expected_p_weighted": [
+       0.09856697788024371,
+       0.1692570148133721
+      ]
+     },
+     "cohens_kappa_unweighted": 0.6956048307265887,
+     "brier_skill_score": 0.7392838319000273,
+     "calibration_slope": 0.8469342599437785,
+     "calibration_slope_raw": 0.8469342599437785,
      "separated": false,
-     "calibration_intercept": 1.4361231541068573,
-     "spiegelhalter_z": 18.47386756670786,
-     "expected_p_weighted": 0.3040740095555244,
+     "calibration_intercept": 1.1411418265049698,
+     "spiegelhalter_z": 3.393984975613283,
+     "mean_p_minus_prevalence": -0.030352691788763403,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.15878947207425265,
-     "excess_aurc": 0.13771773461424297,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 0.03195848263423205,
+     "excess_aurc": 0.030712239844469056,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.018375757262552618,
+      0.04933787191266353
+     ],
+     "cohens_kappa": 0.8575151318977485
     },
     "hydroplane": {
      "n": 130,
-     "base_rate_weighted": 0.27079650514461234,
-     "base_rate_unweighted": 0.23846153846153847,
-     "flagged_rate_weighted": 0.24450569730933683,
-     "precision": 0.9349736874746539,
-     "recall": 0.8441999400981579,
-     "f1": 0.8872711676108236,
-     "accuracy_weighted": 0.9419105843897955,
-     "cohens_kappa": 0.8466464442197505,
-     "ece": 0.06253638529455235,
-     "ece_ci95": [
-      0.031767260917371,
-      0.10079101882515357
-     ],
-     "brier": 0.04953037679259031,
-     "brier_skill_score": 0.7491697937517046,
-     "calibration_slope": 0.7757171304334272,
-     "calibration_slope_raw": 0.7757171304334272,
+     "n_narratives": 130,
+     "n_effective": 77.90252789308303,
+     "base_rate_weighted": 0.020848073639737306,
+     "flagged_rate_weighted": 0.019849022894651423,
+     "precision": 0.9152602787583007,
+     "recall": 0.8714005208141364,
+     "f1": 0.8927920551918276,
+     "accuracy_weighted": 0.9956369479208885,
+     "cohens_kappa_weighted": 0.8905665860208711,
+     "ece": 0.0060310305648729415,
+     "brier": 0.003577810206836382,
+     "expected_p_weighted": 0.02412032657235031,
+     "ci95": {
+      "base_rate_weighted": [
+       0.013135974112988794,
+       0.029623184518241908
+      ],
+      "flagged_rate_weighted": [
+       0.012255952994911863,
+       0.02883687589887516
+      ],
+      "precision": [
+       0.7894860899115462,
+       1.0012388593625494
+      ],
+      "recall": [
+       0.7427102319590185,
+       0.9652140517175495
+      ],
+      "f1": [
+       0.7976110315848066,
+       0.9643317986343838
+      ],
+      "accuracy_weighted": [
+       0.9916552160507219,
+       0.9986688583879167
+      ],
+      "cohens_kappa_weighted": [
+       0.7936787655437278,
+       0.9637202571476974
+      ],
+      "ece": [
+       0.003030951549639695,
+       0.008834262654393236
+      ],
+      "brier": [
+       0.001208641157016161,
+       0.006854265684670667
+      ],
+      "expected_p_weighted": [
+       0.017280112983650512,
+       0.03200592863691709
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.013370301873097599,
+       0.029857512278350713
+      ],
+      "flagged_rate_weighted": [
+       0.012528879727532286,
+       0.029109802631495582
+      ],
+      "precision": [
+       0.7882472305489968,
+       1.0
+      ],
+      "recall": [
+       0.7428296429270045,
+       0.9653334626855354
+      ],
+      "f1": [
+       0.7954198894437233,
+       0.9621406564933005
+      ],
+      "accuracy_weighted": [
+       0.9915577914589996,
+       0.9985714337961944
+      ],
+      "cohens_kappa_weighted": [
+       0.7914407869280715,
+       0.961482278532041
+      ],
+      "ece": [
+       0.0030811631951149884,
+       0.008884474299868531
+      ],
+      "brier": [
+       0.0012752999275317007,
+       0.0069209244551862075
+      ],
+      "expected_p_weighted": [
+       0.017519677437999148,
+       0.03224549309126573
+      ]
+     },
+     "cohens_kappa_unweighted": 0.8466464442197505,
+     "brier_skill_score": 0.8247325437211753,
+     "calibration_slope": 1.1554642512866153,
+     "calibration_slope_raw": 1.1554642512866153,
      "separated": false,
-     "calibration_intercept": 0.9542038633150014,
-     "spiegelhalter_z": 2.7550228546193547,
-     "expected_p_weighted": 0.2324696282287646,
+     "calibration_intercept": -0.1328970082276461,
+     "spiegelhalter_z": -0.4000119452058134,
+     "mean_p_minus_prevalence": 0.003272252932613004,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.03516997092502147,
-     "excess_aurc": 0.03179559071908638,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.03657622245994674
+     "aurc": 0.0020857513101774404,
+     "excess_aurc": 0.0020667150867324014,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.047664687954159346,
+     "ece_ci95": [
+      0.003030951549639695,
+      0.008834262654393236
+     ],
+     "cohens_kappa": 0.8905665860208711
     },
     "intentional": {
      "n": 173,
-     "base_rate_weighted": 0.022674373245726655,
-     "base_rate_unweighted": 0.028901734104046242,
-     "flagged_rate_weighted": 0.018298097834696717,
+     "n_narratives": 173,
+     "n_effective": 85.55022937473602,
+     "base_rate_weighted": 0.0016131779071571109,
+     "flagged_rate_weighted": 0.001298527034859982,
      "precision": 1.0,
-     "recall": 0.8069946470580078,
-     "f1": 0.8931898590534141,
-     "accuracy_weighted": 0.9956237245889701,
-     "cohens_kappa": 0.885959129861568,
-     "ece": 0.006585763018259187,
-     "ece_ci95": [
-      0.0025064989826314114,
-      0.012827327080349627
-     ],
-     "brier": 0.005704819137537286,
-     "brier_skill_score": 0.7425651716004057,
-     "calibration_slope": 1.1222865351868423,
-     "calibration_slope_raw": 1.1222865351868423,
+     "recall": 0.8049496767212517,
+     "f1": 0.8919358662491559,
+     "accuracy_weighted": 0.9996853491277028,
+     "cohens_kappa_weighted": 0.8917801539901601,
+     "ece": 0.006357105100991039,
+     "brier": 0.000567534972044563,
+     "expected_p_weighted": 0.0076687097361949254,
+     "ci95": {
+      "base_rate_weighted": [
+       0.00028853408789854767,
+       0.0033482805580232686
+      ],
+      "flagged_rate_weighted": [
+       0.0002624495672817905,
+       0.0027884636225263097
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.2798364866033736,
+       1.0183770717860396
+      ],
+      "f1": [
+       0.5332302713776902,
+       1.0135440721619176
+      ],
+      "accuracy_weighted": [
+       0.9989640088063924,
+       1.0000182304301692
+      ],
+      "cohens_kappa_weighted": [
+       0.4470942038277551,
+       1.0328842046843083
+      ],
+      "ece": [
+       0.0053079054082816185,
+       0.00765796297863791
+      ],
+      "brier": [
+       3.7059529742713155e-05,
+       0.0013795616042102097
+      ],
+      "expected_p_weighted": [
+       0.006354136438542109,
+       0.009337166592009007
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0003155284818353718,
+       0.003375274951960093
+      ],
+      "flagged_rate_weighted": [
+       0.00027121353104920355,
+       0.0027972275862937226
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.261459414817334,
+       1.0
+      ],
+      "f1": [
+       0.5196861992157726,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9989457783762231,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.4142099991434468,
+       1.0
+      ],
+      "ece": [
+       0.005297107898054086,
+       0.007647165468410377
+      ],
+      "brier": [
+       5.654565358678507e-05,
+       0.0013990477280542816
+      ],
+      "expected_p_weighted": [
+       0.006373247065980869,
+       0.009356277219447767
+      ]
+     },
+     "cohens_kappa_unweighted": 0.885959129861568,
+     "brier_skill_score": 0.6476197797477856,
+     "calibration_slope": 1.4731349170052446,
+     "calibration_slope_raw": 1.4731349170052446,
      "separated": false,
-     "calibration_intercept": 0.07665025062574672,
-     "spiegelhalter_z": -0.6134359467490508,
-     "expected_p_weighted": 0.02490884995577258,
-     "base_rate_below_grid_floor": false,
-     "aurc": 0.004300254757894611,
-     "excess_aurc": 0.004281102971421425,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "calibration_intercept": -0.7747395698113156,
+     "spiegelhalter_z": -0.7176138051795664,
+     "mean_p_minus_prevalence": 0.006055531829037814,
+     "base_rate_below_grid_floor": true,
+     "aurc": 0.0002892397248283256,
+     "excess_aurc": 0.0002891407196568883,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.0053079054082816185,
+      0.00765796297863791
+     ],
+     "cohens_kappa": 0.8917801539901601
     },
     "medical_episode": {
      "n": 164,
-     "base_rate_weighted": 0.11970871332780286,
-     "base_rate_unweighted": 0.14634146341463414,
-     "flagged_rate_weighted": 0.1095514799502466,
+     "n_narratives": 164,
+     "n_effective": 73.20836688819271,
+     "base_rate_weighted": 0.0088254225670348,
+     "flagged_rate_weighted": 0.00813661220814518,
      "precision": 1.0,
-     "recall": 0.9151504256023341,
-     "f1": 0.9556956084162529,
-     "accuracy_weighted": 0.9898427666224436,
-     "cohens_kappa": 0.9494451294697903,
-     "ece": 0.012502540685377966,
-     "ece_ci95": [
-      0.005546722950775981,
-      0.028154187304521988
-     ],
-     "brier": 0.011032713941444106,
-     "brier_skill_score": 0.8953039753056822,
-     "calibration_slope": 1.0826224495165613,
-     "calibration_slope_raw": 1.0826224495165613,
+     "recall": 0.9219515718757196,
+     "f1": 0.9593910537256101,
+     "accuracy_weighted": 0.9993111896411103,
+     "cohens_kappa_weighted": 0.9590442803590975,
+     "ece": 0.005656592718502772,
+     "brier": 0.0007904526347004091,
+     "expected_p_weighted": 0.0138156710345417,
+     "ci95": {
+      "base_rate_weighted": [
+       0.004835236096492506,
+       0.013730891242184606
+      ],
+      "flagged_rate_weighted": [
+       0.00430382864437162,
+       0.012725151062632637
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.7967615618329603,
+       0.9984264587690039
+      ],
+      "f1": [
+       0.8879137140861223,
+       1.0000535024311572
+      ],
+      "accuracy_weighted": [
+       0.9980852035549796,
+       1.000000098425564
+      ],
+      "cohens_kappa_weighted": [
+       0.886896940764385,
+       1.0000525985074251
+      ],
+      "ece": [
+       0.004323879414155775,
+       0.006514454230398844
+      ],
+      "brier": [
+       6.348837917262308e-05,
+       0.0019894447744717384
+      ],
+      "expected_p_weighted": [
+       0.010177383874201812,
+       0.01823637703488807
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0050369088243867426,
+       0.013932563970078842
+      ],
+      "flagged_rate_weighted": [
+       0.0045054029467018935,
+       0.01292672536496291
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.7983351030639564,
+       1.0
+      ],
+      "f1": [
+       0.8878602116549651,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9980851051294157,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.88684434225696,
+       1.0
+      ],
+      "ece": [
+       0.0043284768975927704,
+       0.00651905171383584
+      ],
+      "brier": [
+       6.412605360173758e-05,
+       0.001990082448900853
+      ],
+      "expected_p_weighted": [
+       0.010367404782253037,
+       0.018426397942939293
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9494451294697903,
+     "brier_skill_score": 0.9096370941792739,
+     "calibration_slope": 1.5049442944894487,
+     "calibration_slope_raw": 1.5049442944894487,
      "separated": false,
-     "calibration_intercept": 0.9480971650954128,
-     "spiegelhalter_z": 0.06190045448600703,
-     "expected_p_weighted": 0.11188806872867235,
-     "base_rate_below_grid_floor": false,
-     "aurc": 0.01053196477796813,
-     "excess_aurc": 0.010428795388081986,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "calibration_intercept": 0.3596538064391677,
+     "spiegelhalter_z": -0.6146644120803737,
+     "mean_p_minus_prevalence": 0.004990248467506899,
+     "base_rate_below_grid_floor": true,
+     "aurc": 0.0006557673008760449,
+     "excess_aurc": 0.0006552928411655312,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.004323879414155775,
+      0.006514454230398844
+     ],
+     "cohens_kappa": 0.9590442803590975
     },
     "phone_use": {
      "n": 123,
-     "base_rate_weighted": 0.13574819787446613,
-     "base_rate_unweighted": 0.12195121951219512,
-     "flagged_rate_weighted": 0.13574819787446613,
+     "n_narratives": 123,
+     "n_effective": 70.27280160917464,
+     "base_rate_weighted": 0.00828706071411367,
+     "flagged_rate_weighted": 0.00828706071411367,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.010228407371142577,
-     "ece_ci95": [
-      0.009037163977311902,
-      0.012018517836854647
-     ],
-     "brier": 0.0009360759018200538,
-     "brier_skill_score": 0.9920212161789439,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.006030706697706257,
+     "brier": 6.970820602431054e-05,
+     "expected_p_weighted": 0.013927211029388738,
+     "ci95": {
+      "base_rate_weighted": [
+       0.0043109497527311635,
+       0.013067796025735358
+      ],
+      "flagged_rate_weighted": [
+       0.0043109497527311635,
+       0.013067796025735358
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.005820893969015985,
+       0.006286537723402772
+      ],
+      "brier": [
+       3.431491488789824e-05,
+       0.00012205453127992186
+      ],
+      "expected_p_weighted": [
+       0.009964720659537846,
+       0.018565791603636805
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.004524158371229393,
+       0.013281004644233587
+      ],
+      "flagged_rate_weighted": [
+       0.004524158371229393,
+       0.013281004644233587
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.0058264978686512784,
+       0.006292141623038065
+      ],
+      "brier": [
+       3.54633942315221e-05,
+       0.00012320301062354572
+      ],
+      "expected_p_weighted": [
+       0.010172982080184089,
+       0.01877405302428305
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.9915180168426858,
      "calibration_slope": null,
-     "calibration_slope_raw": 15.739786675306913,
+     "calibration_slope_raw": 11.891514356050699,
      "separated": true,
-     "calibration_intercept": 2.0779925305988365,
-     "spiegelhalter_z": -1.0750233626112664,
-     "expected_p_weighted": 0.13823975871490768,
-     "base_rate_below_grid_floor": false,
+     "calibration_intercept": 2.276417729140961,
+     "spiegelhalter_z": -0.655227249030491,
+     "mean_p_minus_prevalence": 0.005640150315275068,
+     "base_rate_below_grid_floor": true,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.005820893969015985,
+      0.006286537723402772
+     ],
+     "cohens_kappa": 1.0
     },
     "preg_mentioned": {
      "n": 107,
-     "base_rate_weighted": 0.03481817978834368,
-     "base_rate_unweighted": 0.037383177570093455,
-     "flagged_rate_weighted": 0.03481817978834368,
+     "n_narratives": 107,
+     "n_effective": 93.19444880070192,
+     "base_rate_weighted": 0.0021876237851466192,
+     "flagged_rate_weighted": 0.0021876237851466192,
      "precision": 1.0,
      "recall": 1.0,
      "f1": 1.0,
      "accuracy_weighted": 1.0,
-     "cohens_kappa": 1.0,
-     "ece": 0.003174090898941719,
-     "ece_ci95": [
-      0.003143810867848231,
-      0.003196899033923182
-     ],
-     "brier": 1.0914999888358904e-05,
-     "brier_skill_score": 0.9996752055952658,
+     "cohens_kappa_weighted": 1.0,
+     "ece": 0.003010938118925733,
+     "brier": 9.120319308183065e-06,
+     "expected_p_weighted": 0.005163559923510007,
+     "ci95": {
+      "base_rate_weighted": [
+       0.00041874892931629886,
+       0.004634566130272209
+      ],
+      "flagged_rate_weighted": [
+       0.00041874892931629886,
+       0.004634566130272209
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.0030020937446465813,
+       0.0030231728306513612
+      ],
+      "brier": [
+       9.023031191112398e-06,
+       9.254901137164971e-06
+      ],
+      "expected_p_weighted": [
+       0.0034141426910938204,
+       0.007583585902839216
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0003999428052708356,
+       0.004615760006226746
+      ],
+      "flagged_rate_weighted": [
+       0.0003999428052708356,
+       0.004615760006226746
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       1.0,
+       1.0
+      ],
+      "accuracy_weighted": [
+       1.0,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       1.0,
+       1.0
+      ],
+      "ece": [
+       0.003001999714026354,
+       0.003023078800031134
+      ],
+      "brier": [
+       9.021996854289897e-06,
+       9.25386680034247e-06
+      ],
+      "expected_p_weighted": [
+       0.0033955434344128564,
+       0.007564986646158252
+      ]
+     },
+     "cohens_kappa_unweighted": 1.0,
+     "brier_skill_score": 0.9958218067747868,
      "calibration_slope": null,
-     "calibration_slope_raw": 3.2216648384012543,
+     "calibration_slope_raw": 3.1165094188279685,
      "separated": true,
-     "calibration_intercept": -0.18591401239707897,
-     "spiegelhalter_z": -0.5726946447109245,
-     "expected_p_weighted": 0.0374351798106719,
-     "base_rate_below_grid_floor": false,
+     "calibration_intercept": -0.3500653685423318,
+     "spiegelhalter_z": -0.5314024535194302,
+     "mean_p_minus_prevalence": 0.002975936138363388,
+     "base_rate_below_grid_floor": true,
      "aurc": 0.0,
      "excess_aurc": 0.0,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.0030020937446465813,
+      0.0030231728306513612
+     ],
+     "cohens_kappa": 1.0
     },
     "transported": {
      "n": 146,
-     "base_rate_weighted": 0.22551136086871704,
-     "base_rate_unweighted": 0.23972602739726026,
-     "flagged_rate_weighted": 0.22954419736723508,
-     "precision": 0.982431111111617,
+     "n_narratives": 146,
+     "n_effective": 82.78708759242083,
+     "base_rate_weighted": 0.04355977063316317,
+     "flagged_rate_weighted": 0.04409872054294582,
+     "precision": 0.9877785590342062,
      "recall": 1.0,
-     "f1": 0.9911377052196626,
-     "accuracy_weighted": 0.995967163501482,
-     "cohens_kappa": 0.9813917919959214,
-     "ece": 0.01388467250468594,
-     "ece_ci95": [
-      0.008378237578839818,
-      0.02282008179851895
-     ],
-     "brier": 0.00368721602336956,
-     "brier_skill_score": 0.978888693786226,
+     "f1": 0.9938517090295351,
+     "accuracy_weighted": 0.9994610500902176,
+     "cohens_kappa_weighted": 0.9935698929415853,
+     "ece": 0.006897848881190697,
+     "brier": 0.0005081355894634559,
+     "expected_p_weighted": 0.04941212089473057,
+     "ci95": {
+      "base_rate_weighted": [
+       0.02857283371163946,
+       0.06094854423481238
+      ],
+      "flagged_rate_weighted": [
+       0.029216489125452827,
+       0.06160226911597586
+      ],
+      "precision": [
+       0.9589914423423197,
+       1.0000446340760183
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9791063858019932,
+       1.0000631530374096
+      ],
+      "accuracy_weighted": [
+       0.998243178800773,
+       0.9999942291631391
+      ],
+      "cohens_kappa_weighted": [
+       0.9782560534465767,
+       1.0000603488323556
+      ],
+      "ece": [
+       0.006114093109624165,
+       0.00815296933188693
+      ],
+      "brier": [
+       5.423425292447967e-05,
+       0.0014291901973630269
+      ],
+      "expected_p_weighted": [
+       0.034619840713431826,
+       0.06662131436368299
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.028563348350980518,
+       0.060939058874153434
+      ],
+      "flagged_rate_weighted": [
+       0.029201232927932752,
+       0.06158701291845579
+      ],
+      "precision": [
+       0.9589468082663015,
+       1.0
+      ],
+      "recall": [
+       1.0,
+       1.0
+      ],
+      "f1": [
+       0.9790432327645836,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.9982489496376339,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.9781957046142211,
+       1.0
+      ],
+      "ece": [
+       0.006103066285174983,
+       0.008141942507437749
+      ],
+      "brier": [
+       4.877755968412963e-05,
+       0.001423733504122677
+      ],
+      "expected_p_weighted": [
+       0.03459287057537417,
+       0.06659434422562534
+      ]
+     },
+     "cohens_kappa_unweighted": 0.9813917919959214,
+     "brier_skill_score": 0.9878034726375442,
      "calibration_slope": null,
-     "calibration_slope_raw": 49.882590080986866,
+     "calibration_slope_raw": 43.74202496495666,
      "separated": true,
-     "calibration_intercept": -109.13104112053801,
-     "spiegelhalter_z": -0.8590234045045486,
-     "expected_p_weighted": 0.23361159732754277,
+     "calibration_intercept": -95.94765802900298,
+     "spiegelhalter_z": -0.7094278680736084,
+     "mean_p_minus_prevalence": 0.005852350261567399,
      "base_rate_below_grid_floor": false,
-     "aurc": 7.85543033516066e-05,
-     "excess_aurc": 6.229053312782744e-05,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 1.1270676072392778e-06,
+     "excess_aurc": 8.366006019845507e-07,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.006114093109624165,
+      0.00815296933188693
+     ],
+     "cohens_kappa": 0.9935698929415853
     },
     "unbelted": {
      "n": 145,
-     "base_rate_weighted": 0.03455501274308218,
-     "base_rate_unweighted": 0.034482758620689655,
-     "flagged_rate_weighted": 0.027149003655420313,
+     "n_narratives": 145,
+     "n_effective": 80.79905737866875,
+     "base_rate_weighted": 0.0020255796651798257,
+     "flagged_rate_weighted": 0.0015914469528106735,
      "precision": 1.0,
-     "recall": 0.7856748268991874,
+     "recall": 0.7856748268991873,
      "f1": 0.8799752508842906,
-     "accuracy_weighted": 0.9925939909123382,
-     "cohens_kappa": 0.8853754940711459,
-     "ece": 0.0037612912215755374,
-     "ece_ci95": [
-      -0.00027501145225534334,
-      0.015813997153158753
-     ],
-     "brier": 0.007350223438527525,
-     "brier_skill_score": 0.7796759268002404,
+     "accuracy_weighted": 0.9995658672876309,
+     "cohens_kappa_weighted": 0.8797609295539026,
+     "ece": 0.00523861809770222,
+     "brier": 0.00046162128517143427,
+     "expected_p_weighted": 0.007249013475682682,
+     "ci95": {
+      "base_rate_weighted": [
+       0.000446224037999862,
+       0.004196502092357456
+      ],
+      "flagged_rate_weighted": [
+       0.0002641935639673953,
+       0.0035650687191913335
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.2581255189877515,
+       0.9976728408762826
+      ],
+      "f1": [
+       0.5202820015900139,
+       1.0084520800634165
+      ],
+      "accuracy_weighted": [
+       0.9986061429186494,
+       0.9999958693174753
+      ],
+      "cohens_kappa_weighted": [
+       0.43090224019352524,
+       1.0180490489635252
+      ],
+      "ece": [
+       0.004275069825373718,
+       0.0057475443712602416
+      ],
+      "brier": [
+       3.6026926545657395e-05,
+       0.001409281373901659
+      ],
+      "expected_p_weighted": [
+       0.005943737020572272,
+       0.00915704800359426
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.0004642602182885144,
+       0.004214538272646108
+      ],
+      "flagged_rate_weighted": [
+       0.00028636042678069107,
+       0.003587235582004629
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.2604526781114689,
+       1.0
+      ],
+      "f1": [
+       0.5118299215265976,
+       1.0
+      ],
+      "accuracy_weighted": [
+       0.998610273601174,
+       1.0
+      ],
+      "cohens_kappa_weighted": [
+       0.41285319123,
+       1.0
+      ],
+      "ece": [
+       0.004276589190464756,
+       0.005749063736351279
+      ],
+      "brier": [
+       3.1919961552716285e-05,
+       0.001405174408908718
+      ],
+      "expected_p_weighted": [
+       0.005963205850619031,
+       0.009176516833641018
+      ]
+     },
+     "cohens_kappa_unweighted": 0.8853754940711459,
+     "brier_skill_score": 0.7716415494906927,
      "calibration_slope": null,
-     "calibration_slope_raw": 2.7610430845325036,
+     "calibration_slope_raw": 4.75479409173154,
      "separated": true,
-     "calibration_intercept": 9.327027322429613,
-     "spiegelhalter_z": 0.2693098769031029,
-     "expected_p_weighted": 0.03256989919194242,
-     "base_rate_below_grid_floor": false,
-     "aurc": 0.005976057409002959,
-     "excess_aurc": 0.005921208438396428,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "calibration_intercept": 16.700435615947775,
+     "spiegelhalter_z": -0.6304653483769748,
+     "mean_p_minus_prevalence": 0.005223433810502856,
+     "base_rate_below_grid_floor": true,
+     "aurc": 0.00034807644840995175,
+     "excess_aurc": 0.00034788797719800276,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.004275069825373718,
+      0.0057475443712602416
+     ],
+     "cohens_kappa": 0.8797609295539026
     },
     "vehicle_defect": {
      "n": 132,
-     "base_rate_weighted": 0.27159883433798204,
-     "base_rate_unweighted": 0.24242424242424243,
-     "flagged_rate_weighted": 0.12008356329161084,
+     "n_narratives": 132,
+     "n_effective": 70.5507908021778,
+     "base_rate_weighted": 0.038554001211688796,
+     "flagged_rate_weighted": 0.010663468316203835,
      "precision": 1.0,
-     "recall": 0.4421357830357139,
-     "f1": 0.6131680362372155,
-     "accuracy_weighted": 0.8484847289536287,
-     "cohens_kappa": 0.5409582689335396,
-     "ece": 0.15688083590283566,
-     "ece_ci95": [
-      0.10208827387253624,
-      0.22398797097927298
-     ],
-     "brier": 0.15063661463642886,
-     "brier_skill_score": 0.23856644214775935,
-     "calibration_slope": 0.5596328516993951,
-     "calibration_slope_raw": 0.5596328516993951,
+     "recall": 0.27658525655103433,
+     "f1": 0.43332046196160534,
+     "accuracy_weighted": 0.972109467104515,
+     "cohens_kappa_weighted": 0.42369253246944094,
+     "ece": 0.024312284298300058,
+     "brier": 0.027683333899662575,
+     "expected_p_weighted": 0.01642654218834367,
+     "ci95": {
+      "base_rate_weighted": [
+       0.017288727772847488,
+       0.07297431112826397
+      ],
+      "flagged_rate_weighted": [
+       0.005341189818607461,
+       0.01757179349745927
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.08508535146187665,
+       0.5457488046703136
+      ],
+      "f1": [
+       0.18697605210997756,
+       0.7055483165797036
+      ],
+      "accuracy_weighted": [
+       0.9379547877328968,
+       0.9915150643418098
+      ],
+      "cohens_kappa_weighted": [
+       0.17695385155689322,
+       0.7014953763356054
+      ],
+      "ece": [
+       0.004632496054376386,
+       0.05888081890518426
+      ],
+      "brier": [
+       0.008494535757106016,
+       0.06138351493098346
+      ],
+      "expected_p_weighted": [
+       0.01134982037791152,
+       0.022973083734436593
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.017868771243898376,
+       0.07355435459931486
+      ],
+      "flagged_rate_weighted": [
+       0.005630404290304826,
+       0.017861007969156635
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.12233720964146258,
+       0.5830006628498996
+      ],
+      "f1": [
+       0.21800434958763124,
+       0.7365766140573573
+      ],
+      "accuracy_weighted": [
+       0.9376639587335435,
+       0.9912242353424565
+      ],
+      "cohens_kappa_weighted": [
+       0.2086340737963812,
+       0.7331755985750934
+      ],
+      "ece": [
+       0.004958498001649087,
+       0.05920682085245696
+      ],
+      "brier": [
+       0.008784606811580676,
+       0.061673585985458114
+      ],
+      "expected_p_weighted": [
+       0.011628710505355128,
+       0.0232519738618802
+      ]
+     },
+     "cohens_kappa_unweighted": 0.5409582689335396,
+     "brier_skill_score": 0.2531660744977078,
+     "calibration_slope": 0.8418151409592372,
+     "calibration_slope_raw": 0.8418151409592372,
      "separated": false,
-     "calibration_intercept": 1.255086644599668,
-     "spiegelhalter_z": 14.931342371429443,
-     "expected_p_weighted": 0.1225852375493633,
+     "calibration_intercept": 0.7498941630611657,
+     "spiegelhalter_z": 2.3237835242246137,
+     "mean_p_minus_prevalence": -0.022127459023345127,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.16698092068005158,
-     "excess_aurc": 0.14402404331979624,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 0.02651135376080492,
+     "excess_aurc": 0.02573347193561078,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.004632496054376386,
+      0.05888081890518426
+     ],
+     "cohens_kappa": 0.42369253246944094
     },
     "witness_cited": {
      "n": 206,
-     "base_rate_weighted": 0.2138074849219233,
-     "base_rate_unweighted": 0.19902912621359223,
-     "flagged_rate_weighted": 0.21827553713369632,
-     "precision": 0.8803521682688232,
-     "recall": 0.8987493700974171,
-     "f1": 0.8894556489699611,
-     "accuracy_weighted": 0.9522356627357635,
-     "cohens_kappa": 0.8642156144719497,
-     "ece": 0.050734932680775655,
-     "ece_ci95": [
-      0.024816809036341137,
-      0.08342636719387986
-     ],
-     "brier": 0.04801098618195895,
-     "brier_skill_score": 0.7143798669243444,
-     "calibration_slope": 0.5991604053437296,
-     "calibration_slope_raw": 0.5991604053437296,
+     "n_narratives": 206,
+     "n_effective": 85.61529124629243,
+     "base_rate_weighted": 0.052974429210514054,
+     "flagged_rate_weighted": 0.05522498203273955,
+     "precision": 0.8679818731345218,
+     "recall": 0.9048570048411937,
+     "f1": 0.8860359367544408,
+     "accuracy_weighted": 0.9876691554539416,
+     "cohens_kappa_weighted": 0.8795208712670799,
+     "ece": 0.010037159253384168,
+     "brier": 0.012384194971997478,
+     "expected_p_weighted": 0.05844804651509491,
+     "ci95": {
+      "base_rate_weighted": [
+       0.03538414107020914,
+       0.07337156501891136
+      ],
+      "flagged_rate_weighted": [
+       0.0381222879467721,
+       0.07687169878669212
+      ],
+      "precision": [
+       0.7453015520098405,
+       0.9600675591316857
+      ],
+      "recall": [
+       0.8098432451947595,
+       0.9784216964892443
+      ],
+      "f1": [
+       0.8044932350615089,
+       0.9504761077073592
+      ],
+      "accuracy_weighted": [
+       0.978536716902321,
+       0.9951138875929578
+      ],
+      "cohens_kappa_weighted": [
+       0.7930475862386741,
+       0.9475150975193393
+      ],
+      "ece": [
+       0.004131314302905065,
+       0.018333013910573737
+      ],
+      "brier": [
+       0.005071514847365154,
+       0.021479110427249353
+      ],
+      "expected_p_weighted": [
+       0.04177921403897928,
+       0.07926911138509746
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.03594117458270597,
+       0.0739285985314082
+      ],
+      "flagged_rate_weighted": [
+       0.0384823730312178,
+       0.07723178387113781
+      ],
+      "precision": [
+       0.7479240117828609,
+       0.9626900189047062
+      ],
+      "recall": [
+       0.8089956628102226,
+       0.9775741141047074
+      ],
+      "f1": [
+       0.8041485074902216,
+       0.9501313801360719
+      ],
+      "accuracy_weighted": [
+       0.9785335560829069,
+       0.9951107267735437
+      ],
+      "cohens_kappa_weighted": [
+       0.7927012800937765,
+       0.9471687913744417
+      ],
+      "ece": [
+       0.005609965842858313,
+       0.019811665450526986
+      ],
+      "brier": [
+       0.005077159291044659,
+       0.02148475487092886
+      ],
+      "expected_p_weighted": [
+       0.0421236657119521,
+       0.07961356305807027
+      ]
+     },
+     "cohens_kappa_unweighted": 0.8642156144719497,
+     "brier_skill_score": 0.7531462158262692,
+     "calibration_slope": 0.7692043973446963,
+     "calibration_slope_raw": 0.7692043973446963,
      "separated": false,
-     "calibration_intercept": -0.3148515644641198,
-     "spiegelhalter_z": 5.342918538700636,
-     "expected_p_weighted": 0.2138457188096304,
+     "calibration_intercept": -1.0551271223238263,
+     "spiegelhalter_z": 0.6389807821588631,
+     "mean_p_minus_prevalence": 0.005473617304580854,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.026368205442363655,
-     "excess_aurc": 0.024086773528071932,
-     "review_budget_90": 0.7583057036633741,
-     "review_budget_95": 0.7583057036633741
+     "aurc": 0.004723102126587607,
+     "excess_aurc": 0.004571052399368549,
+     "review_budget_90_insample": 0.7374326289293072,
+     "review_budget_95_insample": 0.7374326289293072,
+     "ece_ci95": [
+      0.004131314302905065,
+      0.018333013910573737
+     ],
+     "cohens_kappa": 0.8795208712670799
     },
     "wrong_way": {
      "n": 183,
-     "base_rate_weighted": 0.11155287308862277,
-     "base_rate_unweighted": 0.11475409836065574,
-     "flagged_rate_weighted": 0.07285452958233339,
+     "n_narratives": 183,
+     "n_effective": 78.11011313763777,
+     "base_rate_weighted": 0.010208275797591565,
+     "flagged_rate_weighted": 0.006353856382522983,
      "precision": 1.0,
-     "recall": 0.6530941567453343,
-     "f1": 0.7901475594483588,
-     "accuracy_weighted": 0.9613016564937105,
-     "cohens_kappa": 0.7797833935018047,
-     "ece": 0.038642610123945265,
-     "ece_ci95": [
-      0.014136474290377978,
-      0.06871824764500005
-     ],
-     "brier": 0.03750375634325899,
-     "brier_skill_score": 0.6215901600616089,
-     "calibration_slope": 0.993839605918647,
-     "calibration_slope_raw": 0.993839605918647,
+     "recall": 0.6224220924773649,
+     "f1": 0.7672751688519658,
+     "accuracy_weighted": 0.9961455805849313,
+     "cohens_kappa_weighted": 0.7654379483209107,
+     "ece": 0.00301157633689475,
+     "brier": 0.003781432859430281,
+     "expected_p_weighted": 0.0120422243970747,
+     "ci95": {
+      "base_rate_weighted": [
+       0.005391608411384551,
+       0.015808030145896934
+      ],
+      "flagged_rate_weighted": [
+       0.002878028224468067,
+       0.010728648625550657
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.3874998646311729,
+       0.8466468699609854
+      ],
+      "f1": [
+       0.5668292121705846,
+       0.9223988972543424
+      ],
+      "accuracy_weighted": [
+       0.9925669439480393,
+       0.9988607807693182
+      ],
+      "cohens_kappa_weighted": [
+       0.5650060523261805,
+       0.9217841831244943
+      ],
+      "ece": [
+       0.0011866756018683795,
+       0.005355616839225189
+      ],
+      "brier": [
+       0.0011122371096273348,
+       0.007176062519055995
+      ],
+      "expected_p_weighted": [
+       0.008764257258686356,
+       0.01620576583008769
+      ]
+     },
+     "ci95_raw": {
+      "base_rate_weighted": [
+       0.005449859996294778,
+       0.01586628173080716
+      ],
+      "flagged_rate_weighted": [
+       0.0029550679574741265,
+       0.010805688358556716
+      ],
+      "precision": [
+       1.0,
+       1.0
+      ],
+      "recall": [
+       0.39378848717276005,
+       0.8529354925025725
+      ],
+      "f1": [
+       0.565061924005358,
+       0.9206316090891159
+      ],
+      "accuracy_weighted": [
+       0.9925857320961353,
+       0.9988795689174141
+      ],
+      "cohens_kappa_weighted": [
+       0.5632909573213888,
+       0.9200690881197026
+      ],
+      "ece": [
+       0.0015752251540277022,
+       0.005744166391384512
+      ],
+      "brier": [
+       0.0010928001214490514,
+       0.007156625530877711
+      ],
+      "expected_p_weighted": [
+       0.008838715288240317,
+       0.016280223859641653
+      ]
+     },
+     "cohens_kappa_unweighted": 0.7797833935018047,
+     "brier_skill_score": 0.6257514032918313,
+     "calibration_slope": 1.4781992348841044,
+     "calibration_slope_raw": 1.4781992348841044,
      "separated": false,
-     "calibration_intercept": 1.8101815944690833,
-     "spiegelhalter_z": 4.1996549801509655,
-     "expected_p_weighted": 0.07665523840480307,
+     "calibration_intercept": 1.917972651003665,
+     "spiegelhalter_z": -0.2912787765281765,
+     "mean_p_minus_prevalence": 0.0018339485994831352,
      "base_rate_below_grid_floor": false,
-     "aurc": 0.03522933664329842,
-     "excess_aurc": 0.033731774853167654,
-     "review_budget_90": 0.0,
-     "review_budget_95": 0.0
+     "aurc": 0.003168712942569138,
+     "excess_aurc": 0.0031538563935418805,
+     "review_budget_90_insample": 0.0,
+     "review_budget_95_insample": 0.0,
+     "ece_ci95": [
+      0.0011866756018683795,
+      0.005355616839225189
+     ],
+     "cohens_kappa": 0.7654379483209107
     }
    },
    "label_probability_disagreement": 0.0,
@@ -1053,54 +4187,80 @@
  },
  "paired": {
   "n_paired": 2416,
+  "n_narratives": 400,
   "B": 2000,
+  "resampling_unit": "narrative, stratified by draw route",
   "f1": {
    "Jev": {
-    "point": 0.8908656097131967,
+    "point": 0.9082430139573548,
     "ci95": [
-     0.8692152604301907,
-     0.9119503612650952
+     0.8700482114830436,
+     0.9353647183890311
+    ],
+    "ci95_raw": [
+     0.870194119246449,
+     0.9355106261524365
     ]
    },
    "claude-fable-5-1": {
-    "point": 0.9585906813138401,
+    "point": 0.9673656812636711,
     "ci95": [
-     0.9443391058991878,
-     0.9714189699262498
+     0.9545851521449926,
+     0.9785319285537324
+    ],
+    "ci95_raw": [
+     0.9542997400976699,
+     0.9782465165064097
     ]
    },
    "gpt-5.6-sol": {
-    "point": 0.8824519061179438,
+    "point": 0.8854012213484272,
     "ci95": [
-     0.8567438009709201,
-     0.9054913801210187
+     0.8423695558472843,
+     0.920813630952277
+    ],
+    "ci95_raw": [
+     0.8421609157762788,
+     0.9206049908812715
     ]
    }
   },
   "differences": {
    "Jev - claude-fable-5-1": {
-    "point": -0.06772507160064334,
+    "point": -0.05912266730631621,
     "ci95": [
-     -0.08836270578951003,
-     -0.04630143171770343
+     -0.09819392671059568,
+     -0.03020222081542335
+    ],
+    "ci95_raw": [
+     -0.09776260689986763,
+     -0.029770901004695288
     ],
     "p_a_better": 0.0,
     "indistinguishable": false
    },
    "Jev - gpt-5.6-sol": {
-    "point": 0.008413703595252953,
+    "point": 0.022841792608927602,
     "ci95": [
-     -0.018551299320987022,
-     0.038061221872561696
+     -0.00202286539084042,
+     0.04764799357053616
     ],
-    "p_a_better": 0.7115,
+    "ci95_raw": [
+     -0.00166831755642948,
+     0.0480025414049471
+    ],
+    "p_a_better": 0.9665,
     "indistinguishable": true
    },
    "claude-fable-5-1 - gpt-5.6-sol": {
-    "point": 0.07613877519589629,
+    "point": 0.08196445991524381,
     "ci95": [
-     0.051973509402978776,
-     0.1034411920924595
+     0.046716245443496326,
+     0.12742660763026997
+    ],
+    "ci95_raw": [
+     0.0466394734671792,
+     0.12734983565395283
     ],
     "p_a_better": 1.0,
     "indistinguishable": false

@@ -27,7 +27,7 @@ import pandas as pd
 
 import s07_metrics as M
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 
 # §4.7 mapping: narrative variable -> coded-field column produced by s04_join_fst.R
@@ -134,7 +134,11 @@ def coded_block(rand: pd.DataFrame) -> dict:
         y = sub[col].astype(bool).to_numpy().astype(float)
         pred = (p > 0.5).astype(float)
         correct = (pred == y).astype(float)
-        strata = np.clip((p * 5).astype(int), 0, 4)      # bootstrap within probability bins
+        # WP2. The resampling unit is the crash, and the random stratum is a simple random
+        # sample of the corpus, so there is nothing to stratify on. The earlier version
+        # resampled within 0.20-wide probability bins, which holds the distribution of the
+        # model's own probabilities fixed across replicates and reports an interval narrower
+        # than the sampling variation it claims to describe.
 
         bd = M.brier_decomposition(p, y)
         slope = M.calibration_slope(p, y)
@@ -150,7 +154,7 @@ def coded_block(rand: pd.DataFrame) -> dict:
         neither = int(((pred == 0) & (y == 0)).sum())
 
         ece_ci = M.weighted_bootstrap(lambda a, b_, w=None: M.ece_discrete(a, b_, w), p, y,
-                                      strata=strata, B=B_BOOT, seed=42)
+                                      B=B_BOOT, seed=42)
 
         # §4.6 operational budget. Accuracy-based H(r) is degenerate for a rare positive
         # class (full-coverage accuracy risk already beats a 5% target), so the budget that
@@ -182,8 +186,15 @@ def coded_block(rand: pd.DataFrame) -> dict:
             "precision_vs_coded": both / max(both + narr_only, 1),
             "recall_vs_coded": both / max(both + code_only, 1),
             # --- §4.5 calibration
-            "ece_vs_coded": M.ece(p, y),
+            # WP6. The point estimate and its interval share one estimand, the exact
+            # calibration error on the two-decimal output grid. The equal-mass binned value
+            # is kept beside it so the two are comparable, but nothing reports the two
+            # together: the human-reference ratio in Section 4.2 needs like against like, and
+            # under the old pairing the hydroplaning point estimate fell outside its own
+            # interval.
+            "ece_vs_coded": M.ece_discrete(p, y),
             "ece_vs_coded_ci95": [ece_ci["lo"], ece_ci["hi"]],
+            "ece_vs_coded_equal_mass": M.ece(p, y),
             "adaptive_ece_vs_coded": M.adaptive_ece(p, y),
             "mce_vs_coded": M.mce(p, y),
             "brier_vs_coded": bd["brier"],
@@ -236,6 +247,56 @@ def keyword_baseline_block(rand: pd.DataFrame) -> dict:
     return out
 
 
+def annual_workload(rand: pd.DataFrame) -> dict:
+    """WP4, T13. The number of NARRATIVES an agency reads in a year, and the number of
+    variable-level review decisions, which are different quantities.
+
+    The per-variable review shares add up over nine variables, so their sum counts a narrative
+    once for every variable that routes it to review. A reader opens a narrative once and
+    answers every question it raises, so the staffing figure is the union of the flagged sets
+    rather than the sum. Both are reported here and each is named where it is used.
+    """
+    per, flags = {}, None
+    for v, col in CODED_MAP.items():
+        if f"p_{v}" not in rand.columns or col not in rand.columns:
+            continue
+        sub = rand[[f"p_{v}", col]].dropna()
+        if len(sub) < 200:
+            continue
+        p = sub[f"p_{v}"].to_numpy(dtype=float)
+        y = sub[col].astype(bool).to_numpy().astype(float)
+        pb = M.positive_review_budget(p, y, 0.90)
+        # The records this variable sends to review are the flagged positives that the
+        # auto-accept threshold does not clear, which are the lowest-probability ones. A
+        # budget of 1, which is what most variables carry against the coded fields because no
+        # threshold reaches 90 percent precision, routes every flagged record.
+        m = p > 0.5
+        budget = pb["review_budget_of_flagged"]
+        routed = pd.Series(False, index=rand.index)
+        if m.any():
+            idx = sub.index[m]
+            order = np.argsort(p[m], kind="mergesort")       # lowest probability first
+            k = int(round(budget * len(idx)))
+            routed.loc[idx[order[:k]]] = True
+        per[v] = {"share_of_corpus": float(routed.sum() / len(rand)),
+                  "per_year": float(routed.sum() / len(rand) * TEXAS_PER_YEAR)}
+        flags = routed if flags is None else (flags | routed)
+
+    union_share = float(flags.sum() / len(rand)) if flags is not None else float("nan")
+    sum_share = float(sum(r["share_of_corpus"] for r in per.values()))
+    return {
+        "target_precision": 0.90,
+        "n_variables": len(per),
+        "per_variable": per,
+        "union_share_of_corpus": union_share,
+        "union_per_year": union_share * TEXAS_PER_YEAR,
+        "sum_of_variable_decisions_share": sum_share,
+        "sum_of_variable_decisions_per_year": sum_share * TEXAS_PER_YEAR,
+        "note": ("the union counts narratives, the sum counts variable-level review "
+                 "decisions; a narrative routed by more than one variable is read once"),
+    }
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.parse_args()
@@ -284,6 +345,7 @@ def main() -> None:
                         if rand[f"p_{v}"].notna().any()},
         "prevalence": prevalence_block(rand, kwflags, stats),
         "vs_coded_fields": coded_block(rand),
+        "annual_workload": annual_workload(rand),
         "keyword_baseline": keyword_baseline_block(rand),
         "notes": {
             "reference": "coded CRIS fields, which are themselves noisy; all comparisons "

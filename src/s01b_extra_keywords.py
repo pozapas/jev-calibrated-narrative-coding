@@ -20,7 +20,7 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-DATA = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev/paper1/data")
+DATA = Path(__file__).resolve().parents[1] / "data"   # paper1/data, resolved from this file
 
 EXTRA = {
     # tuned to the same spirit as the spike families: over-find, let the model filter

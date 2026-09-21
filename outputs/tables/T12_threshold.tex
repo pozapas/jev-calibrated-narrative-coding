@@ -1,38 +1,36 @@
-\begin{table}[!htbp]
+\begin{table}[pos=!htbp]
 \centering
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\caption{Per-variable decision threshold, retuned on the gold set and validated out of fold.}
+\rmfamily\small
+\setlength{\tabcolsep}{3.0pt}
+\caption{Per-variable decision threshold, retuned on the human reference set and validated out of fold.}
 \label{tab:threshold}
-\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
 \begin{threeparttable}
-\begin{tabular}{lrrrrrrl}
+\begin{tabular}{lr>{\raggedleft\arraybackslash}p{46.6pt}>{\raggedleft\arraybackslash}p{34.4pt}>{\raggedleft\arraybackslash}p{73.3pt}>{\raggedleft\arraybackslash}p{91.7pt}rrr}
 \toprule
-\multicolumn{3}{c}{} & \multicolumn{5}{c}{\jevhead{Retuned threshold, out of fold}} \\
-\cmidrule(lr){4-8}
-\jevhead{variable} & \jevhead{$n^{+}$} & \jevhead{$F_1$ at $\tau=0.5$} & \jevhead{tuned $\tau^{*}$} & \jevhead{$F_1$ tuned, out of fold} & \jevhead{s.d.} & \jevhead{change} & \jevhead{stable?} \\
+\multicolumn{3}{c}{} & \multicolumn{6}{c}{\jevhead{Retuned threshold, out of fold}} \\
+\cmidrule(lr){4-9}
+\jevhead{variable} & \jevhead{$n^{+}$} & \jevheadp{$F_1$ at $\tau=0.5$} & \jevheadp{tuned $\tau^{*}$} & \jevheadp{half-sample $\tau$\newline median [IQR]} & \jevheadp{$F_1$ tuned, out of fold} & \jevhead{s.d.} & \jevhead{change} & \jevhead{stable?} \\
 \midrule
-intentional & 5 & 0.48 & 0.66 & 0.65 & 0.22 & +0.17 & no \\
-unbelted & 5 & 0.49 & 0.77 & 0.87 & 0.17 & +0.38 & no \\
-wrong\_way & 21 & 0.60 & 0.87 & 0.58 & 0.09 & -0.02 & yes \\
-medical\_episode & 24 & 0.85 & 0.73 & 0.88 & 0.06 & +0.03 & yes \\
-witness\_cited & 41 & 0.87 & 0.42 & 0.84 & 0.05 & -0.04 & yes \\
-vehicle\_defect & 32 & 0.89 & 0.52 & 0.85 & 0.05 & -0.04 & yes \\
-aggression & 31 & 0.90 & 0.49 & 0.87 & 0.05 & -0.03 & yes \\
-phone\_use & 15 & 0.92 & 0.66 & 0.92 & 0.07 & -0.00 & no \\
-drug\_involved & 8 & 0.92 & 0.60 & 0.89 & 0.14 & -0.03 & no \\
-alcohol\_involved & 25 & 0.92 & 0.94 & 0.90 & 0.04 & -0.02 & yes \\
-hit\_and\_run & 92 & 0.94 & 0.30 & 0.94 & 0.02 & +0.00 & yes \\
-transported & 35 & 0.95 & 0.71 & 0.97 & 0.02 & +0.01 & yes \\
-fatigue & 27 & 0.97 & 0.62 & 0.96 & 0.03 & -0.00 & yes \\
-hydroplane & 31 & 0.97 & 0.54 & 0.96 & 0.03 & -0.01 & yes \\
-animal\_involved & 23 & 0.99 & 0.39 & 0.98 & 0.03 & -0.01 & yes \\
-preg\_mentioned & 4 & 1.00 & 0.06 & 0.94 & 0.07 & -0.06 & no \\
+unbelted & 5 & 0.45 & 0.77 & 0.75 [0.73, 0.77] & 0.87 & 0.17 & +0.42 & no \\
+intentional & 5 & 0.49 & 0.66 & 0.66 [0.64, 0.70] & 0.65 & 0.22 & +0.16 & no \\
+wrong\_way & 21 & 0.52 & 0.60 & 0.60 [0.40, 0.76] & 0.48 & 0.09 & -0.05 & yes \\
+vehicle\_defect & 32 & 0.69 & 0.40 & 0.37 [0.15, 0.47] & 0.68 & 0.15 & -0.01 & no \\
+medical\_episode & 24 & 0.84 & 0.73 & 0.70 [0.53, 0.73] & 0.87 & 0.07 & +0.03 & yes \\
+witness\_cited & 41 & 0.87 & 0.42 & 0.42 [0.39, 0.50] & 0.84 & 0.05 & -0.04 & yes \\
+aggression & 31 & 0.88 & 0.49 & 0.49 [0.48, 0.61] & 0.85 & 0.06 & -0.03 & yes \\
+alcohol\_involved & 25 & 0.94 & 0.94 & 0.79 [0.70, 0.94] & 0.93 & 0.04 & -0.00 & yes \\
+phone\_use & 15 & 0.95 & 0.66 & 0.59 [0.54, 0.66] & 0.95 & 0.05 & -0.00 & no \\
+drug\_involved & 8 & 0.96 & 0.60 & 0.53 [0.46, 0.60] & 0.93 & 0.09 & -0.02 & no \\
+hydroplane & 31 & 0.96 & 0.54 & 0.27 [0.24, 0.54] & 0.94 & 0.03 & -0.02 & yes \\
+fatigue & 27 & 0.97 & 0.62 & 0.62 [0.52, 0.66] & 0.96 & 0.03 & -0.00 & yes \\
+transported & 35 & 0.97 & 0.71 & 0.71 [0.62, 0.71] & 0.98 & 0.02 & +0.01 & yes \\
+hit\_and\_run & 92 & 0.97 & 0.30 & 0.35 [0.30, 0.43] & 0.97 & 0.01 & -0.00 & yes \\
+animal\_involved & 23 & 0.99 & 0.39 & 0.34 [0.28, 0.39] & 0.98 & 0.04 & -0.01 & yes \\
+preg\_mentioned & 4 & 1.00 & 0.06 & 0.06 [0.05, 0.06] & 0.94 & 0.07 & -0.06 & no \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}\footnotesize
-\item $n^{+}$ is the count of positive gold labels. $\tau^{*}$ maximises weighted $F_1$ on the full gold set; the out-of-fold column instead picks $\tau$ on a random half and scores it on the other, both ways, over 200 repeats, and is what retuning actually buys. \jevflag{Unstable} marks a spread above 0.10 or fewer than 20 positives, where $\tau^{*}$ is fitted to noise and must not be transported.
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~$n^{+}$ counts positive reference labels. $\tau^{*}$ maximizes weighted $F_1$ on the full reference set; the out-of-fold column picks $\tau$ on a random half and scores it on the other, both ways over 200 repeats, splitting on narratives rather than pairs, and is what retuning actually buys. The median and interquartile range are of the thresholds those half samples chose. An unstable threshold has a spread above 0.10 or fewer than 20 positives, is fitted to noise, and must not be transported.
 \end{tablenotes}
 \end{threeparttable}
-\end{minipage}}
 \end{table}

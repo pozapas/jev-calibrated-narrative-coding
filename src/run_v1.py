@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse, json, subprocess, sys, time
 from pathlib import Path
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 SRC = ROOT / "paper1" / "src"
 DATA = ROOT / "paper1" / "data"
 PY = r"C:/Users/nib37/AppData/Local/Programs/Python/Python313/python.exe"

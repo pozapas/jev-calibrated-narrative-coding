@@ -18,6 +18,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
 
 sys.path.insert(0, str(Path(__file__).parent))
 sys.path.insert(0, str(Path(__file__).parents[1]))
@@ -63,85 +65,143 @@ def main() -> None:
     yy = np.arange(len(rows))
 
     S.setup()
-    fig = plt.figure(figsize=(S.W2, 2.90))
-    gs = fig.add_gridspec(1, 3, width_ratios=[1.25, 1.0, 1.0], wspace=0.42,
-                          left=0.115, right=0.985, top=0.84, bottom=0.18)
-    a, b, c = (fig.add_subplot(gs[0, i]) for i in range(3))
+    # Read left to right as (a) taxonomy, (b) metric shifts, and (c) phase
+    # diagram.  The compact matrix receives the smallest panel width.
+    fig = plt.figure(figsize=(S.W2, 3.55))
+    # Group the shared-row panels tightly.  Keep a larger separation before
+    # panel (c), which uses an independent two-axis coordinate system.
+    outer = fig.add_gridspec(1, 2, width_ratios=[2.40, 1.52],
+                             left=0.09, right=0.985, bottom=0.18, top=0.84, wspace=0.23)
+    paired = outer[0].subgridspec(1, 2, width_ratios=[1.50, 0.88], wspace=0.07)
+    a = fig.add_subplot(paired[0, 0])
+    b = fig.add_subplot(paired[0, 1], sharey=a)
+    c = fig.add_subplot(outer[0, 1])
 
-    # --------------------------------------------------- (a) taxonomy
+    # --------------------------------------------------- (a) taxonomy: largest load first
     both = np.array([r["both"] for r in rows], float)
     no = np.array([r["narr_only"] for r in rows], float)
     co = np.array([r["code_only"] for r in rows], float)
-    a.barh(yy, both, color=S.BLUE, height=0.66, label="both")
-    a.barh(yy, no, left=both, color=S.ORANGE, height=0.66, label="narrative only")
-    a.barh(yy, co, left=both + no, color=S.GREY, height=0.66, label="code only")
+    a.barh(yy, both, color=S.BLUE, height=0.66)
+    a.barh(yy, no, left=both, color=S.ORANGE, height=0.66)
+    a.barh(yy, co, left=both + no, color=S.GREY, height=0.66)
     a.set_yticks(yy); a.set_yticklabels(names, fontsize=6.0)
-    a.set_xlabel("crashes (neither omitted)")
-    a.set_title("(a) discrepancy taxonomy", loc="left", fontweight="bold")
-    a.legend(loc="upper right", fontsize=5.8)
+    a.invert_yaxis()
+    a.set_xlabel("Crashes (neither omitted)")
+    a.set_title("(a) discrepancy taxonomy", loc="left", fontweight="bold", y=1.08)
     for i, r in enumerate(rows):
         a.text((both + no + co)[i] * 1.02, i, f"$\\kappa$={r['kappa']:.2f}", va="center",
-               fontsize=5.2, color="#888888")
+               fontsize=5.2, color="#7A8790")
     a.set_xlim(0, (both + no + co).max() * 1.22)
 
-    # --------------------------------------------------- (b) added vs missed
+    # --------------------------------------------------- (c) discrepancy phase diagram
+    # Position records where the narrative and coded field disagree; circle area
+    # represents the total discrepancy count.  The diagonal is exact agreement.
     n = np.array([r["n"] for r in rows], float)
-    x = 100 * no / n
-    yv = 100 * co / n
-    lim = max(x.max(), yv.max()) * 1.6
-    b.plot([1e-3, lim], [1e-3, lim], ls=(0, (2, 2)), lw=0.7, color="#999999")
-    b.scatter(x, yv, s=22, color=S.BLUE, zorder=3)
-    for i, nm in enumerate(names):
-        b.annotate(nm, (x[i], yv[i]), fontsize=4.8, xytext=(2.5, 2.5),
-                   textcoords="offset points", color="#444444")
-    b.set_xscale("log"); b.set_yscale("log")
-    b.set_xlim(max(1e-3, x.min() * 0.45), lim); b.set_ylim(max(1e-3, yv.min() * 0.45), lim)
-    # the default log locator crowds this narrow range into unreadable minor labels
+    narr_rate = 100 * no / n
+    code_rate = 100 * co / n
+    point_area = 26 + 76 * (no + co) / (no + co).max()
+    c.plot([0.015, 2.5], [0.015, 2.5], ls=(0, (2, 2)), lw=0.85, color="#96A4AE", zorder=1)
+    c.scatter(narr_rate, code_rate, s=point_area, color=S.BLUE, edgecolor="white",
+              linewidth=0.9, zorder=4)
+    c_labels = {
+        "alcohol_involved": (1.34, 1.30), "unbelted": (0.46, 2.12),
+        "wrong_way": (1.43, 0.20), "hydroplane": (0.86, 0.55),
+        "phone_use": (0.86, 0.065), "fatigue": (0.57, 0.18),
+        "medical_episode": (0.87, 0.118), "drug_involved": (0.21, 0.38),
+        "animal_involved": (0.45, 0.045),
+    }
+    for i, name in enumerate(names):
+        tx, ty = c_labels[name]
+        c.annotate(name.replace("_", " "), xy=(narr_rate[i], code_rate[i]), xytext=(tx, ty),
+                   textcoords="data", fontsize=5.15, color="#48535C", zorder=6,
+                   ha="left", va="center",
+                   bbox=dict(boxstyle="round,pad=0.14", fc="white", ec="none", alpha=0.96),
+                   arrowprops=dict(arrowstyle="-", color="#9BA8B1", lw=0.6,
+                                   shrinkA=2.0, shrinkB=3.0))
+    c.set_xscale("log"); c.set_yscale("log")
     import matplotlib.ticker as mt
-    for axis in (b.xaxis, b.yaxis):
+    for axis in (c.xaxis, c.yaxis):
         axis.set_major_locator(mt.LogLocator(base=10, subs=(1.0, 2.0, 5.0), numticks=12))
         axis.set_minor_locator(mt.NullLocator())
-        axis.set_major_formatter(mt.FuncFormatter(
-            lambda v, _: f"{v:g}" if v >= 0.1 else f"{v:.2f}"))
-    b.set_xlabel("narrative only (% of crashes)")
-    b.set_ylabel("code only (% of crashes)")
-    b.set_title("(b) what each source adds", loc="left", fontweight="bold")
-    b.text(0.96, 0.06, "below the line:\nnarrative flags more", transform=b.transAxes,
-           fontsize=5.4, ha="right", color="#777777", linespacing=1.4)
+        axis.set_major_formatter(mt.FuncFormatter(lambda v, _: f"{v:g}" if v >= 0.1 else f"{v:.2f}"))
+    c.set_xlim(0.18, 2.45); c.set_ylim(0.015, 2.45)
+    c.set_xlabel("Narrative-only rate (% of crashes; log scale)")
+    c.set_ylabel("Code-only rate (% of crashes; log scale)")
+    c.set_title("(c) discrepancy phase diagram", loc="left", fontweight="bold", y=1.08)
+    c.text(0.98, 0.04, "Below diagonal: narrative-only exceeds code-only", transform=c.transAxes,
+           fontsize=5.45, color=S.MUTED, ha="right", va="bottom",
+           bbox=dict(boxstyle="round,pad=0.16", fc="white", ec="none", alpha=0.93))
+    c.text(0.98, 1.01, "Circle area = total mismatch count", transform=c.transAxes,
+           fontsize=5.45, color=S.MUTED, ha="right", va="bottom")
 
-    # --------------------------------------------------- (c) keyword vs Jev
+    # --------------------------------------------------- (b) Hinton-style metric-shift matrix
     inv = {v: k for k, v in KW_MAP.items()}
-    jp, jr, kp, kr, lab = [], [], [], [], []
+    perf = []
     for r in rows:
         v = r["v"]
         col, fam = CODED_MAP[v], inv.get(v)
         if fam is None or f"kw_{fam}" not in d.columns:
             continue
         sub = d[[f"p_{v}", col, f"kw_{fam}"]].dropna()
-        y = sub[col].astype(bool).to_numpy()
-        pj = (sub[f"p_{v}"].to_numpy(dtype=float) > 0.5)
-        pk = sub[f"kw_{fam}"].astype(bool).to_numpy()
-        for pr, P, R in ((pj, jp, jr), (pk, kp, kr)):
-            P.append(100 * (y & pr).sum() / max(pr.sum(), 1))
-            R.append(100 * (y & pr).sum() / max(y.sum(), 1))
-        lab.append(v)
-    ii = np.arange(len(lab))
-    for i in ii:
-        c.plot([kr[i], jr[i]], [kp[i], jp[i]], color="#D5D5DD", lw=0.8, zorder=1)
-    c.scatter(kr, kp, s=20, color=S.GREEN, zorder=3, label="keyword")
-    c.scatter(jr, jp, s=20, color=S.BLUE, zorder=3, label="Jev")
-    for i, nm in enumerate(lab):
-        c.annotate(nm, (jr[i], jp[i]), fontsize=4.8, xytext=(2.5, 2.5),
-                   textcoords="offset points", color="#444444")
-    c.set_xlabel("recall vs coded field (%)")
-    c.set_ylabel("precision vs coded field (%)")
-    c.set_title("(c) keyword vs Jev", loc="left", fontweight="bold")
-    c.set_xlim(0, 102); c.set_ylim(0, 102)
-    c.legend(loc="upper right", fontsize=5.8)
+        truth = sub[col].astype(bool).to_numpy()
+        jev = sub[f"p_{v}"].to_numpy(dtype=float) > 0.5
+        keyword = sub[f"kw_{fam}"].astype(bool).to_numpy()
+        perf.append({
+            "v": v,
+            "jev_precision": 100 * (truth & jev).sum() / max(jev.sum(), 1),
+            "jev_recall": 100 * (truth & jev).sum() / max(truth.sum(), 1),
+            "keyword_precision": 100 * (truth & keyword).sum() / max(keyword.sum(), 1),
+            "keyword_recall": 100 * (truth & keyword).sum() / max(truth.sum(), 1),
+        })
+    for record in perf:
+        record["delta_recall"] = record["jev_recall"] - record["keyword_recall"]
+        record["delta_precision"] = record["jev_precision"] - record["keyword_precision"]
+        record["gain_total"] = record["delta_recall"] + record["delta_precision"]
+    # Use the exact discrepancy order in panel (a).  This makes the aligned
+    # bars and metric shifts readable as one two-part comparison.
+    perf_by_variable = {r["v"]: r for r in perf}
+    perf = [perf_by_variable[v] for v in names if v in perf_by_variable]
+    matrix = np.array([[r["delta_recall"], r["delta_precision"]] for r in perf])
+    cy = np.arange(len(perf))
+    max_shift = float(np.abs(matrix).max())
+    b.axvspan(-0.5, 1.5, color="#F8FAFB", zorder=0)
+    for i, (recall_shift, precision_shift) in enumerate(matrix):
+        for j, value in enumerate((recall_shift, precision_shift)):
+            # Hinton encoding: area = magnitude, blue = gain, orange = loss.
+            size = 74 + 360 * abs(value) / max_shift
+            color = S.BLUE if value >= 0 else S.ORANGE
+            b.scatter(j, i, marker="s", s=size, color=color, edgecolor="white",
+                      linewidth=0.9, zorder=3)
+            b.text(j, i, f"{value:+.0f}%", ha="center", va="center", fontsize=4.8,
+                   color="white",
+                   fontweight="bold", zorder=4)
+    b.set_xticks([0, 1]); b.set_xticklabels(["Δ Recall", "Δ Precision"], fontsize=6.1)
+    b.tick_params(axis="x", top=True, labeltop=True, bottom=False, labelbottom=False)
+    b.set_yticks(cy)
+    # Do not set blank tick labels here: the shared formatter also controls
+    # panel (a).  Hide only this panel's rendered labels and tick marks.
+    b.tick_params(axis="y", left=False, labelleft=False, length=0)
+    b.spines["left"].set_visible(False)
+    b.set_xlim(-0.62, 1.62)
+    b.set_title("(b) keyword-to-Jev shifts", loc="left", fontweight="bold", y=1.08)
+    # The side grows with the square root of the change on top of a minimum size, so the area
+    # is not proportional to it; the printed percentage is what carries the value.
+    b.text(0.5, -0.13, "Square size grows with |change|",
+           transform=b.transAxes, fontsize=6.4, color=S.MUTED, ha="center", va="top")
 
-    fig.suptitle("\"Narrative only\" is not an error: a factor the coded field omits is what "
-                 "this paper looks for (adjudication: v2)", fontsize=6.8, y=0.985,
-                 color="#555555")
+    # A shared visual key replaces legends inside the data areas and the former
+    # prose sentence above the figure.
+    fig.legend(handles=[
+                   Patch(facecolor=S.BLUE, label="both"),
+                   Patch(facecolor=S.ORANGE, label="narrative only"),
+                   Patch(facecolor=S.GREY, label="code only"),
+                   Line2D([], [], marker="s", lw=0, markerfacecolor=S.BLUE, markeredgecolor="white",
+                          markersize=5.6, label="Jev gain"),
+                   Line2D([], [], marker="s", lw=0, markerfacecolor=S.ORANGE, markeredgecolor="white",
+                          markersize=5.6, label="Jev loss"),
+               ], loc="upper center", bbox_to_anchor=(0.5, 0.996), ncol=5,
+               fontsize=6.2, handlelength=1.25, handletextpad=0.4,
+               columnspacing=1.1, borderaxespad=0.0, frameon=False)
     S.finish(fig)
     S.save(fig, "F7_coded_agreement")
 

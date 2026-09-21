@@ -21,7 +21,7 @@ from typing import Any, Callable, Iterable
 
 from dotenv import load_dotenv
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 load_dotenv(ROOT / ".env")
 
 from typesafe_sdk import AsyncTypeSafeClient, Choice, Noul, Score  # noqa: E402

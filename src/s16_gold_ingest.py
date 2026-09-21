@@ -27,7 +27,7 @@ import pandas as pd
 
 import s07_metrics as M
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 GOLD = DATA / "gold"
 APP = ROOT / "tool-gold" / "data"
@@ -158,6 +158,25 @@ def main() -> None:
     out["y"] = out.label.map({"yes": 1.0, "no": 0.0})   # unclear / disputed stay NaN
     out = out[["Crash_ID", "variable", "label", "n_raters", "agreement",
                "p", "incl_prob", "ht_weight", "y"]]
+
+    # WP1. The analysis weight is the calibration weight of s05b_design_weights.py, which
+    # carries both design factors: the narrative's base weight and the probability that the
+    # variable was assigned to it. `incl_prob` and `ht_weight` are kept as the audit record of
+    # what s05 originally reconstructed, and nothing downstream reads them any more.
+    dw_path = GOLD / "gold_design_weights.csv"
+    if dw_path.exists():
+        dw = pd.read_csv(dw_path)[
+            ["Crash_ID", "variable", "p_variable", "bin", "cell", "route", "draw_stratum",
+             "narrative_base_weight", "assign_prob", "calibration_factor", "pair_weight"]]
+        before = len(out)
+        out = out.merge(dw, on=["Crash_ID", "variable"], how="left")
+        assert len(out) == before, "the design-weight merge duplicated pairs"
+        assert out.pair_weight.notna().all(), "a labelled pair has no design weight"
+        print(f"design weights joined: Kish n_eff "
+              f"{out.pair_weight.sum() ** 2 / (out.pair_weight ** 2).sum():,.0f} "
+              f"of {len(out):,} pairs")
+    else:
+        print(f"WARNING: {dw_path.name} missing; run s05b_design_weights.py first")
 
     GOLD.mkdir(parents=True, exist_ok=True)
     out.to_csv(GOLD / "gold_labels.csv", index=False)

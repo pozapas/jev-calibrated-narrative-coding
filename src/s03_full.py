@@ -18,7 +18,7 @@ import pyarrow.parquet as pq
 
 import jev_runner as J
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 OUT = DATA / "stage2" / "stage2.jsonl"
 SCHEMA = ROOT / "schemas" / "crash_factors_v1_1.json"

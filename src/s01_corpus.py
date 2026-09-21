@@ -22,13 +22,18 @@ Idempotent: skips any pass whose outputs already exist unless --force.
 from __future__ import annotations
 import argparse, csv, json, re, sys, time
 from collections import Counter
+import os
 from pathlib import Path
 
 import numpy as np
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-CSV = Path(r"D:/OneDrive - Texas State University/Das, Subasish's files - 2027_TRBAM/CRIS/CRIS_17_25_impWithNarr_pii_clean.csv")
+# The raw CRIS narrative export lives outside the repository. Set JEV_CRIS_CSV to point at
+# it; the default is the path used for the run reported in the manuscript.
+CSV = Path(os.environ.get(
+    "JEV_CRIS_CSV",
+    r"D:/OneDrive - Texas State University/Das, Subasish's files - 2027_TRBAM/CRIS/CRIS_17_25_impWithNarr_pii_clean.csv"))
 DATA = Path(__file__).resolve().parents[1] / "data"
 SEED = 42
 N_STAGE1 = 500_000

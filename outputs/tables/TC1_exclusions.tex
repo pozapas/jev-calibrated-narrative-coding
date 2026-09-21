@@ -1,0 +1,41 @@
+\begin{small}\rmfamily
+\setlength{\tabcolsep}{4.0pt}
+\begin{longtable}{l>{\raggedright\arraybackslash}p{186.9pt}rrrr}
+\caption{Unresolved pairs and the sensitivity of the headline results to them.}\label{tab:exclusions}\\
+\toprule
+\jevhead{block} & \jevheadp{item} & \jevhead{count} & \jevhead{$F_1$} & \jevhead{ECE} & \jevhead{$H(0.90)$ \%} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{@{}l}{\rmfamily\small\textit{Table \ref{tab:exclusions}, continued}}\\
+\toprule
+\jevhead{block} & \jevheadp{item} & \jevhead{count} & \jevhead{$F_1$} & \jevhead{ECE} & \jevhead{$H(0.90)$ \%} \\
+\midrule
+\endhead
+\bottomrule
+\multicolumn{6}{@{}r}{\rmfamily\small\textit{continued on the next page}}\\
+\endfoot
+\bottomrule
+\multicolumn{6}{@{}p{\linewidth}@{}}{\rmfamily\small\vspace{2pt}\textit{Note:}~The \ExclN{} excluded pairs are those the coders marked unclear or disagreed on. They are dropped from every rate in Section~\ref{sec:res-accuracy}, so those rates are conditional on the pairs the coders found clear. The sensitivity block replaces that conditioning with three assumptions. Routing the excluded pairs to review leaves $F_1$ undefined, because a record sent to a human is not scored as a model decision.}\\
+\endlastfoot
+by variable & hydroplane & 9 & -- & -- & -- \\
+by variable & hit\_and\_run & 7 & -- & -- & -- \\
+by variable & phone\_use & 7 & -- & -- & -- \\
+by variable & transported & 6 & -- & -- & -- \\
+by variable & witness\_cited & 4 & -- & -- & -- \\
+by variable & alcohol\_involved & 4 & -- & -- & -- \\
+by variable & vehicle\_defect & 3 & -- & -- & -- \\
+by variable & aggression & 3 & -- & -- & -- \\
+by variable & medical\_episode & 2 & -- & -- & -- \\
+by variable & wrong\_way & 2 & -- & -- & -- \\
+by variable & fatigue & 1 & -- & -- & -- \\
+by variable & drug\_involved & 1 & -- & -- & -- \\
+by probability bin & [0.05,0.3) & 9 & -- & -- & -- \\
+by probability bin & [0.3,0.7) & 22 & -- & -- & -- \\
+by probability bin & [0.7,0.95) & 17 & -- & -- & -- \\
+by probability bin & [0.95,1] & 1 & -- & -- & -- \\
+sensitivity & excluded, as reported throughout & 49 & 0.908 & 0.0231 & 0.0 \\
+sensitivity & counted as model errors & 49 & 0.875 & 0.0228 & 6.9 \\
+sensitivity & counted as model-correct & 49 & 0.912 & 0.0232 & 0.0 \\
+sensitivity & routed to review regardless of probability & 49 & -- & -- & 3.7 \\
+\end{longtable}
+\end{small}

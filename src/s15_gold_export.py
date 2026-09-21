@@ -26,7 +26,7 @@ import pyarrow.parquet as pq
 import jev_runner as J
 from s01_corpus import REDACT, AUDIT, redact
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 DATA = ROOT / "paper1" / "data"
 GOLD = DATA / "gold"
 # NOT public/: a file under public/ is served without any auth check, which would

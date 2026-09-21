@@ -1,0 +1,31 @@
+\begin{small}\rmfamily
+\setlength{\tabcolsep}{3.0pt}
+\begin{longtable}{>{\raggedright\arraybackslash}p{73.0pt}r>{\raggedright\arraybackslash}p{203.7pt}>{\raggedright\arraybackslash}p{70.6pt}}
+\caption{Mapping from narrative variables to coded CRIS reference fields.}\label{tab:coded-map}\\
+\toprule
+\jevheadp{narrative variable} & \jevhead{reference column} & \jevheadp{CRIS fields and values} & \jevheadp{aggregation to crash level} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\rmfamily\small\textit{Table \ref{tab:coded-map}, continued}}\\
+\toprule
+\jevheadp{narrative variable} & \jevhead{reference column} & \jevheadp{CRIS fields and values} & \jevheadp{aggregation to crash level} \\
+\midrule
+\endhead
+\bottomrule
+\multicolumn{4}{@{}r}{\rmfamily\small\textit{continued on the next page}}\\
+\endfoot
+\bottomrule
+\multicolumn{4}{@{}p{\linewidth}@{}}{\rmfamily\small\vspace{2pt}\textit{Note:}~Each reference is true for a crash when the rule holds on any of its person or unit rows. The hydroplaning reference is a proxy built from surface, weather and loss-of-control codes, because CRIS has no hydroplaning field. The final row is the opposite-direction collision type the original plan proposed for wrong-way travel, retained only as a sensitivity check.}\\
+\endlastfoot
+alcohol\_involved & \texttt{coded\_alcohol} & \texttt{Contrib\_Factr\_1\_ID} or \texttt{Contrib\_Factr\_2\_ID} matches ``Under Influence - Alcohol'' or ``Had Been Drinking''; or \texttt{Prsn\_Alc\_Rslt\_ID} = 1; or \texttt{Prsn\_Bac\_Test\_Rslt} $>$ 0 & any person or unit row of the crash \\
+drug\_involved & \texttt{coded\_drug} & contributing factor matches ``Under Influence - Drug''; or \texttt{Prsn\_Drg\_Rslt\_ID} = 1 & any row \\
+fatigue & \texttt{coded\_fatigue} & contributing factor matches ``Fatigued Or Asleep'' & any row \\
+medical\_episode & \texttt{coded\_medical} & contributing factor matches ``Ill (Explain In Narrative)'' & any row \\
+animal\_involved & \texttt{coded\_animal} & contributing factor matches ``Animal On Road''; or \texttt{Harm\_Evnt\_ID} contains ``Animal'' & any row \\
+phone\_use & \texttt{coded\_phone} & contributing factor matches ``Cell/Mobile Device Use'' & any row \\
+unbelted & \texttt{coded\_unbelted} & \texttt{Prsn\_Rest\_ID} equals ``None'' (the only unbelted code; ``Not Applicable'' excluded) & any person row \\
+hydroplane & \texttt{coded\_hydro\_proxy} & \texttt{Othr\_Factr\_ID} contains ``Lost Control Or Skidded'' and (\texttt{Surf\_Cond\_ID} contains ``Wet'' or ``Standing Water'', or \texttt{Wthr\_Cond\_ID} contains ``Rain'') & any row; proxy reference \\
+wrong\_way & \texttt{coded\_wrongway} & contributing factor matches ``Wrong Way - One Way Road'', ``Wrong Side - Not Passing'' or ``Wrong Side - Approach'' & any row \\
+(sensitivity only) & \texttt{coded\_wrongway\_proxy} & \texttt{FHE\_Collsn\_ID} contains ``Opposite Direction'' & any row; not used as a reference \\
+\end{longtable}
+\end{small}

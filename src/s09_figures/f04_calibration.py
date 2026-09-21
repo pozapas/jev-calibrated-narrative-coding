@@ -80,7 +80,7 @@ def gold_curve(sub: pd.DataFrame):
     Horvitz-Thompson weighted and the interval uses the effective sample size, because the
     frame deliberately over-samples the high-probability bins.
     """
-    p = sub.p.to_numpy(float); y = sub.y.to_numpy(float); w = sub.ht_weight.to_numpy(float)
+    p = sub.p.to_numpy(float); y = sub.y.to_numpy(float); w = sub.pair_weight.to_numpy(float)
     b = np.digitize(p, GOLD_BINS[1:-1], right=False)
     xs, ys, los, his, ns = [], [], [], [], []
     for k in range(len(GOLD_BINS) - 1):
@@ -150,7 +150,7 @@ def main() -> None:
             if len(gs_) >= 40:
                 hx, hy, hlo, hhi, hn = gold_curve(gs_)
                 gold_ece = M.ece_discrete(gs_.p.to_numpy(float), gs_.y.to_numpy(float),
-                                          gs_.ht_weight.to_numpy(float))
+                                          gs_.pair_weight.to_numpy(float))
                 if hx.size:
                     hpos = hy > 0
                     # A bin in which no gold narrative was positive has an observed rate of
@@ -161,7 +161,7 @@ def main() -> None:
                     ax.vlines(hx[hpos], np.maximum(hlo[hpos], FLOOR), hhi[hpos],
                               color=S.BLUE, lw=0.7, alpha=0.65, zorder=5)
                     ax.plot(hx[hpos], hy[hpos], "-o", color=S.BLUE, ms=3.4, lw=1.0,
-                            zorder=6, label="human gold set (§4.4 strata)")
+                            zorder=6, label="human gold set (gold-set strata)")
                     if (~hpos).any():
                         ax.scatter(hx[~hpos], np.full((~hpos).sum(), FLOOR), s=14,
                                    facecolors="none", edgecolors=S.BLUE, lw=0.8,

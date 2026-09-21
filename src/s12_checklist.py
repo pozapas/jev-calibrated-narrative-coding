@@ -10,7 +10,7 @@ import json
 import re
 from pathlib import Path
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 P1 = ROOT / "paper1"
 MANDIR = P1 / "manuscript"
 # The manuscript is split across a wrapper plus a shared body/backmatter (two Elsevier

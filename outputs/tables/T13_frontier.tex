@@ -1,25 +1,23 @@
-\begin{table}[!htbp]
+\begin{table}[pos=!htbp]
 \centering
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\caption{Jev against frontier generative models on the same human gold labels.}
+\rmfamily\small
+\setlength{\tabcolsep}{4.0pt}
+\caption{Jev against frontier generative models on the same human reference labels.}
 \label{tab:frontier}
-\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
 \begin{threeparttable}
-\begin{tabular}{lrrrrr@{\hspace{3pt}}lrrrrl}
+\begin{tabular}{lrrrrrrrrrrr}
 \toprule
 \multicolumn{2}{c}{} & \multicolumn{5}{c}{\jevhead{Agreement with human labels}} & \multicolumn{4}{c}{\jevhead{Calibration}} & \multicolumn{1}{c}{} \\
 \cmidrule(lr){3-7}\cmidrule(lr){8-11}
 \jevhead{model} & \jevhead{$n$} & \jevhead{prec.} & \jevhead{rec.} & \jevhead{$F_1$} & \jevhead{} & \jevhead{$\kappa$} & \jevhead{ECE} & \jevhead{Brier} & \jevhead{slope} & \jevhead{$z$} & \jevhead{prob.} \\
 \midrule
-Jev 1.13 & 2,416 & 0.856 & 0.928 & 0.891 & \jevbar{0.454}{0.546} & 0.851 & 0.0556 & 0.0299 & 1.63 & \jevflag{-8.2} & native \\
-claude-fable-5-1 & 2,416 & 0.956 & \jevbest{0.961} & \jevbest{0.959} & \jevbar{0.793}{0.207} & \jevbest{0.947} & 0.0466 & \jevbest{0.0139} & 2.15 & \jevflag{-9.2} & elicited \\
-gpt-5.6-sol & 2,416 & \jevbest{0.974} & 0.807 & 0.882 & \jevbar{0.412}{0.588} & 0.862 & \jevbest{0.0388} & 0.0377 & 0.75 & \jevflag{14.6} & elicited \\
+Jev 1.13 & 2,416 & 0.902 & 0.915 & 0.908 & \jevbar{0.541}{0.459} & 0.906 & 0.0231 & 0.0045 & 1.63 & \jevflag{-5.3} & native \\
+claude-fable-5-1 & 2,416 & 0.959 & \jevbest{0.976} & \jevbest{0.967} & \jevbar{0.837}{0.163} & \jevbest{0.966} & 0.0282 & \jevbest{0.0025} & 2.55 & \jevflag{-6.0} & elicited \\
+gpt-5.6-sol & 2,416 & \jevbest{0.970} & 0.814 & 0.885 & \jevbar{0.427}{0.573} & 0.883 & \jevbest{0.0027} & 0.0056 & 0.98 & \jevflag{-0.3} & elicited \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}\footnotesize
-\item All arms answer the same narratives and variables under the same criteria text, scored against the same labels with the same metric code. \jevbest{Bold} is the leader per metric; bars scale $F_1$ from 0.80. ``prob.'' is whether the model returns a probability natively or was asked to state one. Every $z$ is \jevflag{red} because every arm is rejected, and they fail in opposite directions: slope above one with $z<0$ over-states prevalence, below one with $z>0$ the reverse. Accuracy is measured here; cost is not, and is given at list prices in Figure~\ref{fig:frontier}. No arm is held out from the gold set.
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~All arms answer the same narratives and variables under the same criteria text, scored against the same labels with the same code. \jevbest{Bold} is the leader per metric and bars scale $F_1$ from 0.80. The last column states whether the model returns a probability natively or was asked to state one. Every $z$ is \jevflag{red} because every arm is rejected, and they fail in opposite directions, since a slope above one with $z<0$ over-states prevalence and a slope below one with $z>0$ under-states it. Cost is not measured here, and Figure~\ref{fig:frontier} prices a comparable tier at list rates. No arm is held out from the reference set.
 \end{tablenotes}
 \end{threeparttable}
-\end{minipage}}
 \end{table}

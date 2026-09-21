@@ -1,27 +1,31 @@
-\begin{table}[!htbp]
+\begin{table}[pos=!htbp]
 \centering
-\footnotesize
+\rmfamily\small
+\setlength{\tabcolsep}{4.0pt}
 \caption{Corpus and run statistics.}
 \label{tab:run}
-\begin{tabular}{lr}
+\begin{threeparttable}
+\begin{tabular}{>{\raggedright\arraybackslash}p{195.8pt}>{\raggedleft\arraybackslash}p{164.7pt}}
 \toprule
-\jevhead{Quantity} & \jevhead{Value} \\
+\jevheadp{Quantity} & \jevheadp{Value} \\
 \midrule
 Crash records in the narrative file & 5,109,746 \\
 Narratives empty & 91,175 (1.78\%) \\
-Narratives analysed ($>$40 chars) & 5,018,080 \\
+Narratives analyzed ($>$40 chars) & 5,018,080 \\
 Narrative length, median / p95 / p99 (chars) & 378 / 935 / 1427 \\
 Stage-2 narratives coded & 195,857 \\
   of which random stratum & 150,000 \\
 Model & jev-1.13.0 (195,857) \\
 Mean input tokens per narrative & 3,673 \\
 Median latency (s) & 0.20 \\
-Token model (27 questions) & $a$ = 3562, $b$ = 0.236/char, $R^2$ = 0.975 \\
+Token model, direct fit at 27 questions & $a$ = 3562, $b$ = 0.236/char, $R^2$ = 0.975 \\
 Schema overhead per question (tokens) & 122 ($R^2$ = 0.987) \\
 Cost per 1{,}000 narratives, realised (USD) & 0.1543 \\
 Stage-2 spend (USD) & 30.22 \\
 \bottomrule
 \end{tabular}
-\par\vspace{5pt}
-\begin{minipage}{0.86\textwidth}\footnotesize Prices are TypeSafe list prices accessed 2026-09-17 and are quoted, not endorsed.\end{minipage}
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~Prices are TypeSafe list prices accessed 2026-09-17 and are quoted rather than endorsed.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}

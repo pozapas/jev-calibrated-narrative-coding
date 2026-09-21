@@ -1,10 +1,9 @@
-\begin{table}[!htbp]
+\begin{table}[pos=!htbp]
 \centering
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\caption{Discrepancy taxonomy against coded fields.}
+\rmfamily\small
+\setlength{\tabcolsep}{4.0pt}
+\caption{Discrepancy taxonomy against coded fields (agreement).}
 \label{tab:discrepancy}
-\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
 \begin{threeparttable}
 \begin{tabular}{lrrrrrrr}
 \toprule
@@ -21,9 +20,8 @@ wrong\_way & 150,000 & 98.77 & 0.371 & 554 & 1,587 & 256 & 147,603 \\
 medical\_episode & 150,000 & 99.28 & 0.534 & 629 & 953 & 131 & 148,287 \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}\footnotesize
-\item Comparisons are with coded CRIS fields, which are themselves incomplete and noisy; these are measures of \emph{agreement}, not accuracy. Accuracy against the human gold set of Section~\ref{sec:gold} is in Table~\ref{tab:gold}, which also gives the factor by which this reference flatters the model. $^{\dagger}$ the coded field is a proxy for the narrative concept rather than a direct match. ``Narrative only'' is not an error rate: a factor stated in the narrative and absent from the coded field is the case this study sets out to find. Adjudication of 200 sampled discrepancies is reported in v2.
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~Agreement against the incomplete coded fields rather than accuracy; see the note to Table~\ref{tab:calibration}. The dagger marks a coded field that is a proxy rather than a direct match. ``Narrative only'' is not an error rate, because a factor stated in the narrative and absent from the coded field is what this study sets out to find.
 \end{tablenotes}
 \end{threeparttable}
-\end{minipage}}
 \end{table}

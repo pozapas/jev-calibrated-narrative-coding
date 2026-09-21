@@ -1,0 +1,27 @@
+\begin{table}[pos=!htbp]
+\centering
+\rmfamily\small
+\setlength{\tabcolsep}{3.0pt}
+\caption{Injury and fatal crashes attributed to each factor, from the coded fields alone and with calibrated narrative variables added.}
+\label{tab:downstream}
+\begin{threeparttable}
+\begin{tabular}{lr>{\raggedleft\arraybackslash}p{32.8pt}>{\raggedleft\arraybackslash}p{68.2pt}>{\raggedleft\arraybackslash}p{51.4pt}>{\raggedleft\arraybackslash}p{40.9pt}>{\raggedleft\arraybackslash}p{78.1pt}}
+\toprule
+\jevhead{factor} & \jevhead{coded field} & \jevheadp{coded\newline per year} & \jevheadp{added by narratives\newline per year} & \jevheadp{95\% interval} & \jevheadp{increase \%} & \jevheadp{narrative-only flags\newline confirmed} \\
+\midrule
+alcohol\_involved & coded\_alcohol & 8{,}531 & 1{,}784 & [1{,}530, 2{,}649] & 21 & 0.71 \\
+medical\_episode & coded\_medical & 1{,}918 & 1{,}644 & [1{,}371, 2{,}150] & 86 & 0.60 \\
+phone\_use & coded\_phone & 732 & 1{,}334 & [1{,}091, 1{,}522] & 182 & 0.90 \\
+wrong\_way & coded\_wrongway & 1{,}543 & 1{,}248 & [924, 2{,}791] & 81 & 0.29 \\
+hydroplane$^{\dagger}$ & coded\_hydro\_proxy & 2{,}959 & 1{,}154 & [932, 1{,}437] & 39 & 0.88 \\
+unbelted & coded\_unbelted & 6{,}364 & 1{,}049 & [800, 1{,}423] & 16 & 0.15 \\
+drug\_involved & coded\_drug & 1{,}833 & 998 & [817, 1{,}317] & 54 & 0.52 \\
+fatigue & coded\_fatigue & 2{,}476 & 910 & [792, 1{,}020] & 37 & 0.89 \\
+animal\_involved & coded\_animal & 1{,}702 & 625 & [509, 750] & 37 & -- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~Counts are estimated on the Stage-2 random stratum and scaled to Texas per year. The added column is the expected number of injury or fatal crashes whose coded field is negative and whose narrative states the factor, summed over the recalibrated probability of Section~\ref{sec:res-calibration}, so it is a calibrated total rather than a count of flags. Intervals resample the reference narratives and refit the map. The last column is the share of narrative-only flags a coder confirmed, from Table~\ref{tab:gold}, which disciplines the added column rather than feeding it. The dagger marks a coded field that is a proxy rather than a direct match.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

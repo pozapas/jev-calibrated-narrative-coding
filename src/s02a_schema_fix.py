@@ -25,7 +25,7 @@ from __future__ import annotations
 import json, re
 from pathlib import Path
 
-ROOT = Path(r"D:/OneDrive - Texas State University/AIT/Papers/Jev")
+ROOT = Path(__file__).resolve().parents[2]   # repository root, resolved from this file
 SCHEMAS = ROOT / "schemas"
 DATA = ROOT / "paper1" / "data"
 

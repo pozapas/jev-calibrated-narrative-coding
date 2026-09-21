@@ -123,7 +123,7 @@ def main() -> None:
     # The frontier F1 exists but lives on the human-label reference, not this axis, so the
     # label says where it is rather than implying the number was never measured.
     ax.text(c_llm * 0.85, max(f1_kw, f1_jev) + 0.025,
-            f"{P.LLM_BASELINE.replace('claude-', 'Claude ')}\nlist price; F1 vs human labels",
+            f"{P.LLM_BASELINE.replace('claude-', 'Claude ')}\nlist price; accuracy not plotted",
             fontsize=5.6, color=S.ORANGE, rotation=90, rotation_mode="anchor",
             ha="left", va="bottom", linespacing=1.25)
     ax.text(0.015, 0.965, f"{run} random stratum · n = {len(d):,}",
@@ -137,7 +137,10 @@ def main() -> None:
     ins.barh([0, 1, 2], vals, color=[S.GREEN, S.BLUE, S.ORANGE], height=0.58)
     ins.set_xscale("log")
     ins.set_yticks([0, 1, 2]); ins.set_yticklabels(labels, fontsize=5.0)
-    ins.set_title("Cost to code all 5.02 M narratives", loc="left", fontsize=5.6, pad=2.4)
+    # WP7. The corpus was never coded end to end, so the inset is a projection at the
+    # measured per-narrative rate and says so.
+    ins.set_title("Projected cost to code all 5.02 M narratives", loc="left", fontsize=5.6,
+                  pad=2.4)
     ins.tick_params(labelsize=4.8)
     for i, v in enumerate(vals):
         ins.text(v * 1.22, i, f"${v:,.0f}", va="center", fontsize=4.8, color=S.INK)

@@ -1,39 +1,37 @@
-\begin{table}[!htbp]
+\begin{table}[pos=!htbp]
 \centering
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\caption{Accuracy against the human gold set.}
+\rmfamily\small
+\setlength{\tabcolsep}{3.0pt}
+\caption{Accuracy against the human reference set.}
 \label{tab:gold}
-\makebox[\textwidth][c]{\begin{minipage}{\jevtablewidth}\centering
 \begin{threeparttable}
-\begin{tabular}{lrrrrr@{\hspace{3pt}}lrrrrr}
+\begin{tabular}{lrrrrrrr>{\raggedleft\arraybackslash}p{25.4pt}r>{\raggedleft\arraybackslash}p{24.8pt}rr>{\raggedleft\arraybackslash}p{32.4pt}}
 \toprule
-\multicolumn{3}{c}{} & \multicolumn{5}{c}{\jevhead{Accuracy vs.\ human labels}} & \multicolumn{4}{c}{\jevhead{Calibration}} \\
-\cmidrule(lr){4-8}\cmidrule(lr){9-12}
-\jevhead{variable} & \jevhead{$n$} & \jevhead{base \%} & \jevhead{prec.} & \jevhead{rec.} & \jevhead{$F_1$} & \jevhead{} & \jevhead{$\kappa$} & \jevhead{ECE} & \jevhead{vs.\ coded} & \jevhead{gap} & \jevhead{slope} \\
+\multicolumn{3}{c}{} & \multicolumn{6}{c}{\jevhead{Accuracy vs.\ human labels}} & \multicolumn{4}{c}{\jevhead{Calibration}} & \multicolumn{1}{c}{} \\
+\cmidrule(lr){4-9}\cmidrule(lr){10-13}
+\jevhead{variable} & \jevhead{$n$} & \jevhead{base \%} & \jevhead{prec.} & \jevhead{rec.} & \jevhead{$F_1$} & \jevhead{} & \jevhead{$\kappa$\jevbr  weighted} & \jevheadp{$\kappa$\newline vs.\ coded} & \jevhead{ECE} & \jevheadp{vs.\ coded} & \jevhead{gap} & \jevhead{slope} & \jevheadp{$H(0.90)$ \%\newline held out} \\
 \midrule
-preg\_mentioned & 107 & 3.5 & 1.00 & 1.00 & 1.00 & \jevbar{1.000}{0.000} & 1.00 & 0.012 & -- & -- & sep. \\
-animal\_involved & 129 & 22.2 & 1.00 & 0.98 & 0.99 & \jevbar{0.980}{0.020} & 0.97 & 0.027 & 0.015 & 1.8$\times$ & sep. \\
-hydroplane & 130 & 27.1 & 0.97 & 0.97 & 0.97 & \jevbar{0.947}{0.053} & 0.96 & 0.047 & 0.015 & 3.1$\times$ & 2.22 \\
-fatigue & 120 & 22.5 & 0.94 & 1.00 & 0.97 & \jevbar{0.945}{0.055} & 0.93 & 0.044 & 0.015 & 3.0$\times$ & sep. \\
-transported & 146 & 22.6 & 0.91 & 1.00 & 0.95 & \jevbar{0.924}{0.076} & 0.93 & 0.048 & -- & -- & sep. \\
-hit\_and\_run & 205 & 44.0 & 0.98 & 0.91 & 0.94 & \jevbar{0.903}{0.097} & 0.89 & 0.088 & -- & -- & 1.91 \\
-alcohol\_involved & 140 & 19.6 & 0.85 & 1.00 & 0.92 & \jevbar{0.868}{0.132} & 0.89 & 0.083 & 0.019 & 4.4$\times$ & 1.46 \\
-drug\_involved & 148 & 4.1 & 0.85 & 1.00 & 0.92 & \jevbar{0.861}{0.139} & 0.94 & 0.060 & 0.020 & 3.0$\times$ & sep. \\
-phone\_use & 123 & 13.6 & 0.89 & 0.94 & 0.92 & \jevbar{0.859}{0.141} & 0.86 & 0.059 & 0.020 & 2.9$\times$ & 2.18 \\
-aggression & 165 & 16.6 & 0.87 & 0.92 & 0.90 & \jevbar{0.831}{0.169} & 0.88 & 0.100 & -- & -- & 2.96 \\
-vehicle\_defect & 132 & 27.2 & 0.96 & 0.83 & 0.89 & \jevbar{0.816}{0.184} & 0.83 & 0.096 & -- & -- & 1.35 \\
-witness\_cited & 206 & 21.4 & 0.85 & 0.90 & 0.87 & \jevbar{0.789}{0.211} & 0.84 & 0.111 & -- & -- & 1.97 \\
-medical\_episode & 164 & 12.0 & 0.79 & 0.92 & 0.85 & \jevbar{0.748}{0.252} & 0.80 & 0.101 & 0.025 & 4.1$\times$ & 2.51 \\
-\jevflag{wrong\_way} & 183 & 11.2 & \jevflag{0.50} & 0.76 & \jevflag{0.60} & \jevbar{0.336}{0.664} & 0.53 & 0.138 & 0.045 & 3.0$\times$ & 1.17 \\
-\jevflag{unbelted} & 145 & 3.5 & \jevflag{0.33} & 1.00 & \jevflag{0.49} & \jevbar{0.156}{0.844} & 0.45 & 0.104 & 0.012 & 8.8$\times$ & sep. \\
-\jevflag{intentional} & 173 & 2.3 & \jevflag{0.32} & 1.00 & \jevflag{0.48} & \jevbar{0.137}{0.863} & 0.48 & 0.099 & -- & -- & 4.20 \\
-\textbf{pooled} & 2,416 & 17.7 & 0.86 & 0.93 & 0.89 & \jevbar{0.818}{0.182} & 0.85 & 0.056 & -- & -- & 1.63 \\
+preg\_mentioned & 107 & 0.2 & 1.00 & 1.00 & 1.00 & \jevbar{1.000}{0.000} & 1.00 & -- & 0.011 & -- & -- & sep. & 5 \\
+animal\_involved & 129 & 1.9 & 1.00 & 0.98 & 0.99 & \jevbar{0.979}{0.021} & 0.99 & 0.91 & 0.015 & 0.015 & 1.0$\times$ & sep. & 0 \\
+hit\_and\_run & 205 & 16.1 & 0.99 & 0.96 & 0.97 & \jevbar{0.955}{0.045} & 0.97 & -- & 0.035 & -- & -- & 2.12 & 0 \\
+transported & 146 & 4.4 & 0.94 & 1.00 & 0.97 & \jevbar{0.948}{0.052} & 0.97 & -- & 0.024 & -- & -- & sep. & 0 \\
+fatigue & 120 & 1.3 & 0.93 & 1.00 & 0.97 & \jevbar{0.942}{0.058} & 0.97 & 0.71 & 0.016 & 0.015 & 1.1$\times$ & sep. & 0 \\
+hydroplane & 130 & 2.1 & 0.96 & 0.95 & 0.96 & \jevbar{0.929}{0.071} & 0.96 & 0.75 & 0.017 & 0.017 & 1.0$\times$ & 2.35 & 0 \\
+drug\_involved & 148 & 0.4 & 0.92 & 1.00 & 0.96 & \jevbar{0.927}{0.073} & 0.96 & 0.48 & 0.023 & 0.020 & 1.1$\times$ & sep. & 0 \\
+phone\_use & 123 & 0.8 & 0.93 & 0.97 & 0.95 & \jevbar{0.915}{0.085} & 0.95 & 0.48 & 0.016 & 0.020 & 0.8$\times$ & sep. & 0 \\
+alcohol\_involved & 140 & 3.0 & 0.88 & 1.00 & 0.94 & \jevbar{0.895}{0.105} & 0.93 & 0.70 & 0.026 & 0.019 & 1.4$\times$ & sep. & 5 \\
+aggression & 165 & 0.9 & 0.86 & 0.91 & 0.88 & \jevbar{0.806}{0.194} & 0.88 & -- & 0.029 & -- & -- & 3.23 & 11 \\
+witness\_cited & 206 & 5.3 & 0.84 & 0.91 & 0.87 & \jevbar{0.792}{0.208} & 0.87 & -- & 0.055 & -- & -- & 2.15 & 19 \\
+medical\_episode & 164 & 0.9 & 0.78 & 0.91 & 0.84 & \jevbar{0.741}{0.259} & 0.84 & 0.53 & 0.026 & 0.025 & 1.0$\times$ & sep. & 14 \\
+\jevflag{vehicle\_defect} & 132 & 3.9 & \jevflag{0.96} & 0.54 & \jevflag{0.69} & \jevbar{0.480}{0.520} & 0.68 & -- & 0.032 & -- & -- & 1.39 & 0 \\
+\jevflag{wrong\_way} & 183 & 1.0 & \jevflag{0.42} & 0.68 & \jevflag{0.52} & \jevbar{0.204}{0.796} & 0.52 & 0.37 & 0.046 & 0.045 & 1.0$\times$ & 1.55 & 72 \\
+\jevflag{intentional} & 173 & 0.2 & \jevflag{0.33} & 1.00 & \jevflag{0.49} & \jevbar{0.152}{0.848} & 0.49 & -- & 0.035 & -- & -- & sep. & 68 \\
+\jevflag{unbelted} & 145 & 0.2 & \jevflag{0.29} & 1.00 & \jevflag{0.45} & \jevbar{0.083}{0.917} & 0.45 & 0.10 & 0.027 & 0.012 & 2.2$\times$ & sep. & 64 \\
+\textbf{pooled} & 2,416 & 2.7 & 0.90 & 0.91 & 0.91 & \jevbar{0.847}{0.153} & 0.91 & -- & 0.023 & -- & -- & 1.63 & 1 \\
 \bottomrule
 \end{tabular}
-\begin{tablenotes}\footnotesize
-\item Accuracy, not agreement: the reference is \GoldNUsable{} human judgements of the criteria text the model was given, Horvitz--Thompson weighted to the population. Bars scale $F_1$ from 0.40; \jevflag{red} marks $F_1<0.70$. ``gap'' is ECE divided by the coded-field ECE of Table~\ref{tab:calibration}: the factor by which that reference flatters the model. ``sep.'' is quasi-complete separation.
+\begin{tablenotes}[flushleft]\small\rmfamily
+\item \textit{Note:}~These are accuracy rather than agreement measures, because the reference is \GoldNUsable{} human judgments of the criteria text the model was given. Every rate is calibration-weighted to the Stage-2 random stratum under the design of Section~\ref{sec:reference}, so the base rate is the population rate and both kappa columns are population quantities. Bars scale $F_1$ from 0.40 and \jevflag{red} marks $F_1<0.70$. The gap column is ECE divided by the coded-field ECE of Table~\ref{tab:calibration}. The budget column is cross-fitted, the threshold chosen on one half of the narratives and certified on the other. ``sep.'' denotes quasi-complete separation.
 \end{tablenotes}
 \end{threeparttable}
-\end{minipage}}
 \end{table}

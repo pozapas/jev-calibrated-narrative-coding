@@ -1,0 +1,142 @@
+{
+ "population": "Stage-2 random stratum",
+ "n_population": 150000,
+ "n_variables": 16,
+ "n_pairs": 2465,
+ "n_narratives": 400,
+ "bin_edges": [
+  0.0,
+  0.05,
+  0.3,
+  0.7,
+  0.95,
+  1.0
+ ],
+ "bin_names": [
+  "[0,0.05)",
+  "[0.05,0.3)",
+  "[0.3,0.7)",
+  "[0.7,0.95)",
+  "[0.95,1]"
+ ],
+ "min_cell": 5,
+ "collapsed_cells": {
+  "animal_involved": [
+   [
+    0
+   ],
+   [
+    1,
+    2,
+    3
+   ],
+   [
+    4
+   ]
+  ],
+  "drug_involved": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    3,
+    4
+   ]
+  ],
+  "fatigue": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4
+   ]
+  ],
+  "intentional": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    3,
+    4
+   ]
+  ],
+  "preg_mentioned": [
+   [
+    0
+   ],
+   [
+    1,
+    2,
+    3,
+    4
+   ]
+  ],
+  "unbelted": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ],
+   [
+    3,
+    4
+   ]
+  ]
+ },
+ "n_active_pairs": 1265,
+ "n_control_pairs": 1200,
+ "weight_min": 20.39737142062807,
+ "weight_max": 3854.4311652155466,
+ "weight_ratio": 188.96705294671062,
+ "kish_deff": 1.948861536570785,
+ "n_effective": 1264.8410129420542,
+ "narrative_weight_ratio": 6.311448757270057,
+ "draw_strata": {
+  "[0.95,1]": 113,
+  "[0.05,0.3)": 99,
+  "[0.3,0.7)": 82,
+  "[0.7,0.95)": 81,
+  "[0,0.05)": 25
+ },
+ "per_variable_n_effective": {
+  "aggression": 78.66084247826957,
+  "alcohol_involved": 69.80375418007445,
+  "animal_involved": 88.69864494155482,
+  "drug_involved": 83.51333806583467,
+  "fatigue": 64.41044978830617,
+  "hit_and_run": 91.74691515849923,
+  "hydroplane": 78.78662217301621,
+  "intentional": 85.55022937473602,
+  "medical_episode": 73.29975052569421,
+  "phone_use": 70.68282654597121,
+  "preg_mentioned": 93.19444880070192,
+  "transported": 83.55878695595749,
+  "unbelted": 80.79905737866873,
+  "vehicle_defect": 70.79497005858201,
+  "witness_cited": 86.62784804491844,
+  "wrong_way": 78.30855801353749
+ }
+}
