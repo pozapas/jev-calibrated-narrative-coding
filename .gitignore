@@ -41,3 +41,7 @@ __pycache__/
 # The manuscript itself is not published here.
 manuscript/
 *.tex.bak
+
+# The coded sample carries CRIS crash identifiers, so it stays out even though it holds no
+# narrative text. src/s22_export_sample.py regenerates it for anyone with the corpus.
+outputs/cris_coded_sample*
